@@ -1,0 +1,289 @@
+/* ==========================================================================
+   CTA Design System — Global Styles
+
+   Recommended load order in HTML:
+   1. variables.css
+   2. global.css
+   3. components.css
+   4. layout.css
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap");
+
+@import "variables.css";
+
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints (reference)
+   -------------------------------------------------------------------------- */
+/*
+  --breakpoint-sm:  576px   Small devices (landscape phones)
+  --breakpoint-md:  768px   Tablets
+  --breakpoint-lg:  992px   Desktops
+  --breakpoint-xl:  1200px  Large desktops
+  --breakpoint-2xl: 1400px  Extra large screens
+*/
+
+/* --------------------------------------------------------------------------
+   CSS Reset
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-dark);
+  background-color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-dark);
+}
+
+p {
+  margin-bottom: var(--space-md);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Typography Classes
+   -------------------------------------------------------------------------- */
+.text-h1,
+h1 {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-extrabold);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.text-h2,
+h2 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+}
+
+.text-h3,
+h3 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+}
+
+.text-h4,
+h4 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+.text-h5,
+h5 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.text-h6,
+h6 {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+}
+
+.text-body {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-gray);
+}
+
+.text-body-lg {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-gray);
+}
+
+.text-small {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-gray);
+}
+
+.text-xs {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+.text-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-navy {
+  color: var(--color-navy);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Container / Wrapper
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+.container--narrow {
+  max-width: 960px;
+}
+
+.container--wide {
+  max-width: 1440px;
+}
+
+.section {
+  padding-block: var(--space-3xl);
+}
+
+.section--sm {
+  padding-block: var(--space-2xl);
+}
+
+.section--bg {
+  background-color: var(--color-bg-light);
+}
+
+.section__header {
+  margin-bottom: var(--space-2xl);
+  text-align: center;
+}
+
+.section__header .text-label {
+  margin-bottom: var(--space-sm);
+}
+
+.section__header .text-h2 {
+  margin-bottom: var(--space-md);
+}
+
+.section__header .text-body {
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Typography
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .text-h1,
+  h1 {
+    font-size: var(--font-size-3xl);
+  }
+
+  .text-h2,
+  h2 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .text-h3,
+  h3 {
+    font-size: var(--font-size-xl);
+  }
+
+  .section {
+    padding-block: var(--space-2xl);
+  }
+
+  .container {
+    padding-inline: var(--space-md);
+  }
+}
+
+@media (max-width: 576px) {
+  .text-h1,
+  h1 {
+    font-size: var(--font-size-2xl);
+  }
+}

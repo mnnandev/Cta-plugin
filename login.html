@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Log in or create an account at Clinical Training and Supervision Academy to access your CE courses and supervision sessions.">
+  <title>Log In | Clinical Training and Supervision Academy</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body class="auth-page">
+
+  <div class="auth-page__layout">
+
+    <!-- Left Panel -->
+    <aside class="auth-page__brand" aria-label="About CTA">
+      <div class="auth-page__brand-pattern" aria-hidden="true">
+        <span class="auth-page__brand-shape auth-page__brand-shape--1"></span>
+        <span class="auth-page__brand-shape auth-page__brand-shape--2"></span>
+        <span class="auth-page__brand-shape auth-page__brand-shape--3"></span>
+      </div>
+
+      <div class="auth-page__logo">
+        <a href="index.html">Clinical Training &amp; Supervision Academy</a>
+      </div>
+
+      <div class="auth-page__brand-content">
+        <h1 class="auth-page__brand-title">Welcome to CTA</h1>
+        <p class="auth-page__brand-text">
+          Access your courses, track your progress, and manage your
+          supervision sessions all in one place.
+        </p>
+      </div>
+    </aside>
+
+    <!-- Right Panel -->
+    <main class="auth-page__form-panel">
+      <div class="auth-page__form-container">
+
+        <!-- Login Form -->
+        <!-- WordPress: MemberPress login shortcode embeds here -->
+        <form
+          id="login-form"
+          class="auth-form"
+          action="#"
+          method="post"
+          aria-labelledby="login-form-title"
+        >
+          <h2 class="auth-form__title" id="login-form-title">Log In</h2>
+
+          <div class="form-group">
+            <label class="form-label" for="login-email">Email</label>
+            <input
+              type="email"
+              id="login-email"
+              name="email"
+              class="form-input"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="login-password">Password</label>
+            <input
+              type="password"
+              id="login-password"
+              name="password"
+              class="form-input"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              required
+            >
+          </div>
+
+          <div class="auth-form__row">
+            <span></span>
+            <a href="#" class="auth-form__forgot">Forgot Password?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn--lg auth-form__submit">Log In</button>
+
+          <div class="auth-form__divider" aria-hidden="true">or</div>
+
+          <p class="auth-form__switch">
+            Don't have an account?
+            <button type="button" class="auth-form__switch-btn" data-auth-toggle="register">Register here</button>
+          </p>
+        </form>
+
+        <!-- Register Form -->
+        <!-- WordPress: MemberPress registration shortcode embeds here -->
+        <form
+          id="register-form"
+          class="auth-form form-hidden"
+          action="#"
+          method="post"
+          aria-labelledby="register-form-title"
+          hidden
+        >
+          <h2 class="auth-form__title" id="register-form-title">Create Account</h2>
+
+          <div class="form-group">
+            <label class="form-label" for="register-full-name">Full Name</label>
+            <input
+              type="text"
+              id="register-full-name"
+              name="full_name"
+              class="form-input"
+              placeholder="Your full name"
+              autocomplete="name"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="register-email">Email</label>
+            <input
+              type="email"
+              id="register-email"
+              name="email"
+              class="form-input"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="register-password">Password</label>
+            <input
+              type="password"
+              id="register-password"
+              name="password"
+              class="form-input"
+              placeholder="Create a password"
+              autocomplete="new-password"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="register-confirm-password">Confirm Password</label>
+            <input
+              type="password"
+              id="register-confirm-password"
+              name="confirm_password"
+              class="form-input"
+              placeholder="Confirm your password"
+              autocomplete="new-password"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="register-user-type">I am a...</label>
+            <select id="register-user-type" name="user_type" class="form-select" required>
+              <option value="" disabled selected>Select your status</option>
+              <option value="licensed">Licensed Professional</option>
+              <option value="associate">Registered Associate</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn--lg auth-form__submit">Create Account</button>
+
+          <p class="auth-form__switch">
+            Already have an account?
+            <button type="button" class="auth-form__switch-btn" data-auth-toggle="login">Log In</button>
+          </p>
+        </form>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var loginForm = document.getElementById("login-form");
+      var registerForm = document.getElementById("register-form");
+      var toggleButtons = document.querySelectorAll("[data-auth-toggle]");
+
+      if (!loginForm || !registerForm) return;
+
+      function showLogin() {
+        loginForm.classList.remove("form-hidden");
+        loginForm.removeAttribute("hidden");
+        registerForm.classList.add("form-hidden");
+        registerForm.setAttribute("hidden", "");
+        document.title = "Log In | Clinical Training and Supervision Academy";
+      }
+
+      function showRegister() {
+        registerForm.classList.remove("form-hidden");
+        registerForm.removeAttribute("hidden");
+        loginForm.classList.add("form-hidden");
+        loginForm.setAttribute("hidden", "");
+        document.title = "Create Account | Clinical Training and Supervision Academy";
+      }
+
+      toggleButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          var target = button.getAttribute("data-auth-toggle");
+          if (target === "register") {
+            showRegister();
+          } else {
+            showLogin();
+          }
+        });
+      });
+
+      loginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+      });
+
+      registerForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+      });
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Clinical Training and Supervision Academy — California BBS compliant continuing education and clinical supervision for mental health professionals.">
+  <title>Clinical Training and Supervision Academy | CE Courses &amp; Supervision</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="site-header__logo">
+        <a href="index.html">
+          <img
+            src="assets/img/placeholder/logo.png"
+            alt="Clinical Training and Supervision Academy"
+            onerror="this.style.display='none'; this.nextElementSibling.classList.add('site-header__logo-text--visible');"
+          >
+          <span class="site-header__logo-text">Clinical Training &amp; Supervision Academy</span>
+        </a>
+      </div>
+
+      <nav class="site-header__nav" aria-label="Main navigation">
+        <ul class="site-header__nav-list">
+          <li><a href="index.html" class="site-header__nav-link site-header__nav-link--active">Home</a></li>
+          <li><a href="courses.html" class="site-header__nav-link">CE Courses</a></li>
+          <li><a href="supervision.html" class="site-header__nav-link">Supervision</a></li>
+          <li><a href="memberships.html" class="site-header__nav-link">Memberships</a></li>
+          <li><a href="#" class="site-header__nav-link">About</a></li>
+          <li><a href="#" class="site-header__nav-link">FAQ</a></li>
+          <li><a href="#" class="site-header__nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="site-header__actions">
+        <a href="#" class="btn btn-outline btn--sm">Login</a>
+        <a href="#" class="btn btn-primary">Enroll Now</a>
+      </div>
+
+      <button
+        class="mobile-menu-toggle"
+        type="button"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+      >
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- 1. Hero Section -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <span class="hero__eyebrow">California BBS Compliant Platform</span>
+          <h1 class="hero__title" id="hero-title">Advance Your Clinical Career</h1>
+          <p class="hero__text">
+            Continuing education and supervision designed for California's
+            mental health professionals.
+          </p>
+          <div class="hero__actions">
+            <a href="#" class="btn btn-primary btn--lg">Browse CE Courses</a>
+            <a href="#" class="btn btn-outline-light btn--lg">Explore Supervision</a>
+          </div>
+        </div>
+        <div class="hero__media">
+          <img
+            src="assets/img/placeholder/hero.jpg"
+            alt="Mental health professional in a clinical setting"
+            class="hero__image"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          >
+          <div class="hero__image-placeholder" style="display:none;" aria-hidden="true">
+            Hero Image Placeholder
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Two Path Cards -->
+    <section class="section path-cards" aria-labelledby="path-cards-title">
+      <div class="container">
+        <h2 class="visually-hidden" id="path-cards-title">Choose Your Path</h2>
+        <div class="grid-2 grid-2--gap-lg">
+
+          <article class="card path-card">
+            <div class="path-card__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                <line x1="8" y1="7" x2="16" y2="7"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+            </div>
+            <h3 class="path-card__title">Continuing Education</h3>
+            <p class="path-card__text">
+              10 CE courses covering ethics, risk assessment, telehealth, and more.
+            </p>
+            <a href="#" class="btn-link">View Courses &rarr;</a>
+          </article>
+
+          <article class="card path-card">
+            <div class="path-card__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3 class="path-card__title">Clinical Supervision</h3>
+            <p class="path-card__text">
+              Group and individual supervision for AMFT, ASW, and APCC associates.
+            </p>
+            <a href="#" class="btn-link">Learn More &rarr;</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Featured CE Courses -->
+    <section class="section section--bg featured-courses" aria-labelledby="featured-courses-title">
+      <div class="container">
+        <header class="section__header">
+          <p class="text-label">Continuing Education</p>
+          <h2 class="text-h2" id="featured-courses-title">Featured CE Courses</h2>
+          <p class="text-body">
+            BBS-compliant courses designed for licensed and pre-licensed clinicians across California.
+          </p>
+        </header>
+
+        <div class="grid-3">
+
+          <article class="card course-card">
+            <div class="course-card__media">
+              <span class="badge badge--success course-card__badge">6.0 CE</span>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title">California Law &amp; Ethics</h3>
+              <p class="card__text">Meet your mandatory ethics requirement with practical, case-based guidance.</p>
+              <div class="course-card__footer">
+                <span class="course-card__price">$79</span>
+                <a href="#" class="btn btn-primary btn--sm">View Course</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card course-card">
+            <div class="course-card__media">
+              <span class="badge badge--success course-card__badge">4.0 CE</span>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title">Advanced Suicide Risk Assessment</h3>
+              <p class="card__text">Evidence-based tools for assessing and managing suicide risk in clinical practice.</p>
+              <div class="course-card__footer">
+                <span class="course-card__price">$89</span>
+                <a href="#" class="btn btn-primary btn--sm">View Course</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card course-card">
+            <div class="course-card__media">
+              <span class="badge badge--success course-card__badge">3.0 CE</span>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title">Clinical Excellence in Telehealth</h3>
+              <p class="card__text">Best practices for delivering ethical, effective therapy in a virtual setting.</p>
+              <div class="course-card__footer">
+                <span class="course-card__price">$69</span>
+                <a href="#" class="btn btn-primary btn--sm">View Course</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="featured-courses__cta">
+          <a href="#" class="btn btn-primary btn--lg">View All Courses</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Stats Bar -->
+    <section class="stats-bar" aria-label="Platform highlights">
+      <div class="container">
+        <div class="grid-4">
+          <div class="stats-bar__item">
+            <span class="stats-bar__value">10 CE Courses</span>
+          </div>
+          <div class="stats-bar__item">
+            <span class="stats-bar__value">100% BBS Compliant</span>
+          </div>
+          <div class="stats-bar__item">
+            <span class="stats-bar__value">Max 8 Per Group Session</span>
+          </div>
+          <div class="stats-bar__item">
+            <span class="stats-bar__value">Auto Certificates</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. About Snippet -->
+    <section class="section about-snippet" aria-labelledby="about-snippet-title">
+      <div class="container about-snippet__inner grid-2">
+        <div class="about-snippet__content">
+          <p class="text-label">About CTA</p>
+          <h2 class="text-h2" id="about-snippet-title">Built by a Licensed Supervisor, for Working Professionals</h2>
+          <p class="about-snippet__text">
+            Clinical Training and Supervision Academy was founded by Candice Fuimaono, MS, LMFT —
+            a practicing clinician who understands the demands of balancing a caseload, licensure
+            requirements, and professional growth. Every course and supervision group is designed
+            with real-world applicability in mind.
+          </p>
+          <a href="#" class="btn btn-dark">Read Our Story</a>
+        </div>
+        <div class="about-snippet__media">
+          <img
+            src="assets/img/placeholder/about.jpg"
+            alt="Candice Fuimaono, MS, LMFT"
+            class="about-snippet__image"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          >
+          <div class="about-snippet__image-placeholder" style="display:none;" aria-hidden="true">
+            About Image Placeholder
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CTA Banner -->
+    <section class="cta-banner" aria-labelledby="cta-banner-title">
+      <div class="container">
+        <h2 class="cta-banner__title" id="cta-banner-title">Ready to Advance Your Practice?</h2>
+        <div class="cta-banner__actions">
+          <a href="#" class="btn btn-white btn--lg">Browse Courses</a>
+          <a href="#" class="btn btn-outline-light btn--lg">Book Supervision</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 7. Site Footer -->
+  <footer class="site-footer">
+    <div class="site-footer__grid">
+
+      <div class="site-footer__column">
+        <span class="site-footer__logo-text">Clinical Training &amp; Supervision Academy</span>
+        <p class="site-footer__about-text">
+          California's trusted platform for BBS-compliant continuing education
+          and clinical supervision — built for working mental health professionals.
+        </p>
+      </div>
+
+      <div class="site-footer__column">
+        <h3 class="site-footer__column-title">Quick Links</h3>
+        <ul class="site-footer__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="supervision.html">Supervision</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__column">
+        <h3 class="site-footer__column-title">Legal</h3>
+        <ul class="site-footer__links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Refund Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Grievance Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__column">
+        <h3 class="site-footer__column-title">Contact</h3>
+        <div class="site-footer__contact-item">
+          <span aria-hidden="true">&#9993;</span>
+          <span>info@ctacademy.org</span>
+        </div>
+        <div class="site-footer__contact-item">
+          <span aria-hidden="true">&#9742;</span>
+          <span>(555) 123-4567</span>
+        </div>
+        <div class="site-footer__contact-item">
+          <span aria-hidden="true">&#128205;</span>
+          <span>California, USA</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="site-footer__bottom">
+      <div class="site-footer__bottom-inner">
+        <p>&copy; 2026 Clinical Training and Supervision Academy. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

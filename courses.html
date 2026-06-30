@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse BBS-approved continuing education courses for LMFTs, LCSWs, LPCCs, and LEPs at Clinical Training and Supervision Academy.">
+  <title>CE Courses | Clinical Training and Supervision Academy</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="site-header__logo">
+        <a href="index.html">
+          <img
+            src="assets/img/placeholder/logo.png"
+            alt="Clinical Training and Supervision Academy"
+            onerror="this.style.display='none'; this.nextElementSibling.classList.add('site-header__logo-text--visible');"
+          >
+          <span class="site-header__logo-text">Clinical Training &amp; Supervision Academy</span>
+        </a>
+      </div>
+
+      <nav class="site-header__nav" aria-label="Main navigation">
+        <ul class="site-header__nav-list">
+          <li><a href="index.html" class="site-header__nav-link">Home</a></li>
+          <li><a href="courses.html" class="site-header__nav-link site-header__nav-link--active">CE Courses</a></li>
+          <li><a href="#" class="site-header__nav-link">Supervision</a></li>
+          <li><a href="#" class="site-header__nav-link">Memberships</a></li>
+          <li><a href="#" class="site-header__nav-link">About</a></li>
+          <li><a href="#" class="site-header__nav-link">FAQ</a></li>
+          <li><a href="#" class="site-header__nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="site-header__actions">
+        <a href="#" class="btn btn-outline btn--sm">Login</a>
+        <a href="#" class="btn btn-primary">Enroll Now</a>
+      </div>
+
+      <button
+        class="mobile-menu-toggle"
+        type="button"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+      >
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- 1. Page Hero -->
+    <section class="page-hero" aria-labelledby="page-hero-title">
+      <div class="page-hero__inner">
+        <nav class="page-hero__breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="page-hero__breadcrumb-separator" aria-hidden="true">/</span>
+          <span class="page-hero__breadcrumb-current">CE Courses</span>
+        </nav>
+        <h1 class="page-hero__title" id="page-hero-title">Continuing Education Courses</h1>
+        <p class="page-hero__subtitle">
+          BBS-approved CE courses for LMFTs, LCSWs, LPCCs, and LEPs
+        </p>
+        <div class="page-hero__search">
+          <form class="page-hero__search-form" role="search" aria-label="Search courses">
+            <input
+              type="search"
+              class="form-input page-hero__search-input"
+              placeholder="Search courses by title or topic..."
+              aria-label="Search courses"
+            >
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Filter Bar -->
+    <section class="catalog-filter" aria-label="Course filters">
+      <div class="container catalog-filter__inner">
+        <div class="catalog-filter__pills" role="group" aria-label="Filter by category">
+          <button type="button" class="catalog-filter__pill catalog-filter__pill--active">All Courses</button>
+          <button type="button" class="catalog-filter__pill">Law &amp; Ethics</button>
+          <button type="button" class="catalog-filter__pill">Clinical Skills</button>
+          <button type="button" class="catalog-filter__pill">Specialized Topics</button>
+        </div>
+        <div class="catalog-filter__sort">
+          <label for="course-sort" class="visually-hidden">Sort courses</label>
+          <select id="course-sort" class="form-select" aria-label="Sort courses">
+            <option value="popular">Sort by: Popular</option>
+            <option value="price-asc">Sort by: Price Low-High</option>
+            <option value="ce-hours">Sort by: CE Hours</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Course Grid -->
+    <!-- WordPress: [cta_course_catalog] renders inside .course-catalog -->
+    <section class="catalog-grid" aria-labelledby="course-catalog-title">
+      <div class="container">
+        <h2 class="visually-hidden" id="course-catalog-title">Course Catalog</h2>
+
+        <div class="grid-3 course-catalog">
+
+          <!-- Course Card Template Block -->
+          <article class="card course-card course-card--catalog" data-category="law-ethics">
+            <div class="course-card__media">
+              <span class="badge badge--success course-card__badge">6.0 CE</span>
+              <div class="course-card__thumb" aria-hidden="true"></div>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title course-card__title">
+                <a href="single-course.html">California Law &amp; Ethics for Mental Health Professionals</a>
+              </h3>
+              <p class="card__text">Meet California's mandatory law and ethics requirement with real-world case scenarios.</p>
+              <div class="course-card__footer">
+                <span class="course-card__price">$79</span>
+                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card course-card course-card--catalog" data-category="clinical-skills">
+            <div class="course-card__media">
+              <span class="badge badge--success course-card__badge">3.0 CE</span>
+              <div class="course-card__thumb" aria-hidden="true"></div>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title course-card__title">
+                <a href="single-course.html">Clinical Excellence in Telehealth</a>
+              </h3>
+              <p class="card__text">Deliver compliant, effective therapy across telehealth platforms and hybrid care models.</p>
+              <div class="course-card__footer">
+                <span class="course-card__price">$45</span>
+                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card course-card course-card--catalog" data-category="clinical-skills">
+            <div class="course-card__media">
+              <span class="badge badge--success course-card__badge">6.0 CE</span>
+              <div class="course-card__thumb" aria-hidden="true"></div>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title course-card__title">
+                <a href="single-course.html">Advanced Suicide Risk Assessment</a>
+              </h3>
+              <p class="card__text">Strengthen clinical judgment with evidence-based suicide risk screening and safety planning.</p>
+              <div class="course-card__footer">
+                <span class="course-card__price">$79</span>
+                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card course-card course-card--catalog" data-category="specialized">
+            <div class="course-card__media">
+              <span class="badge badge--success course-card__badge">15.0 CE</span>
+              <div class="course-card__thumb" aria-hidden="true"></div>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title course-card__title">
+                <a href="single-course.html">Substance Dependency &amp; Psychopharmacology</a>
+              </h3>
+              <p class="card__text">Explore addiction treatment fundamentals and psychopharmacology essentials for clinicians.</p>
+              <div class="course-card__footer">
+                <span class="course-card__price">$149</span>
+                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card course-card course-card--catalog" data-category="clinical-skills">
+            <div class="course-card__media">
+              <span class="badge badge--success course-card__badge">7.0 CE</span>
+              <div class="course-card__thumb" aria-hidden="true"></div>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title course-card__title">
+                <a href="single-course.html">Child Abuse Assessment &amp; Reporting</a>
+              </h3>
+              <p class="card__text">Learn mandated reporting standards and assessment protocols for suspected child abuse.</p>
+              <div class="course-card__footer">
+                <span class="course-card__price">$89</span>
+                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card course-card course-card--catalog" data-category="specialized">
+            <div class="course-card__media">
+              <span class="badge badge--success course-card__badge">7.0 CE</span>
+              <div class="course-card__thumb" aria-hidden="true"></div>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title course-card__title">
+                <a href="single-course.html">HIV/AIDS and Mental Health</a>
+              </h3>
+              <p class="card__text">Understand the clinical, legal, and psychosocial dimensions of HIV/AIDS in mental health care.</p>
+              <div class="course-card__footer">
+                <span class="course-card__price">$89</span>
+                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card course-card course-card--catalog" data-category="specialized">
+            <div class="course-card__media">
+              <span class="badge badge--success course-card__badge">10.0 CE</span>
+              <div class="course-card__thumb" aria-hidden="true"></div>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title course-card__title">
+                <a href="single-course.html">Human Sexuality &amp; Clinical Practice</a>
+              </h3>
+              <p class="card__text">Build competency in addressing sexuality issues ethically and effectively in therapy.</p>
+              <div class="course-card__footer">
+                <span class="course-card__price">$99</span>
+                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card course-card course-card--catalog" data-category="specialized">
+            <div class="course-card__media">
+              <span class="badge badge--success course-card__badge">6.0 CE</span>
+              <div class="course-card__thumb" aria-hidden="true"></div>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title course-card__title">
+                <a href="single-course.html">Fundamentals of Clinical Supervision</a>
+              </h3>
+              <p class="card__text">Core supervision principles aligned with California BBS requirements for supervisors.</p>
+              <div class="course-card__footer">
+                <span class="course-card__price">$129</span>
+                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card course-card course-card--catalog" data-category="law-ethics">
+            <div class="course-card__media">
+              <span class="badge badge--success course-card__badge">6.0 CE</span>
+              <div class="course-card__thumb" aria-hidden="true"></div>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title course-card__title">
+                <a href="single-course.html">Behind Closed Doors: BBS Disciplinary Cases</a>
+              </h3>
+              <p class="card__text">Learn from real BBS enforcement cases to protect your license and clinical practice.</p>
+              <div class="course-card__footer">
+                <span class="course-card__price">$75</span>
+                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card course-card course-card--catalog" data-category="clinical-skills">
+            <div class="course-card__media">
+              <span class="badge badge--success course-card__badge">6.0 CE</span>
+              <div class="course-card__thumb" aria-hidden="true"></div>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title course-card__title">
+                <a href="single-course.html">Clinical Assessment &amp; Life Stressors</a>
+              </h3>
+              <p class="card__text">Integrate biopsychosocial assessment approaches for clients facing major life stressors.</p>
+              <div class="course-card__footer">
+                <span class="course-card__price">$72</span>
+                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- 4. Pagination -->
+        <nav class="pagination" aria-label="Course catalog pagination">
+          <span class="pagination__item pagination__item--disabled" aria-hidden="true">&laquo;</span>
+          <a href="#" class="pagination__item pagination__item--active" aria-current="page">1</a>
+          <a href="#" class="pagination__item">2</a>
+          <a href="#" class="pagination__item">3</a>
+          <span class="pagination__item pagination__item--disabled" aria-hidden="true">&hellip;</span>
+          <a href="#" class="pagination__item">5</a>
+          <a href="#" class="pagination__item" aria-label="Next page">&raquo;</a>
+        </nav>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 5. Site Footer -->
+  <footer class="site-footer">
+    <div class="site-footer__grid">
+
+      <div class="site-footer__column">
+        <span class="site-footer__logo-text">Clinical Training &amp; Supervision Academy</span>
+        <p class="site-footer__about-text">
+          California's trusted platform for BBS-compliant continuing education
+          and clinical supervision — built for working mental health professionals.
+        </p>
+      </div>
+
+      <div class="site-footer__column">
+        <h3 class="site-footer__column-title">Quick Links</h3>
+        <ul class="site-footer__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="#">Supervision</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__column">
+        <h3 class="site-footer__column-title">Legal</h3>
+        <ul class="site-footer__links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Refund Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Grievance Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__column">
+        <h3 class="site-footer__column-title">Contact</h3>
+        <div class="site-footer__contact-item">
+          <span aria-hidden="true">&#9993;</span>
+          <span>info@ctacademy.org</span>
+        </div>
+        <div class="site-footer__contact-item">
+          <span aria-hidden="true">&#9742;</span>
+          <span>(555) 123-4567</span>
+        </div>
+        <div class="site-footer__contact-item">
+          <span aria-hidden="true">&#128205;</span>
+          <span>California, USA</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="site-footer__bottom">
+      <div class="site-footer__bottom-inner">
+        <p>&copy; 2026 Clinical Training and Supervision Academy. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

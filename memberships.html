@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Save on CE courses with bundles and unlimited access plans at Clinical Training and Supervision Academy.">
+  <title>Memberships &amp; Bundles | Clinical Training and Supervision Academy</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="site-header__logo">
+        <a href="index.html">
+          <img
+            src="assets/img/placeholder/logo.png"
+            alt="Clinical Training and Supervision Academy"
+            onerror="this.style.display='none'; this.nextElementSibling.classList.add('site-header__logo-text--visible');"
+          >
+          <span class="site-header__logo-text">Clinical Training &amp; Supervision Academy</span>
+        </a>
+      </div>
+
+      <nav class="site-header__nav" aria-label="Main navigation">
+        <ul class="site-header__nav-list">
+          <li><a href="index.html" class="site-header__nav-link">Home</a></li>
+          <li><a href="courses.html" class="site-header__nav-link">CE Courses</a></li>
+          <li><a href="supervision.html" class="site-header__nav-link">Supervision</a></li>
+          <li><a href="memberships.html" class="site-header__nav-link site-header__nav-link--active">Memberships</a></li>
+          <li><a href="#" class="site-header__nav-link">About</a></li>
+          <li><a href="#" class="site-header__nav-link">FAQ</a></li>
+          <li><a href="#" class="site-header__nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="site-header__actions">
+        <a href="login.html" class="btn btn-outline btn--sm">Login</a>
+        <a href="#" class="btn btn-primary">Enroll Now</a>
+      </div>
+
+      <button
+        class="mobile-menu-toggle"
+        type="button"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+      >
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- 1. Page Hero -->
+    <section class="page-hero" aria-labelledby="memberships-hero-title">
+      <div class="page-hero__inner">
+        <nav class="page-hero__breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="page-hero__breadcrumb-separator" aria-hidden="true">/</span>
+          <span class="page-hero__breadcrumb-current">Memberships</span>
+        </nav>
+        <h1 class="page-hero__title" id="memberships-hero-title">Memberships &amp; Bundles</h1>
+        <p class="page-hero__subtitle">
+          Save more with course bundles and unlimited access plans
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. Pricing Toggle + 3. Pricing Cards -->
+    <section class="section" aria-labelledby="pricing-plans-title">
+      <div class="container">
+
+        <h2 class="visually-hidden" id="pricing-plans-title">Pricing Plans</h2>
+
+        <!-- Visual toggle only -->
+        <div class="pricing-toggle" role="group" aria-label="Plan type">
+          <span class="pricing-toggle__label pricing-toggle__label--active" id="toggle-bundles">Bundles</span>
+          <button
+            type="button"
+            class="pricing-toggle__switch"
+            role="switch"
+            aria-checked="false"
+            aria-labelledby="toggle-bundles toggle-subscriptions"
+          ></button>
+          <span class="pricing-toggle__label" id="toggle-subscriptions">Subscriptions</span>
+        </div>
+
+        <!-- WordPress / MemberPress: pricing cards render here -->
+        <div class="pricing-grid">
+
+          <article class="card pricing-card">
+            <h3 class="pricing-card__name">First Renewal Starter Bundle</h3>
+            <p class="pricing-card__price">$139</p>
+            <p class="pricing-card__period">One-time purchase</p>
+            <div class="pricing-card__includes">
+              <p class="pricing-card__includes-title">Includes</p>
+              <ul class="checklist">
+                <li class="checklist__item">
+                  <span class="checklist__icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                  </span>
+                  Child Abuse Assessment &amp; Reporting
+                </li>
+                <li class="checklist__item">
+                  <span class="checklist__icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                  </span>
+                  HIV/AIDS &amp; Mental Health
+                </li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-primary btn--lg pricing-card__cta" data-plan="first-renewal-starter">Choose Plan</button>
+          </article>
+
+          <article class="card pricing-card">
+            <h3 class="pricing-card__name">Clinical Focus CE Bundle</h3>
+            <p class="pricing-card__price">$215</p>
+            <p class="pricing-card__period">One-time purchase</p>
+            <div class="pricing-card__includes">
+              <p class="pricing-card__includes-title">Includes</p>
+              <ul class="checklist">
+                <li class="checklist__item">
+                  <span class="checklist__icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                  </span>
+                  HIV/AIDS &amp; Mental Health
+                </li>
+                <li class="checklist__item">
+                  <span class="checklist__icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                  </span>
+                  Behind Closed Doors: BBS Disciplinary Cases
+                </li>
+                <li class="checklist__item">
+                  <span class="checklist__icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                  </span>
+                  Clinical Assessment &amp; Life Stressors
+                </li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-primary btn--lg pricing-card__cta" data-plan="clinical-focus-ce">Choose Plan</button>
+          </article>
+
+          <article class="card pricing-card">
+            <h3 class="pricing-card__name">Crisis &amp; Risk Management Bundle</h3>
+            <p class="pricing-card__price">$215</p>
+            <p class="pricing-card__period">One-time purchase</p>
+            <div class="pricing-card__includes">
+              <p class="pricing-card__includes-title">Includes</p>
+              <ul class="checklist">
+                <li class="checklist__item">
+                  <span class="checklist__icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                  </span>
+                  Advanced Suicide Risk Assessment
+                </li>
+                <li class="checklist__item">
+                  <span class="checklist__icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                  </span>
+                  HIV/AIDS &amp; Mental Health
+                </li>
+                <li class="checklist__item">
+                  <span class="checklist__icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                  </span>
+                  Behind Closed Doors: BBS Disciplinary Cases
+                </li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-primary btn--lg pricing-card__cta" data-plan="crisis-risk-management">Choose Plan</button>
+          </article>
+
+          <article class="card pricing-card pricing-card--featured">
+            <span class="pricing-card__ribbon">Best Value</span>
+            <h3 class="pricing-card__name">Annual All-Access CE Pass</h3>
+            <p class="pricing-card__price">$299<span class="pricing-card__price-suffix">/year</span></p>
+            <p class="pricing-card__period">Billed annually</p>
+            <div class="pricing-card__includes">
+              <p class="pricing-card__includes-title">Includes</p>
+              <ul class="checklist">
+                <li class="checklist__item">
+                  <span class="checklist__icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                  </span>
+                  All 10 CE courses
+                </li>
+                <li class="checklist__item">
+                  <span class="checklist__icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                  </span>
+                  Unlimited access for 12 months
+                </li>
+                <li class="checklist__item">
+                  <span class="checklist__icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                  </span>
+                  Auto-generated CE certificates
+                </li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-primary btn--lg pricing-card__cta" data-plan="annual-pass">Choose Plan</button>
+          </article>
+
+          <article class="card pricing-card">
+            <h3 class="pricing-card__name">Supervision + CE Hybrid</h3>
+            <p class="pricing-card__price">$350<span class="pricing-card__price-suffix">/month</span></p>
+            <p class="pricing-card__period">Monthly subscription</p>
+            <div class="pricing-card__includes">
+              <p class="pricing-card__includes-title">Includes</p>
+              <ul class="checklist">
+                <li class="checklist__item">
+                  <span class="checklist__icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                  </span>
+                  Group supervision (4 sessions/month)
+                </li>
+                <li class="checklist__item">
+                  <span class="checklist__icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                  </span>
+                  1 individual supervision session
+                </li>
+                <li class="checklist__item">
+                  <span class="checklist__icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                  </span>
+                  Full CE course library access
+                </li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-primary btn--lg pricing-card__cta" data-plan="supervision-ce-hybrid">Choose Plan</button>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Comparison Table -->
+    <section class="comparison-section section--bg" aria-labelledby="comparison-title">
+      <div class="container">
+        <header class="comparison-section__header">
+          <h2 class="text-h2" id="comparison-title">Compare Plans</h2>
+        </header>
+        <div class="comparison-table-wrap">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th scope="col">Feature</th>
+                <th scope="col">Starter</th>
+                <th scope="col">Clinical Focus</th>
+                <th scope="col">Crisis &amp; Risk</th>
+                <th scope="col" class="comparison-table__highlight-col">Annual Pass</th>
+                <th scope="col">Hybrid</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">CE Course Access</th>
+                <td>2 courses</td>
+                <td>3 courses</td>
+                <td>3 courses</td>
+                <td class="comparison-table__highlight">All 10 courses</td>
+                <td>All 10 courses</td>
+              </tr>
+              <tr>
+                <th scope="row">Supervision Access</th>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Group + 1 individual</td>
+              </tr>
+              <tr>
+                <th scope="row">Certificate Included</th>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td class="comparison-table__highlight">Yes</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <th scope="row">Price</th>
+                <td>$139</td>
+                <td>$215</td>
+                <td>$215</td>
+                <td class="comparison-table__highlight">$299/year</td>
+                <td>$350/month</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. FAQ -->
+    <section class="memberships-faq" aria-labelledby="memberships-faq-title">
+      <div class="container">
+        <header class="memberships-faq__header">
+          <h2 class="text-h2" id="memberships-faq-title">Pricing FAQ</h2>
+        </header>
+
+        <div class="memberships-faq__accordion">
+          <div class="accordion" data-accordion="single">
+
+            <div class="accordion-item">
+              <button type="button" class="accordion-item__header">
+                Can I switch from a bundle to the Annual All-Access Pass?
+                <span class="accordion-item__icon" aria-hidden="true"></span>
+              </button>
+              <div class="accordion-item__body">
+                <div class="accordion-item__content">
+                  <div class="accordion-item__content-inner">
+                    Yes. If you've purchased a bundle and want to upgrade to the Annual Pass within 30 days, contact support and we'll apply a prorated credit toward your subscription. After 30 days, you can still purchase the Annual Pass separately at any time.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button type="button" class="accordion-item__header">
+                How does billing work for monthly vs. annual plans?
+                <span class="accordion-item__icon" aria-hidden="true"></span>
+              </button>
+              <div class="accordion-item__body">
+                <div class="accordion-item__content">
+                  <div class="accordion-item__content-inner">
+                    Bundles are one-time purchases with lifetime access to included courses. The Annual Pass is billed once per year at $299. The Supervision + CE Hybrid plan is billed monthly at $350 and renews automatically until you cancel from your account dashboard.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button type="button" class="accordion-item__header">
+                Are CE certificates included with every plan?
+                <span class="accordion-item__icon" aria-hidden="true"></span>
+              </button>
+              <div class="accordion-item__body">
+                <div class="accordion-item__content">
+                  <div class="accordion-item__content-inner">
+                    Yes. Every plan that includes CE courses provides BBS-compliant certificates upon successful completion of each course exam. Certificates are generated automatically and available for download from your dashboard.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button type="button" class="accordion-item__header">
+                What is your refund policy on memberships?
+                <span class="accordion-item__icon" aria-hidden="true"></span>
+              </button>
+              <div class="accordion-item__body">
+                <div class="accordion-item__content">
+                  <div class="accordion-item__content-inner">
+                    Bundle purchases are refundable within 7 days if no course has been started. Annual Pass subscriptions can be refunded within 14 days of purchase if less than 25% of course content has been accessed. Monthly hybrid plans can be canceled anytime; refunds are not issued for partial months.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 6. Site Footer -->
+  <footer class="site-footer">
+    <div class="site-footer__grid">
+
+      <div class="site-footer__column">
+        <span class="site-footer__logo-text">Clinical Training &amp; Supervision Academy</span>
+        <p class="site-footer__about-text">
+          California's trusted platform for BBS-compliant continuing education
+          and clinical supervision — built for working mental health professionals.
+        </p>
+      </div>
+
+      <div class="site-footer__column">
+        <h3 class="site-footer__column-title">Quick Links</h3>
+        <ul class="site-footer__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="supervision.html">Supervision</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__column">
+        <h3 class="site-footer__column-title">Legal</h3>
+        <ul class="site-footer__links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Refund Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Grievance Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__column">
+        <h3 class="site-footer__column-title">Contact</h3>
+        <div class="site-footer__contact-item">
+          <span aria-hidden="true">&#9993;</span>
+          <span>info@ctacademy.org</span>
+        </div>
+        <div class="site-footer__contact-item">
+          <span aria-hidden="true">&#9742;</span>
+          <span>(555) 123-4567</span>
+        </div>
+        <div class="site-footer__contact-item">
+          <span aria-hidden="true">&#128205;</span>
+          <span>California, USA</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="site-footer__bottom">
+      <div class="site-footer__bottom-inner">
+        <p>&copy; 2026 Clinical Training and Supervision Academy. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    (function () {
+      var toggle = document.querySelector(".pricing-toggle__switch");
+      var bundlesLabel = document.getElementById("toggle-bundles");
+      var subsLabel = document.getElementById("toggle-subscriptions");
+      if (!toggle) return;
+      toggle.addEventListener("click", function () {
+        var checked = toggle.getAttribute("aria-checked") === "true";
+        toggle.setAttribute("aria-checked", checked ? "false" : "true");
+        bundlesLabel.classList.toggle("pricing-toggle__label--active", checked);
+        subsLabel.classList.toggle("pricing-toggle__label--active", !checked);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Continue California Law &amp; Ethics — CE course player at Clinical Training and Supervision Academy.">
+  <title>California Law &amp; Ethics | Course Player | CTA Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body class="dashboard-page">
+
+  <div class="dashboard-layout">
+
+    <!-- BEGIN: Reusable Dashboard Sidebar (copy to dashboard-supervision.html) -->
+    <aside class="dashboard-sidebar" aria-label="Dashboard navigation">
+      <div class="dashboard-sidebar__user">
+        <div class="dashboard-sidebar__avatar" aria-hidden="true">JS</div>
+        <div class="dashboard-sidebar__user-info">
+          <p class="dashboard-sidebar__name">Dr. Jane Smith, LMFT</p>
+          <p class="dashboard-sidebar__license">License #12345</p>
+        </div>
+      </div>
+
+      <nav class="dashboard-sidebar__nav">
+        <a href="dashboard-ce.html" class="dashboard-sidebar__link dashboard-sidebar__link--active">
+          <span class="dashboard-sidebar__icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          </span>
+          My Courses
+        </a>
+        <a href="#" class="dashboard-sidebar__link">
+          <span class="dashboard-sidebar__icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </span>
+          My Certificates
+        </a>
+        <a href="#" class="dashboard-sidebar__link">
+          <span class="dashboard-sidebar__icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          </span>
+          Account Settings
+        </a>
+      </nav>
+
+      <div class="dashboard-sidebar__footer">
+        <a href="login.html" class="dashboard-sidebar__link">
+          <span class="dashboard-sidebar__icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          </span>
+          Log Out
+        </a>
+      </div>
+    </aside>
+    <!-- END: Reusable Dashboard Sidebar -->
+
+    <!-- Main Content -->
+    <div class="dashboard-main">
+
+      <p class="course-player__back">
+        <a href="dashboard-ce.html">&larr; Back to My Courses</a>
+      </p>
+
+      <div class="course-player-layout">
+
+        <!-- Left: Video + Lesson Controls -->
+        <div class="course-player__content">
+          <!-- WordPress / LearnDash: lesson video embeds here -->
+          <div class="course-player__video-wrap">
+            <div class="course-player__video" role="button" tabindex="0" aria-label="Play video: Module 3 — Dual Relationships &amp; Boundaries">
+              <span class="course-player__play-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </span>
+            </div>
+          </div>
+
+          <h1 class="course-player__lesson-title">Module 3: Dual Relationships &amp; Boundaries</h1>
+
+          <div class="course-player__lesson-actions">
+            <button type="button" class="btn btn-primary">Mark as Complete</button>
+            <button type="button" class="btn btn-outline" disabled aria-disabled="true">Take Quiz</button>
+          </div>
+
+          <!-- Visual reference: quiz button states -->
+          <div class="course-player__quiz-ref" aria-label="Quiz button state reference for development">
+            <p class="course-player__quiz-ref-title">Quiz States (Visual Reference)</p>
+            <div class="course-player__quiz-ref-row">
+              <div class="course-player__quiz-ref-item">
+                <span class="course-player__quiz-ref-label">Before video watched</span>
+                <button type="button" class="btn btn-outline" disabled>Take Quiz</button>
+              </div>
+              <div class="course-player__quiz-ref-item">
+                <span class="course-player__quiz-ref-label">After video watched</span>
+                <button type="button" class="btn btn-primary">Take Quiz</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Module List -->
+        <!-- WordPress / LearnDash: course curriculum sidebar renders here -->
+        <aside class="course-player__sidebar" aria-label="Course modules">
+          <div class="course-player__modules">
+            <div class="course-player__modules-header">
+              California Law &amp; Ethics — Modules
+            </div>
+            <div class="course-player__module-list">
+              <div class="accordion" data-accordion="single">
+
+                <div class="accordion-item accordion-item--complete">
+                  <button type="button" class="accordion-item__header accordion-item__header--module">
+                    <span class="course-player__module-status course-player__module-status--complete" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                    <span class="accordion-item__module-title">Module 1: Scope of Practice in California</span>
+                    <span class="accordion-item__icon" aria-hidden="true"></span>
+                  </button>
+                  <div class="accordion-item__body">
+                    <div class="accordion-item__content">
+                      <div class="accordion-item__content-inner">Completed — 45 min</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item accordion-item--complete">
+                  <button type="button" class="accordion-item__header accordion-item__header--module">
+                    <span class="course-player__module-status course-player__module-status--complete" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                    <span class="accordion-item__module-title">Module 2: Mandated Reporting &amp; Child Abuse</span>
+                    <span class="accordion-item__icon" aria-hidden="true"></span>
+                  </button>
+                  <div class="accordion-item__body">
+                    <div class="accordion-item__content">
+                      <div class="accordion-item__content-inner">Completed — 50 min</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item accordion-item--active accordion-item--current">
+                  <button type="button" class="accordion-item__header accordion-item__header--module" aria-expanded="true">
+                    <span class="course-player__module-status" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                    </span>
+                    <span class="accordion-item__module-title">Module 3: Dual Relationships &amp; Boundaries</span>
+                    <span class="accordion-item__icon" aria-hidden="true"></span>
+                  </button>
+                  <div class="accordion-item__body">
+                    <div class="accordion-item__content">
+                      <div class="accordion-item__content-inner">Currently watching — 40 min, 4 lessons</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item accordion-item--locked">
+                  <button type="button" class="accordion-item__header accordion-item__header--module" disabled aria-disabled="true">
+                    <span class="course-player__module-status course-player__module-status--lock" aria-hidden="true">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    </span>
+                    <span class="accordion-item__module-title">Module 4: Confidentiality &amp; Tarasoff Duties</span>
+                  </button>
+                </div>
+
+                <div class="accordion-item accordion-item--locked">
+                  <button type="button" class="accordion-item__header accordion-item__header--module" disabled aria-disabled="true">
+                    <span class="course-player__module-status course-player__module-status--lock" aria-hidden="true">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    </span>
+                    <span class="accordion-item__module-title">Module 5: Advertising &amp; Professional Conduct</span>
+                  </button>
+                </div>
+
+                <div class="accordion-item accordion-item--locked">
+                  <button type="button" class="accordion-item__header accordion-item__header--module" disabled aria-disabled="true">
+                    <span class="course-player__module-status course-player__module-status--lock" aria-hidden="true">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    </span>
+                    <span class="accordion-item__module-title">Module 6: Course Exam &amp; CE Certificate</span>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

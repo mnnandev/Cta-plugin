@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BBS-compliant clinical supervision for AMFT, ASW, and APCC associates — group and individual sessions at CTA.">
+  <title>Clinical Supervision Services | Clinical Training and Supervision Academy</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="site-header__logo">
+        <a href="index.html">
+          <img
+            src="assets/img/placeholder/logo.png"
+            alt="Clinical Training and Supervision Academy"
+            onerror="this.style.display='none'; this.nextElementSibling.classList.add('site-header__logo-text--visible');"
+          >
+          <span class="site-header__logo-text">Clinical Training &amp; Supervision Academy</span>
+        </a>
+      </div>
+
+      <nav class="site-header__nav" aria-label="Main navigation">
+        <ul class="site-header__nav-list">
+          <li><a href="index.html" class="site-header__nav-link">Home</a></li>
+          <li><a href="courses.html" class="site-header__nav-link">CE Courses</a></li>
+          <li><a href="supervision.html" class="site-header__nav-link site-header__nav-link--active">Supervision</a></li>
+          <li><a href="#" class="site-header__nav-link">Memberships</a></li>
+          <li><a href="#" class="site-header__nav-link">About</a></li>
+          <li><a href="#" class="site-header__nav-link">FAQ</a></li>
+          <li><a href="#" class="site-header__nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="site-header__actions">
+        <a href="login.html" class="btn btn-outline btn--sm">Login</a>
+        <a href="#" class="btn btn-primary">Enroll Now</a>
+      </div>
+
+      <button
+        class="mobile-menu-toggle"
+        type="button"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+      >
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- 1. Page Hero -->
+    <section class="page-hero" aria-labelledby="supervision-hero-title">
+      <div class="page-hero__inner">
+        <nav class="page-hero__breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="page-hero__breadcrumb-separator" aria-hidden="true">/</span>
+          <span class="page-hero__breadcrumb-current">Supervision</span>
+        </nav>
+        <h1 class="page-hero__title" id="supervision-hero-title">Clinical Supervision Services</h1>
+        <p class="page-hero__subtitle">
+          BBS-compliant supervision for AMFT, ASW, and APCC associates
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. Two Service Cards -->
+    <section class="section supervision-services" aria-labelledby="supervision-services-title">
+      <div class="container">
+        <h2 class="visually-hidden" id="supervision-services-title">Supervision Plans</h2>
+        <div class="grid-2 grid-2--gap-lg supervision-services__grid">
+
+          <article class="card service-card">
+            <div class="service-card__badge-row">
+              <span class="badge badge--primary">Subscription</span>
+            </div>
+            <h3 class="service-card__title">Group Supervision</h3>
+            <p class="service-card__price">$260</p>
+            <p class="service-card__price-unit">/ month</p>
+            <ul class="checklist service-card__features">
+              <li class="checklist__item">
+                <span class="checklist__icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                </span>
+                4 sessions per month
+              </li>
+              <li class="checklist__item">
+                <span class="checklist__icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                </span>
+                2 hours per session
+              </li>
+              <li class="checklist__item">
+                <span class="checklist__icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                </span>
+                Max 8 associates per group
+              </li>
+              <li class="checklist__item">
+                <span class="checklist__icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                </span>
+                BBS-compliant documentation
+              </li>
+              <li class="checklist__item">
+                <span class="checklist__icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                </span>
+                Cancel anytime
+              </li>
+            </ul>
+            <a href="#booking" class="btn btn-primary btn--lg service-card__cta">Book Group Session</a>
+          </article>
+
+          <article class="card service-card service-card--featured">
+            <span class="badge badge--success service-card__popular">Most Popular</span>
+            <div class="service-card__badge-row">
+              <span class="badge badge--outline">One-time</span>
+            </div>
+            <h3 class="service-card__title">Individual 1-on-1</h3>
+            <p class="service-card__price">$120</p>
+            <p class="service-card__price-unit">/ session</p>
+            <ul class="checklist service-card__features">
+              <li class="checklist__item">
+                <span class="checklist__icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                </span>
+                60-minute session
+              </li>
+              <li class="checklist__item">
+                <span class="checklist__icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                </span>
+                Personalized feedback
+              </li>
+              <li class="checklist__item">
+                <span class="checklist__icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                </span>
+                Flexible scheduling
+              </li>
+              <li class="checklist__item">
+                <span class="checklist__icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                </span>
+                Pay per session
+              </li>
+            </ul>
+            <a href="#booking" class="btn btn-primary btn--lg service-card__cta">Book Individual Session</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. How It Works -->
+    <section class="how-it-works section--bg" aria-labelledby="how-it-works-title">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="text-h2" id="how-it-works-title">How It Works</h2>
+        </header>
+        <div class="how-it-works__steps">
+          <div class="how-it-works__step">
+            <span class="how-it-works__number" aria-hidden="true">1</span>
+            <p class="how-it-works__label">Choose Your Plan</p>
+          </div>
+          <div class="how-it-works__step">
+            <span class="how-it-works__number" aria-hidden="true">2</span>
+            <p class="how-it-works__label">Create Account &amp; Subscribe</p>
+          </div>
+          <div class="how-it-works__step">
+            <span class="how-it-works__number" aria-hidden="true">3</span>
+            <p class="how-it-works__label">Book Your Sessions</p>
+          </div>
+          <div class="how-it-works__step">
+            <span class="how-it-works__number" aria-hidden="true">4</span>
+            <p class="how-it-works__label">Attend &amp; Track Hours</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. BBS Compliance -->
+    <section class="bbs-compliance section--bg" aria-labelledby="bbs-compliance-title">
+      <div class="container">
+        <header class="bbs-compliance__header">
+          <h2 class="text-h2" id="bbs-compliance-title">BBS-Compliant from Day One</h2>
+        </header>
+        <div class="bbs-compliance__grid">
+
+          <article class="bbs-compliance__item">
+            <div class="bbs-compliance__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            </div>
+            <h3 class="bbs-compliance__title">Document Upload</h3>
+            <p class="bbs-compliance__text">Upload BBS supervision agreements and weekly supervision logs directly to your dashboard.</p>
+          </article>
+
+          <article class="bbs-compliance__item">
+            <div class="bbs-compliance__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            <h3 class="bbs-compliance__title">Weekly Hour Tracking</h3>
+            <p class="bbs-compliance__text">Log AMFT, ASW, and APCC supervision hours with structured weekly tracking tools.</p>
+          </article>
+
+          <article class="bbs-compliance__item">
+            <div class="bbs-compliance__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <h3 class="bbs-compliance__title">8-Person Group Cap</h3>
+            <p class="bbs-compliance__text">Group sizes are capped at 8 associates per session, enforced automatically per California law.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Booking Calendar Placeholder -->
+    <section class="booking-section" id="booking" aria-labelledby="booking-title">
+      <div class="container">
+        <header class="booking-section__header">
+          <h2 class="text-h2" id="booking-title">Book Your Session</h2>
+        </header>
+
+        <!-- AMELIA BOOKING CALENDAR WILL RENDER HERE -->
+        <div class="booking-calendar" aria-label="Booking calendar placeholder">
+          <p class="booking-calendar__month">July 2026</p>
+          <div class="booking-calendar__weekdays" aria-hidden="true">
+            <span class="booking-calendar__weekday">Sun</span>
+            <span class="booking-calendar__weekday">Mon</span>
+            <span class="booking-calendar__weekday">Tue</span>
+            <span class="booking-calendar__weekday">Wed</span>
+            <span class="booking-calendar__weekday">Thu</span>
+            <span class="booking-calendar__weekday">Fri</span>
+            <span class="booking-calendar__weekday">Sat</span>
+          </div>
+          <div class="booking-calendar__days">
+            <span class="booking-calendar__day booking-calendar__day--empty"></span>
+            <span class="booking-calendar__day booking-calendar__day--empty"></span>
+            <span class="booking-calendar__day booking-calendar__day--empty"></span>
+            <span class="booking-calendar__day">1</span>
+            <span class="booking-calendar__day">2</span>
+            <span class="booking-calendar__day booking-calendar__day--available">3</span>
+            <span class="booking-calendar__day">4</span>
+            <span class="booking-calendar__day">5</span>
+            <span class="booking-calendar__day booking-calendar__day--available">6</span>
+            <span class="booking-calendar__day">7</span>
+            <span class="booking-calendar__day">8</span>
+            <span class="booking-calendar__day booking-calendar__day--available">9</span>
+            <span class="booking-calendar__day">10</span>
+            <span class="booking-calendar__day">11</span>
+            <span class="booking-calendar__day booking-calendar__day--selected">12</span>
+            <span class="booking-calendar__day">13</span>
+            <span class="booking-calendar__day booking-calendar__day--available">14</span>
+            <span class="booking-calendar__day">15</span>
+            <span class="booking-calendar__day">16</span>
+            <span class="booking-calendar__day booking-calendar__day--available">17</span>
+            <span class="booking-calendar__day">18</span>
+            <span class="booking-calendar__day">19</span>
+            <span class="booking-calendar__day">20</span>
+            <span class="booking-calendar__day booking-calendar__day--available">21</span>
+            <span class="booking-calendar__day">22</span>
+            <span class="booking-calendar__day">23</span>
+            <span class="booking-calendar__day">24</span>
+            <span class="booking-calendar__day booking-calendar__day--available">25</span>
+            <span class="booking-calendar__day">26</span>
+            <span class="booking-calendar__day">27</span>
+            <span class="booking-calendar__day">28</span>
+            <span class="booking-calendar__day booking-calendar__day--available">29</span>
+            <span class="booking-calendar__day">30</span>
+            <span class="booking-calendar__day">31</span>
+          </div>
+          <p class="booking-calendar__hint">Select a date and time to continue</p>
+        </div>
+        <!-- END AMELIA BOOKING CALENDAR PLACEHOLDER -->
+
+      </div>
+    </section>
+
+    <!-- 6. FAQ Accordion -->
+    <section class="supervision-faq section--bg" aria-labelledby="supervision-faq-title">
+      <div class="container">
+        <header class="supervision-faq__header">
+          <h2 class="text-h2" id="supervision-faq-title">Supervision FAQ</h2>
+        </header>
+
+        <div class="supervision-faq__accordion">
+          <div class="accordion" data-accordion="single">
+
+            <div class="accordion-item">
+              <button type="button" class="accordion-item__header">
+                What associates qualify for supervision at CTA?
+                <span class="accordion-item__icon" aria-hidden="true"></span>
+              </button>
+              <div class="accordion-item__body">
+                <div class="accordion-item__content">
+                  <div class="accordion-item__content-inner">
+                    CTA provides supervision for registered associates working toward licensure as AMFTs, ASWs, and APCCs in California. You must be registered with the BBS and have a signed supervision agreement on file before your first session.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button type="button" class="accordion-item__header">
+                How does billing work for group vs. individual supervision?
+                <span class="accordion-item__icon" aria-hidden="true"></span>
+              </button>
+              <div class="accordion-item__body">
+                <div class="accordion-item__content">
+                  <div class="accordion-item__content-inner">
+                    Group supervision is billed as a monthly subscription at $260/month, which includes four 2-hour group sessions. Individual supervision is pay-per-session at $120 for each 60-minute appointment. You can manage billing and receipts from your account dashboard.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button type="button" class="accordion-item__header">
+                What if I miss a session?
+                <span class="accordion-item__icon" aria-hidden="true"></span>
+              </button>
+              <div class="accordion-item__body">
+                <div class="accordion-item__content">
+                  <div class="accordion-item__content-inner">
+                    Please cancel or reschedule at least 24 hours in advance through your dashboard. Missed group sessions cannot be refunded but may be made up during an alternate slot when available. Individual sessions canceled with less than 24 hours notice may be charged in full.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button type="button" class="accordion-item__header">
+                Is this supervision BBS approved?
+                <span class="accordion-item__icon" aria-hidden="true"></span>
+              </button>
+              <div class="accordion-item__body">
+                <div class="accordion-item__content">
+                  <div class="accordion-item__content-inner">
+                    Yes. All supervision is provided by Candice Fuimaono, MS, LMFT — a BBS-approved supervisor. Sessions meet California requirements for associate supervision, including documentation, hour tracking, and the 8-person group size cap mandated by state law.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 7. Site Footer -->
+  <footer class="site-footer">
+    <div class="site-footer__grid">
+
+      <div class="site-footer__column">
+        <span class="site-footer__logo-text">Clinical Training &amp; Supervision Academy</span>
+        <p class="site-footer__about-text">
+          California's trusted platform for BBS-compliant continuing education
+          and clinical supervision — built for working mental health professionals.
+        </p>
+      </div>
+
+      <div class="site-footer__column">
+        <h3 class="site-footer__column-title">Quick Links</h3>
+        <ul class="site-footer__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="supervision.html">Supervision</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__column">
+        <h3 class="site-footer__column-title">Legal</h3>
+        <ul class="site-footer__links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Refund Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Grievance Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__column">
+        <h3 class="site-footer__column-title">Contact</h3>
+        <div class="site-footer__contact-item">
+          <span aria-hidden="true">&#9993;</span>
+          <span>info@ctacademy.org</span>
+        </div>
+        <div class="site-footer__contact-item">
+          <span aria-hidden="true">&#9742;</span>
+          <span>(555) 123-4567</span>
+        </div>
+        <div class="site-footer__contact-item">
+          <span aria-hidden="true">&#128205;</span>
+          <span>California, USA</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="site-footer__bottom">
+      <div class="site-footer__bottom-inner">
+        <p>&copy; 2026 Clinical Training and Supervision Academy. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

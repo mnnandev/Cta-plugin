@@ -360,6 +360,7 @@ class CTA_Loader {
 		return array(
 			'cta_header',
 			'cta_footer',
+			'cta_auth_button',
 			'cta_login_form',
 			'cta_course_catalog',
 			'cta_single_course',

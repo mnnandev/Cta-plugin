@@ -1387,6 +1387,11 @@ class CTA_Admin {
 				'usage'       => __( 'Add to any page bottom', 'cta-lms' ),
 			),
 			array(
+				'code'        => '[cta_auth_button]',
+				'description' => __( 'Login / Dashboard button (changes when user is logged in)', 'cta-lms' ),
+				'usage'       => __( 'Any page or Elementor. Optional: login_url, dashboard_url, login_text, dashboard_text, style="outline|primary", size="sm".', 'cta-lms' ),
+			),
+			array(
 				'code'        => '[cta_login_form]',
 				'description' => __( 'Login and register forms', 'cta-lms' ),
 				'usage'       => __( 'Login page', 'cta-lms' ),

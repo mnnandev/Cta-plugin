@@ -200,6 +200,11 @@ class CTA_Stripe {
 			);
 		}
 
+		if ( (float) $course->price <= 0 ) {
+			$this->bypass_course_enrollment( $course_id );
+			return;
+		}
+
 		$course_page = $this->get_page_url( 'cta_single_course_page_id' );
 		if ( ! $course_page ) {
 			$course_page = home_url( '/' );

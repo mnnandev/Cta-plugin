@@ -568,7 +568,8 @@
         const header = item.querySelector(".accordion-item__header");
         if (!header) return;
 
-        header.setAttribute("aria-expanded", "false");
+        const isInitiallyActive = item.classList.contains("accordion-item--active");
+        header.setAttribute("aria-expanded", isInitiallyActive ? "true" : "false");
 
         header.addEventListener("click", function () {
           const isActive = item.classList.contains("accordion-item--active");

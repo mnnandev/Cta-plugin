@@ -126,6 +126,11 @@ class CTA_Courses {
 		}
 
 		$payment_success = isset( $_GET['payment'] ) && 'success' === sanitize_text_field( wp_unslash( $_GET['payment'] ) );
+		$quiz            = CTA_Database::get_quiz_by_course( $course_id );
+		$quiz_questions  = $quiz ? CTA_Database::get_quiz_questions( (int) $quiz->id ) : array();
+		$preview_video   = $this->get_course_preview_video_markup( $course );
+		$login_url       = CTA_Emails::get_page_url( 'cta_login_page_id' );
+		$is_free_course  = (float) $course->price <= 0;
 
 		ob_start();
 		include CTA_PLUGIN_DIR . 'templates/single-course.php';
@@ -146,6 +151,73 @@ class CTA_Courses {
 		}
 
 		return $classes;
+	}
+
+	/**
+	 * Build preview video markup for the course hero.
+	 *
+	 * @param object $course Course row.
+	 * @return string
+	 */
+	private function get_course_preview_video_markup( $course ) {
+		$video_url = '';
+
+		if ( ! empty( $course->video_url ) ) {
+			$video_url = (string) $course->video_url;
+		} elseif ( ! empty( $course->vimeo_id ) ) {
+			$video_url = 'https://vimeo.com/' . preg_replace( '/\D/', '', (string) $course->vimeo_id );
+		}
+
+		if ( '' === $video_url ) {
+			return '';
+		}
+
+		if ( preg_match( '/^\d+$/', trim( $video_url ) ) ) {
+			$video_url = 'https://vimeo.com/' . trim( $video_url );
+		}
+
+		$youtube_id = $this->extract_youtube_id( $video_url );
+		if ( $youtube_id ) {
+			return sprintf(
+				'<div class="course-hero__video-wrap"><iframe class="course-hero__iframe" src="https://www.youtube.com/embed/%1$s" title="%2$s" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>',
+				esc_attr( $youtube_id ),
+				esc_attr( $course->title )
+			);
+		}
+
+		if ( false !== strpos( $video_url, 'vimeo.com' ) ) {
+			$vimeo_id = '';
+			if ( preg_match( '/vimeo\.com\/(?:video\/)?(\d+)/', $video_url, $matches ) ) {
+				$vimeo_id = $matches[1];
+			}
+
+			if ( $vimeo_id ) {
+				return sprintf(
+					'<div class="course-hero__video-wrap"><iframe class="course-hero__iframe" src="https://player.vimeo.com/video/%1$s" title="%2$s" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>',
+					esc_attr( $vimeo_id ),
+					esc_attr( $course->title )
+				);
+			}
+		}
+
+		return sprintf(
+			'<div class="course-hero__video-wrap"><video class="course-hero__html5-video" controls playsinline src="%1$s"></video></div>',
+			esc_url( $video_url )
+		);
+	}
+
+	/**
+	 * Extract a YouTube video ID from a URL.
+	 *
+	 * @param string $url Video URL.
+	 * @return string
+	 */
+	private function extract_youtube_id( $url ) {
+		if ( preg_match( '/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/', $url, $matches ) ) {
+			return $matches[1];
+		}
+
+		return '';
 	}
 
 	/**

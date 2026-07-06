@@ -12,6 +12,11 @@
  * @var string $courses_url
  * @var int    $total_mins
  * @var bool   $payment_success
+ * @var string $preview_video
+ * @var object|null $quiz
+ * @var array  $quiz_questions
+ * @var string $login_url
+ * @var bool   $is_free_course
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -59,7 +64,9 @@ $admin_name = get_option( 'cta_admin_name', 'Candice Fuimaono, MS, LMFT' );
 				</div>
 			</div>
 			<div class="course-hero__media">
-				<?php if ( ! empty( $course->thumbnail_url ) ) : ?>
+				<?php if ( ! empty( $preview_video ) ) : ?>
+					<?php echo $preview_video; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php elseif ( ! empty( $course->thumbnail_url ) ) : ?>
 					<img src="<?php echo esc_url( $course->thumbnail_url ); ?>" alt="<?php echo esc_attr( $course->title ); ?>" class="course-hero__video-thumb">
 				<?php else : ?>
 					<div class="course-hero__video course-hero__video--placeholder" aria-hidden="true"></div>
@@ -94,51 +101,94 @@ $admin_name = get_option( 'cta_admin_name', 'Candice Fuimaono, MS, LMFT' );
 
 				<section class="course-section" aria-labelledby="course-content-title">
 					<h2 class="course-section__title" id="course-content-title"><?php esc_html_e( 'Course Content', 'cta-lms' ); ?></h2>
-					<?php if ( empty( $modules ) ) : ?>
+					<?php if ( empty( $modules ) && empty( $quiz ) ) : ?>
 						<p><?php esc_html_e( 'Course modules coming soon.', 'cta-lms' ); ?></p>
 					<?php else : ?>
-						<div class="accordion accordion--course-curriculum" data-accordion="single">
-							<?php foreach ( $modules as $index => $module ) : ?>
-								<div class="accordion-item <?php echo 0 === $index ? 'accordion-item--active' : ''; ?>">
-									<button type="button" class="accordion-item__header accordion-item__header--module" aria-expanded="<?php echo 0 === $index ? 'true' : 'false'; ?>">
-										<span class="accordion-item__header-inner">
-											<span class="accordion-item__module-title"><?php echo esc_html( ( $index + 1 ) . '. ' . $module->title ); ?></span>
-											<span class="accordion-item__meta">
-												<span><?php echo esc_html( (int) $module->duration_mins . ' min' ); ?></span>
-											</span>
-										</span>
-										<span class="accordion-item__icon" aria-hidden="true"></span>
-									</button>
-									<div class="accordion-item__body">
-										<div class="accordion-item__content">
-											<?php if ( ! empty( $module->description ) ) : ?>
-												<p><?php echo esc_html( $module->description ); ?></p>
-											<?php endif; ?>
+						<?php if ( ! empty( $modules ) ) : ?>
+							<ul class="course-module-list">
+								<?php foreach ( $modules as $index => $module ) : ?>
+									<li class="course-module-list__item">
+										<div class="course-module-list__header">
+											<span class="course-module-list__number"><?php echo esc_html( (string) ( $index + 1 ) ); ?></span>
+											<div class="course-module-list__info">
+												<strong class="course-module-list__title"><?php echo esc_html( $module->title ); ?></strong>
+												<?php if ( ! empty( $module->description ) ) : ?>
+													<p class="course-module-list__desc"><?php echo esc_html( $module->description ); ?></p>
+												<?php endif; ?>
+											</div>
+											<span class="course-module-list__duration"><?php echo esc_html( (int) $module->duration_mins . ' min' ); ?></span>
 										</div>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						<?php endif; ?>
+
+						<?php if ( $quiz ) : ?>
+							<div class="course-module-list__quiz">
+								<div class="course-module-list__header course-module-list__header--quiz">
+									<span class="course-module-list__number" aria-hidden="true">✓</span>
+									<div class="course-module-list__info">
+										<strong class="course-module-list__title"><?php echo esc_html( $quiz->title ); ?></strong>
+										<p class="course-module-list__desc">
+											<?php
+											printf(
+												/* translators: 1: question count, 2: passing score */
+												esc_html__( 'Final quiz — %1$d questions, %2$d%% required to pass.', 'cta-lms' ),
+												count( $quiz_questions ),
+												(int) $quiz->passing_score
+											);
+											?>
+										</p>
 									</div>
+									<span class="course-module-list__badge"><?php esc_html_e( 'Quiz', 'cta-lms' ); ?></span>
 								</div>
-							<?php endforeach; ?>
-						</div>
+							</div>
+						<?php endif; ?>
 					<?php endif; ?>
 				</section>
 			</div>
 
 			<aside class="course-detail__sidebar course-sidebar" aria-label="<?php esc_attr_e( 'Course enrollment', 'cta-lms' ); ?>">
 				<div class="course-sidebar__card">
-					<p class="course-sidebar__price">$<?php echo esc_html( number_format( (float) $course->price, 2 ) ); ?></p>
+					<p class="course-sidebar__price">
+						<?php if ( $is_free_course ) : ?>
+							<?php esc_html_e( 'Free', 'cta-lms' ); ?>
+						<?php else : ?>
+							$<?php echo esc_html( number_format( (float) $course->price, 2 ) ); ?>
+						<?php endif; ?>
+					</p>
 					<ul class="course-sidebar__meta">
 						<li class="course-sidebar__meta-item"><span><strong><?php esc_html_e( 'Format:', 'cta-lms' ); ?></strong> <?php esc_html_e( 'Self-paced, online', 'cta-lms' ); ?></span></li>
 						<li class="course-sidebar__meta-item"><span><strong><?php esc_html_e( 'Modules:', 'cta-lms' ); ?></strong> <?php echo esc_html( (string) count( $modules ) ); ?></span></li>
+						<?php if ( $quiz ) : ?>
+							<li class="course-sidebar__meta-item"><span><strong><?php esc_html_e( 'Quiz:', 'cta-lms' ); ?></strong> <?php echo esc_html( (string) count( $quiz_questions ) ); ?> <?php esc_html_e( 'questions', 'cta-lms' ); ?></span></li>
+						<?php endif; ?>
 						<li class="course-sidebar__meta-item"><span><strong><?php esc_html_e( 'CE Hours:', 'cta-lms' ); ?></strong> <?php echo esc_html( $ce_hours ); ?></span></li>
 						<li class="course-sidebar__meta-item"><span><strong><?php esc_html_e( 'Duration:', 'cta-lms' ); ?></strong> <?php echo esc_html( (string) $duration_hours ); ?> <?php esc_html_e( 'hours', 'cta-lms' ); ?></span></li>
 						<li class="course-sidebar__meta-item"><span><strong><?php esc_html_e( 'Certificate:', 'cta-lms' ); ?></strong> <?php esc_html_e( 'Provided on completion', 'cta-lms' ); ?></span></li>
 					</ul>
 
+					<?php if ( ! $is_free_course ) : ?>
+						<p class="course-sidebar__label"><?php esc_html_e( 'Secure Payment:', 'cta-lms' ); ?></p>
+						<div class="course-sidebar__payments" aria-label="<?php esc_attr_e( 'Accepted payment methods', 'cta-lms' ); ?>">
+							<span class="course-sidebar__payment-icon">Visa</span>
+							<span class="course-sidebar__payment-icon">MC</span>
+							<span class="course-sidebar__payment-icon">Amex</span>
+							<span class="course-sidebar__payment-icon">Stripe</span>
+						</div>
+					<?php endif; ?>
+
 					<?php if ( $is_enrolled && $player_url ) : ?>
 						<a href="<?php echo esc_url( $player_url ); ?>" class="btn btn-primary btn--lg course-sidebar__enroll"><?php esc_html_e( 'Continue Learning', 'cta-lms' ); ?></a>
+					<?php elseif ( $is_enrolled ) : ?>
+						<p class="course-sidebar__notice"><?php esc_html_e( 'You are enrolled. Configure the Course Player page in CTA LMS Settings to start learning.', 'cta-lms' ); ?></p>
+					<?php elseif ( ! is_user_logged_in() && $login_url ) : ?>
+						<a href="<?php echo esc_url( $login_url ); ?>" class="btn btn-primary btn--lg course-sidebar__enroll">
+							<?php esc_html_e( 'Login to Enroll', 'cta-lms' ); ?>
+						</a>
 					<?php else : ?>
-						<button type="button" id="enroll-btn" class="btn btn-primary btn--lg course-sidebar__enroll" data-cta-course-checkout data-course-id="<?php echo esc_attr( $course->id ); ?>" data-course-title="<?php echo esc_attr( $course->title ); ?>" data-price="$<?php echo esc_attr( number_format( (float) $course->price, 2 ) ); ?>">
-							<?php esc_html_e( 'Enroll Now', 'cta-lms' ); ?>
+						<button type="button" id="enroll-btn" class="btn btn-primary btn--lg course-sidebar__enroll" data-cta-course-checkout data-course-id="<?php echo esc_attr( $course->id ); ?>" data-course-title="<?php echo esc_attr( $course->title ); ?>" data-price="<?php echo esc_attr( $is_free_course ? __( 'Free', 'cta-lms' ) : '$' . number_format( (float) $course->price, 2 ) ); ?>">
+							<?php echo $is_free_course ? esc_html__( 'Enroll Free', 'cta-lms' ) : esc_html__( 'Enroll Now', 'cta-lms' ); ?>
 						</button>
 					<?php endif; ?>
 				</div>

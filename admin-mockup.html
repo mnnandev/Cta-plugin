@@ -17,8 +17,43 @@
 </head>
 <body class="admin-mockup">
 
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="site-header__logo">
+        <a href="index.html">
+          <img
+            src="assets/img/placeholder/logo.png"
+            alt="Clinical Training and Supervision Academy"
+            onerror="this.style.display='none'; this.nextElementSibling.classList.add('site-header__logo-text--visible');"
+          >
+          <span class="site-header__logo-text">Clinical Training &amp; Supervision Academy</span>
+        </a>
+      </div>
+      <nav class="site-header__nav" aria-label="Main navigation">
+        <ul class="site-header__nav-list">
+          <li><a href="index.html" class="site-header__nav-link">Home</a></li>
+          <li><a href="courses.html" class="site-header__nav-link">CE Courses</a></li>
+          <li><a href="supervision.html" class="site-header__nav-link">Supervision</a></li>
+          <li><a href="memberships.html" class="site-header__nav-link">Memberships</a></li>
+          <li><a href="faq.html" class="site-header__nav-link">FAQ</a></li>
+          <li><a href="policies.html" class="site-header__nav-link">Policies</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__actions">
+        <a href="login.html" class="btn btn-outline btn--sm">Login</a>
+        <a href="courses.html" class="btn btn-primary">Enroll Now</a>
+      </div>
+      <button class="mobile-menu-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+      </button>
+    </div>
+  </header>
+
   <!-- Visual reference only — not a real WordPress admin page -->
-  <div class="admin-mockup__layout">
+  <div class="admin-mockup__layout" data-admin-mockup>
 
     <!-- WP-admin inspired sidebar -->
     <aside class="admin-mockup__sidebar" aria-label="Plugin admin navigation">
@@ -28,23 +63,23 @@
       </div>
 
       <nav class="admin-mockup__nav">
-        <a href="#" class="admin-mockup__nav-link">
+        <a href="#" class="admin-mockup__nav-link" data-admin-nav="dashboard">
           <span class="admin-mockup__nav-icon" aria-hidden="true">&#9632;</span>
           Dashboard
         </a>
-        <a href="#" class="admin-mockup__nav-link">
+        <a href="#" class="admin-mockup__nav-link" data-admin-nav="courses">
           <span class="admin-mockup__nav-icon" aria-hidden="true">&#128218;</span>
           CTA Courses
         </a>
-        <a href="#" class="admin-mockup__nav-link">
+        <a href="#" class="admin-mockup__nav-link" data-admin-nav="supervision">
           <span class="admin-mockup__nav-icon" aria-hidden="true">&#128101;</span>
           CTA Supervision
         </a>
-        <a href="#" class="admin-mockup__nav-link admin-mockup__nav-link--active" aria-current="page">
+        <a href="#" class="admin-mockup__nav-link admin-mockup__nav-link--active" data-admin-nav="shortcodes" aria-current="page">
           <span class="admin-mockup__nav-icon" aria-hidden="true">&#60;/&#62;</span>
           Shortcodes
         </a>
-        <a href="#" class="admin-mockup__nav-link">
+        <a href="#" class="admin-mockup__nav-link" data-admin-nav="settings">
           <span class="admin-mockup__nav-icon" aria-hidden="true">&#9881;</span>
           Settings
         </a>
@@ -53,169 +88,203 @@
 
     <!-- Main panel -->
     <main class="admin-mockup__main">
+      <p class="admin-mockup__notice">Design blueprint only — for plugin development reference</p>
 
-      <header class="admin-mockup__header">
-        <p class="admin-mockup__notice">Design blueprint only — for plugin development reference</p>
-        <h1 class="admin-mockup__title">CTA Plugin — Shortcode Generator</h1>
-        <p class="admin-mockup__intro">
-          Generate shortcodes to embed CTA functionality on any Elementor page.
-        </p>
-      </header>
-
-      <!-- Shortcode cards -->
-      <section aria-labelledby="shortcodes-title">
-        <h2 class="admin-mockup__section-title" id="shortcodes-title">Available Shortcodes</h2>
-
-        <div class="shortcode-grid">
-
-          <article class="shortcode-card">
-            <h3 class="shortcode-card__name">Course Catalog</h3>
-            <div class="shortcode-card__copy-row">
-              <code class="shortcode-card__code" id="sc-course-catalog">[cta_course_catalog]</code>
-              <button type="button" class="shortcode-card__copy" data-copy="sc-course-catalog">Copy</button>
-            </div>
-            <p class="shortcode-card__desc">Displays full course grid with filters and pagination.</p>
-          </article>
-
-          <article class="shortcode-card">
-            <h3 class="shortcode-card__name">Single Course</h3>
-            <div class="shortcode-card__copy-row">
-              <code class="shortcode-card__code" id="sc-single-course">[cta_single_course id="X"]</code>
-              <button type="button" class="shortcode-card__copy" data-copy="sc-single-course">Copy</button>
-            </div>
-            <p class="shortcode-card__desc">Displays one course detail page with enroll button and curriculum tabs.</p>
-          </article>
-
-          <article class="shortcode-card">
-            <h3 class="shortcode-card__name">Supervision Booking</h3>
-            <div class="shortcode-card__copy-row">
-              <code class="shortcode-card__code" id="sc-supervision-booking">[cta_supervision_booking]</code>
-              <button type="button" class="shortcode-card__copy" data-copy="sc-supervision-booking">Copy</button>
-            </div>
-            <p class="shortcode-card__desc">Displays Amelia booking calendar for group and individual supervision.</p>
-          </article>
-
-          <article class="shortcode-card">
-            <h3 class="shortcode-card__name">Membership Pricing</h3>
-            <div class="shortcode-card__copy-row">
-              <code class="shortcode-card__code" id="sc-membership-pricing">[cta_membership_pricing]</code>
-              <button type="button" class="shortcode-card__copy" data-copy="sc-membership-pricing">Copy</button>
-            </div>
-            <p class="shortcode-card__desc">Displays pricing cards and bundle comparison table.</p>
-          </article>
-
-          <article class="shortcode-card">
-            <h3 class="shortcode-card__name">Login Form</h3>
-            <div class="shortcode-card__copy-row">
-              <code class="shortcode-card__code" id="sc-login-form">[cta_login_form]</code>
-              <button type="button" class="shortcode-card__copy" data-copy="sc-login-form">Copy</button>
-            </div>
-            <p class="shortcode-card__desc">Displays login and registration form (MemberPress integration).</p>
-          </article>
-
-          <article class="shortcode-card">
-            <h3 class="shortcode-card__name">CE Student Dashboard</h3>
-            <div class="shortcode-card__copy-row">
-              <code class="shortcode-card__code" id="sc-student-dashboard">[cta_student_dashboard]</code>
-              <button type="button" class="shortcode-card__copy" data-copy="sc-student-dashboard">Copy</button>
-            </div>
-            <p class="shortcode-card__desc">Displays CE student dashboard with course progress and certificates.</p>
-          </article>
-
-          <article class="shortcode-card">
-            <h3 class="shortcode-card__name">Supervision Dashboard</h3>
-            <div class="shortcode-card__copy-row">
-              <code class="shortcode-card__code" id="sc-supervision-dashboard">[cta_supervision_dashboard]</code>
-              <button type="button" class="shortcode-card__copy" data-copy="sc-supervision-dashboard">Copy</button>
-            </div>
-            <p class="shortcode-card__desc">Displays supervision portal with sessions, documents, and hour tracking.</p>
-          </article>
-
+      <!-- Dashboard -->
+      <div class="admin-mockup__panel" data-admin-panel="dashboard" hidden>
+        <header class="admin-mockup__header">
+          <h1 class="admin-mockup__title">CTA Plugin — Dashboard</h1>
+          <p class="admin-mockup__intro">
+            Overview of plugin status, active integrations, and quick links for site administrators.
+          </p>
+        </header>
+        <div class="admin-mockup__stats">
+          <div class="admin-mockup__stat-card">
+            <span class="admin-mockup__stat-value">10</span>
+            <span class="admin-mockup__stat-label">Active CE Courses</span>
+          </div>
+          <div class="admin-mockup__stat-card">
+            <span class="admin-mockup__stat-value">47</span>
+            <span class="admin-mockup__stat-label">Enrolled Students</span>
+          </div>
+          <div class="admin-mockup__stat-card">
+            <span class="admin-mockup__stat-value">12</span>
+            <span class="admin-mockup__stat-label">Supervision Associates</span>
+          </div>
         </div>
-      </section>
+      </div>
 
-      <!-- Settings form (visual only) -->
-      <section class="admin-settings" aria-labelledby="settings-title">
-        <h2 class="admin-mockup__section-title" id="settings-title">Plugin Settings</h2>
+      <!-- CTA Courses -->
+      <div class="admin-mockup__panel" data-admin-panel="courses" hidden>
+        <header class="admin-mockup__header">
+          <h1 class="admin-mockup__title">CTA Courses</h1>
+          <p class="admin-mockup__intro">
+            Manage LearnDash course sync, CE hour metadata, and BBS approval settings for the course catalog.
+          </p>
+        </header>
+        <section aria-labelledby="courses-admin-title">
+          <h2 class="admin-mockup__section-title" id="courses-admin-title">Course Management</h2>
+          <p class="admin-mockup__intro">
+            WordPress: LearnDash courses map to <code>[cta_course_catalog]</code> and
+            <code>[cta_single_course id="X"]</code> shortcodes on the front end.
+          </p>
+        </section>
+      </div>
 
-        <form action="#" method="post">
-          <div class="form-group">
-            <label class="form-label" for="stripe-api-key">Stripe API Key</label>
-            <input
-              type="password"
-              id="stripe-api-key"
-              name="stripe_api_key"
-              class="form-input"
-              placeholder="sk_live_..."
-              autocomplete="off"
-            >
+      <!-- CTA Supervision -->
+      <div class="admin-mockup__panel" data-admin-panel="supervision" hidden>
+        <header class="admin-mockup__header">
+          <h1 class="admin-mockup__title">CTA Supervision</h1>
+          <p class="admin-mockup__intro">
+            Configure Amelia booking, supervision hour tracking, and associate document upload settings.
+          </p>
+        </header>
+        <section aria-labelledby="supervision-admin-title">
+          <h2 class="admin-mockup__section-title" id="supervision-admin-title">Supervision Integrations</h2>
+          <p class="admin-mockup__intro">
+            Amelia calendar renders via <code>[cta_supervision_booking]</code>. Associate dashboards use
+            <code>[cta_supervision_dashboard]</code>.
+          </p>
+        </section>
+      </div>
+
+      <!-- Shortcodes -->
+      <div class="admin-mockup__panel" data-admin-panel="shortcodes">
+        <header class="admin-mockup__header">
+          <h1 class="admin-mockup__title">CTA Plugin — Shortcode Generator</h1>
+          <p class="admin-mockup__intro">
+            Generate shortcodes to embed CTA functionality on any Elementor page.
+          </p>
+        </header>
+
+        <section aria-labelledby="shortcodes-title">
+          <h2 class="admin-mockup__section-title" id="shortcodes-title">Available Shortcodes</h2>
+
+          <div class="shortcode-grid">
+
+            <article class="shortcode-card">
+              <h3 class="shortcode-card__name">Course Catalog</h3>
+              <div class="shortcode-card__copy-row">
+                <code class="shortcode-card__code" id="sc-course-catalog">[cta_course_catalog]</code>
+                <button type="button" class="shortcode-card__copy" data-copy="sc-course-catalog">Copy</button>
+              </div>
+              <p class="shortcode-card__desc">Displays full course grid with filters and pagination.</p>
+            </article>
+
+            <article class="shortcode-card">
+              <h3 class="shortcode-card__name">Single Course</h3>
+              <div class="shortcode-card__copy-row">
+                <code class="shortcode-card__code" id="sc-single-course">[cta_single_course id="X"]</code>
+                <button type="button" class="shortcode-card__copy" data-copy="sc-single-course">Copy</button>
+              </div>
+              <p class="shortcode-card__desc">Displays one course detail page with enroll button and curriculum tabs.</p>
+            </article>
+
+            <article class="shortcode-card">
+              <h3 class="shortcode-card__name">Supervision Booking</h3>
+              <div class="shortcode-card__copy-row">
+                <code class="shortcode-card__code" id="sc-supervision-booking">[cta_supervision_booking]</code>
+                <button type="button" class="shortcode-card__copy" data-copy="sc-supervision-booking">Copy</button>
+              </div>
+              <p class="shortcode-card__desc">Displays Amelia booking calendar for group and individual supervision.</p>
+            </article>
+
+            <article class="shortcode-card">
+              <h3 class="shortcode-card__name">Membership Pricing</h3>
+              <div class="shortcode-card__copy-row">
+                <code class="shortcode-card__code" id="sc-membership-pricing">[cta_membership_pricing]</code>
+                <button type="button" class="shortcode-card__copy" data-copy="sc-membership-pricing">Copy</button>
+              </div>
+              <p class="shortcode-card__desc">Displays pricing cards and bundle comparison table.</p>
+            </article>
+
+            <article class="shortcode-card">
+              <h3 class="shortcode-card__name">Login Form</h3>
+              <div class="shortcode-card__copy-row">
+                <code class="shortcode-card__code" id="sc-login-form">[cta_login_form]</code>
+                <button type="button" class="shortcode-card__copy" data-copy="sc-login-form">Copy</button>
+              </div>
+              <p class="shortcode-card__desc">Displays login and registration form (MemberPress integration).</p>
+            </article>
+
+            <article class="shortcode-card">
+              <h3 class="shortcode-card__name">CE Student Dashboard</h3>
+              <div class="shortcode-card__copy-row">
+                <code class="shortcode-card__code" id="sc-student-dashboard">[cta_student_dashboard]</code>
+                <button type="button" class="shortcode-card__copy" data-copy="sc-student-dashboard">Copy</button>
+              </div>
+              <p class="shortcode-card__desc">Displays CE student dashboard with course progress and certificates.</p>
+            </article>
+
+            <article class="shortcode-card">
+              <h3 class="shortcode-card__name">Supervision Dashboard</h3>
+              <div class="shortcode-card__copy-row">
+                <code class="shortcode-card__code" id="sc-supervision-dashboard">[cta_supervision_dashboard]</code>
+                <button type="button" class="shortcode-card__copy" data-copy="sc-supervision-dashboard">Copy</button>
+              </div>
+              <p class="shortcode-card__desc">Displays supervision portal with sessions, documents, and hour tracking.</p>
+            </article>
+
           </div>
+        </section>
+      </div>
 
-          <div class="form-group">
-            <label class="form-label" for="vimeo-library-id">Vimeo Library ID</label>
-            <input
-              type="text"
-              id="vimeo-library-id"
-              name="vimeo_library_id"
-              class="form-input"
-              placeholder="12345678"
-            >
-          </div>
+      <!-- Settings -->
+      <div class="admin-mockup__panel" data-admin-panel="settings" hidden>
+        <header class="admin-mockup__header">
+          <h1 class="admin-mockup__title">CTA Plugin — Settings</h1>
+          <p class="admin-mockup__intro">
+            Configure Stripe, Vimeo, and certificate template options for the CTA plugin.
+          </p>
+        </header>
 
-          <div class="form-group">
-            <label class="form-label" for="ce-certificate-template">CE Certificate Template</label>
-            <input
-              type="file"
-              id="ce-certificate-template"
-              name="ce_certificate_template"
-              class="form-input"
-              accept=".pdf,.doc,.docx"
-            >
-            <p class="form-hint">Upload PDF or Word template for auto-generated CE certificates.</p>
-          </div>
+        <section class="admin-settings" aria-labelledby="settings-title">
+          <h2 class="admin-mockup__section-title" id="settings-title">Plugin Settings</h2>
 
-          <button type="button" class="btn btn-primary">Save Settings</button>
-        </form>
-      </section>
+          <form class="admin-settings-form" action="#" method="post">
+            <div class="form-group">
+              <label class="form-label" for="stripe-api-key">Stripe API Key</label>
+              <input
+                type="password"
+                id="stripe-api-key"
+                name="stripe_api_key"
+                class="form-input"
+                placeholder="sk_live_..."
+                autocomplete="off"
+              >
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="vimeo-library-id">Vimeo Library ID</label>
+              <input
+                type="text"
+                id="vimeo-library-id"
+                name="vimeo_library_id"
+                class="form-input"
+                placeholder="12345678"
+              >
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="ce-certificate-template">CE Certificate Template</label>
+              <input
+                type="file"
+                id="ce-certificate-template"
+                name="ce_certificate_template"
+                class="form-input"
+                accept=".pdf,.doc,.docx"
+              >
+              <p class="form-hint">Upload PDF or Word template for auto-generated CE certificates.</p>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save Settings</button>
+          </form>
+        </section>
+      </div>
 
     </main>
   </div>
 
-  <script>
-    (function () {
-      document.querySelectorAll(".shortcode-card__copy").forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          var targetId = btn.getAttribute("data-copy");
-          var codeEl = document.getElementById(targetId);
-          if (!codeEl) return;
-
-          var text = codeEl.textContent;
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(text).then(function () {
-              showCopied(btn);
-            });
-          } else {
-            var range = document.createRange();
-            range.selectNodeContents(codeEl);
-            var sel = window.getSelection();
-            sel.removeAllRanges();
-            sel.addRange(range);
-            showCopied(btn);
-          }
-        });
-      });
-
-      function showCopied(btn) {
-        var original = btn.textContent;
-        btn.textContent = "Copied!";
-        btn.classList.add("shortcode-card__copy--copied");
-        setTimeout(function () {
-          btn.textContent = original;
-          btn.classList.remove("shortcode-card__copy--copied");
-        }, 2000);
-      }
-    })();
-  </script>
-
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

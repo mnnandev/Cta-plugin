@@ -17,32 +17,67 @@
 </head>
 <body class="dashboard-page">
 
-  <div class="dashboard-layout">
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="site-header__logo">
+        <a href="index.html">
+          <img
+            src="assets/img/placeholder/logo.png"
+            alt="Clinical Training and Supervision Academy"
+            onerror="this.style.display='none'; this.nextElementSibling.classList.add('site-header__logo-text--visible');"
+          >
+          <span class="site-header__logo-text">Clinical Training &amp; Supervision Academy</span>
+        </a>
+      </div>
+      <nav class="site-header__nav" aria-label="Main navigation">
+        <ul class="site-header__nav-list">
+          <li><a href="index.html" class="site-header__nav-link">Home</a></li>
+          <li><a href="courses.html" class="site-header__nav-link">CE Courses</a></li>
+          <li><a href="supervision.html" class="site-header__nav-link">Supervision</a></li>
+          <li><a href="memberships.html" class="site-header__nav-link">Memberships</a></li>
+          <li><a href="faq.html" class="site-header__nav-link">FAQ</a></li>
+          <li><a href="policies.html" class="site-header__nav-link">Policies</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__actions">
+        <a href="login.html" class="btn btn-outline btn--sm">Login</a>
+        <a href="courses.html" class="btn btn-primary">Enroll Now</a>
+      </div>
+      <button class="mobile-menu-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="dashboard-layout" data-dashboard>
 
     <!-- BEGIN: Reusable Dashboard Sidebar (copy to dashboard-supervision.html) -->
     <aside class="dashboard-sidebar" aria-label="Dashboard navigation">
       <div class="dashboard-sidebar__user">
-        <div class="dashboard-sidebar__avatar" aria-hidden="true">JS</div>
+        <div class="dashboard-sidebar__avatar" data-user-avatar aria-hidden="true">--</div>
         <div class="dashboard-sidebar__user-info">
-          <p class="dashboard-sidebar__name">Dr. Jane Smith, LMFT</p>
-          <p class="dashboard-sidebar__license">License #12345</p>
+          <p class="dashboard-sidebar__name" data-user-name>Your Name</p>
+          <p class="dashboard-sidebar__license" data-user-license>Your Account</p>
         </div>
       </div>
 
       <nav class="dashboard-sidebar__nav">
-        <a href="dashboard-ce.html" class="dashboard-sidebar__link dashboard-sidebar__link--active">
+        <a href="#" class="dashboard-sidebar__link dashboard-sidebar__link--active" data-dashboard-nav="courses" aria-current="page">
           <span class="dashboard-sidebar__icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
           </span>
           My Courses
         </a>
-        <a href="#" class="dashboard-sidebar__link">
+        <a href="#certificates" class="dashboard-sidebar__link" data-dashboard-nav="certificates">
           <span class="dashboard-sidebar__icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
           </span>
           My Certificates
         </a>
-        <a href="#" class="dashboard-sidebar__link">
+        <a href="#settings" class="dashboard-sidebar__link" data-dashboard-nav="settings">
           <span class="dashboard-sidebar__icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
           </span>
@@ -51,7 +86,7 @@
       </nav>
 
       <div class="dashboard-sidebar__footer">
-        <a href="login.html" class="dashboard-sidebar__link">
+        <a href="login.html" class="dashboard-sidebar__link" data-auth-logout>
           <span class="dashboard-sidebar__icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
           </span>
@@ -64,98 +99,212 @@
     <!-- Main Content -->
     <div class="dashboard-main">
 
-      <!-- 1. Welcome Bar -->
-      <header class="dashboard-welcome">
-        <div>
-          <h1 class="dashboard-welcome__greeting">Welcome back, Jane</h1>
-          <p class="dashboard-welcome__date" id="dashboard-date"></p>
-        </div>
-        <div class="dashboard-stats" aria-label="Your progress summary">
-          <span class="dashboard-stat-pill">2 In Progress</span>
-          <span class="dashboard-stat-pill dashboard-stat-pill--success">1 Completed</span>
-          <span class="dashboard-stat-pill">6.0 CE Hours Earned</span>
-        </div>
-      </header>
+      <!-- Panel: My Courses -->
+      <div class="dashboard-panel dashboard-panel--active" data-dashboard-panel="courses">
 
-      <!-- 2. Continue Learning -->
-      <!-- WordPress / LearnDash: in-progress courses render here -->
-      <section class="dashboard-section" aria-labelledby="continue-learning-title">
-        <h2 class="dashboard-section__title" id="continue-learning-title">Continue Learning</h2>
-        <div class="dashboard-course-list">
+        <header class="dashboard-welcome">
+          <div>
+            <h1 class="dashboard-welcome__greeting" data-user-greeting>Welcome back</h1>
+            <p class="dashboard-welcome__date" id="dashboard-date"></p>
+          </div>
+          <div class="dashboard-stats" aria-label="Your progress summary">
+            <span class="dashboard-stat-pill">2 In Progress</span>
+            <span class="dashboard-stat-pill dashboard-stat-pill--success">1 Completed</span>
+            <span class="dashboard-stat-pill">6.0 CE Hours Earned</span>
+          </div>
+        </header>
 
-          <article class="card dashboard-course-card">
-            <div class="dashboard-course-card__header">
-              <h3 class="dashboard-course-card__title">
-                <a href="dashboard-ce-course-player.html">California Law &amp; Ethics for Mental Health Professionals</a>
-              </h3>
-            </div>
-            <div class="progress">
-              <div class="progress__label">
-                <span>Course progress</span>
-                <span class="progress__percent">60%</span>
+        <section class="dashboard-section" aria-labelledby="continue-learning-title">
+          <h2 class="dashboard-section__title" id="continue-learning-title">Continue Learning</h2>
+          <div class="dashboard-course-list">
+
+            <article class="card dashboard-course-card">
+              <div class="dashboard-course-card__header">
+                <h3 class="dashboard-course-card__title">
+                  <a href="dashboard-ce-course-player.html">California Law &amp; Ethics for Mental Health Professionals</a>
+                </h3>
               </div>
-              <div class="progress__track">
-                <div class="progress__bar" style="width: 60%;"></div>
+              <div class="progress">
+                <div class="progress__label">
+                  <span>Course progress</span>
+                  <span class="progress__percent">60%</span>
+                </div>
+                <div class="progress__track">
+                  <div class="progress__bar" style="width: 60%;"></div>
+                </div>
               </div>
-            </div>
-            <p class="dashboard-course-card__meta">3 of 5 modules complete</p>
-            <div class="dashboard-course-card__actions">
-              <span></span>
-              <a href="dashboard-ce-course-player.html" class="btn btn-primary">Continue</a>
-            </div>
-          </article>
-
-          <article class="card dashboard-course-card">
-            <div class="dashboard-course-card__header">
-              <h3 class="dashboard-course-card__title">
-                <a href="dashboard-ce-course-player.html">Advanced Suicide Risk Assessment</a>
-              </h3>
-            </div>
-            <div class="progress">
-              <div class="progress__label">
-                <span>Course progress</span>
-                <span class="progress__percent">40%</span>
+              <p class="dashboard-course-card__meta">3 of 5 modules complete</p>
+              <div class="dashboard-course-card__actions">
+                <span></span>
+                <a href="dashboard-ce-course-player.html" class="btn btn-primary">Continue</a>
               </div>
-              <div class="progress__track">
-                <div class="progress__bar" style="width: 40%;"></div>
+            </article>
+
+            <article class="card dashboard-course-card">
+              <div class="dashboard-course-card__header">
+                <h3 class="dashboard-course-card__title">
+                  <a href="dashboard-ce-course-player.html">Advanced Suicide Risk Assessment</a>
+                </h3>
               </div>
-            </div>
-            <p class="dashboard-course-card__meta">2 of 5 modules complete</p>
-            <div class="dashboard-course-card__actions">
-              <span></span>
-              <a href="dashboard-ce-course-player.html" class="btn btn-primary">Continue</a>
-            </div>
-          </article>
+              <div class="progress">
+                <div class="progress__label">
+                  <span>Course progress</span>
+                  <span class="progress__percent">40%</span>
+                </div>
+                <div class="progress__track">
+                  <div class="progress__bar" style="width: 40%;"></div>
+                </div>
+              </div>
+              <p class="dashboard-course-card__meta">2 of 5 modules complete</p>
+              <div class="dashboard-course-card__actions">
+                <span></span>
+                <a href="dashboard-ce-course-player.html" class="btn btn-primary">Continue</a>
+              </div>
+            </article>
 
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <!-- 3. Completed Courses -->
-      <section class="dashboard-section" aria-labelledby="completed-courses-title">
-        <h2 class="dashboard-section__title" id="completed-courses-title">Completed Courses</h2>
-        <div class="dashboard-course-list">
+        <section class="dashboard-section" aria-labelledby="completed-courses-title">
+          <h2 class="dashboard-section__title" id="completed-courses-title">Recently Completed</h2>
+          <div class="dashboard-course-list">
+            <article class="card dashboard-course-card">
+              <div class="dashboard-course-card__header">
+                <h3 class="dashboard-course-card__title">Clinical Excellence in Telehealth</h3>
+                <span class="badge badge--success">Completed</span>
+              </div>
+              <p class="dashboard-course-card__completed-date">Completed on March 15, 2026</p>
+              <div class="dashboard-course-card__actions">
+                <span class="text-small">3.0 CE Hours</span>
+                <a
+                  href="#"
+                  class="btn btn-outline btn--download btn--sm"
+                  data-certificate-download
+                  data-certificate-id="CTA-2026-0041"
+                  data-certificate-course="Clinical Excellence in Telehealth"
+                  data-certificate-hours="3.0"
+                  data-certificate-date="March 15, 2026"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  Download Certificate
+                </a>
+              </div>
+            </article>
+          </div>
+        </section>
 
-          <article class="card dashboard-course-card">
-            <div class="dashboard-course-card__header">
-              <h3 class="dashboard-course-card__title">Clinical Excellence in Telehealth</h3>
-              <span class="badge badge--success">Completed</span>
+      </div>
+
+      <!-- Panel: My Certificates -->
+      <div class="dashboard-panel" data-dashboard-panel="certificates" hidden>
+
+        <header class="dashboard-welcome">
+          <div>
+            <h1 class="dashboard-welcome__greeting">My Certificates</h1>
+            <p class="dashboard-welcome__subtitle">Download BBS-compliant CE certificates for completed courses</p>
+          </div>
+        </header>
+
+        <section class="dashboard-section" aria-labelledby="certificates-list-title">
+          <h2 class="dashboard-section__title" id="certificates-list-title">Earned Certificates</h2>
+          <div class="dashboard-course-list">
+
+            <article class="card dashboard-course-card">
+              <div class="dashboard-course-card__header">
+                <h3 class="dashboard-course-card__title">Clinical Excellence in Telehealth</h3>
+                <span class="badge badge--success">3.0 CE</span>
+              </div>
+              <p class="dashboard-course-card__completed-date">Issued March 15, 2026 · Certificate #CTA-2026-0041</p>
+              <div class="dashboard-course-card__actions">
+                <span class="text-small">LMFT · BBS Approved</span>
+                <a
+                  href="#"
+                  class="btn btn-primary btn--download btn--sm"
+                  data-certificate-download
+                  data-certificate-id="CTA-2026-0041"
+                  data-certificate-course="Clinical Excellence in Telehealth"
+                  data-certificate-hours="3.0"
+                  data-certificate-date="March 15, 2026"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  Download PDF
+                </a>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Panel: Account Settings -->
+      <div class="dashboard-panel" data-dashboard-panel="settings" hidden>
+
+        <header class="dashboard-welcome">
+          <div>
+            <h1 class="dashboard-welcome__greeting">Account Settings</h1>
+            <p class="dashboard-welcome__subtitle">Manage your profile and license information</p>
+          </div>
+        </header>
+
+        <section class="dashboard-settings card" aria-labelledby="settings-form-title">
+          <h2 class="dashboard-section__title" id="settings-form-title">Profile</h2>
+          <form class="dashboard-settings-form" action="#" method="post" novalidate>
+
+            <div class="profile-photo-upload">
+              <span class="form-label">Profile Photo</span>
+              <label class="profile-photo-upload__trigger" for="settings-photo" aria-label="Upload profile photo from gallery">
+                <span class="profile-photo-upload__circle">
+                  <span class="profile-photo-upload__preview" data-profile-photo-preview aria-hidden="true">--</span>
+                  <img class="profile-photo-upload__image" data-profile-photo-image alt="Your profile photo" hidden>
+                  <span class="profile-photo-upload__camera" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                      <circle cx="12" cy="13" r="4"></circle>
+                    </svg>
+                  </span>
+                </span>
+                <input
+                  type="file"
+                  id="settings-photo"
+                  name="profile_photo"
+                  class="profile-photo-upload__input"
+                  accept="image/jpeg,image/png,image/webp"
+                >
+              </label>
             </div>
-            <p class="dashboard-course-card__completed-date">Completed on March 15, 2026</p>
-            <div class="dashboard-course-card__actions">
-              <span class="text-small">3.0 CE Hours</span>
-              <a href="#" class="btn btn-outline btn--download btn--sm">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                Download Certificate
-              </a>
-            </div>
-          </article>
 
-        </div>
-      </section>
+            <div class="form-group">
+              <label class="form-label" for="settings-name">Full Name</label>
+              <input type="text" id="settings-name" name="full_name" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="settings-email">Email</label>
+              <input type="email" id="settings-email" name="email" class="form-input" required readonly>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="settings-license">License Number</label>
+              <input type="text" id="settings-license" name="license_number" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="settings-type">Credential Type</label>
+              <select id="settings-type" name="credential_type" class="form-select" required>
+                <option value="lmft" selected>LMFT</option>
+                <option value="lcsw">LCSW</option>
+                <option value="lpcc">LPCC</option>
+                <option value="lep">LEP</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary" data-save-settings>Save Changes</button>
+          </form>
+        </section>
+
+      </div>
 
     </div>
   </div>
 
+  <script src="assets/js/main.js"></script>
   <script>
     (function () {
       var dateEl = document.getElementById("dashboard-date");

@@ -17,6 +17,49 @@
 </head>
 <body class="auth-page">
 
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="site-header__logo">
+        <a href="index.html">
+          <img
+            src="assets/img/placeholder/logo.png"
+            alt="Clinical Training and Supervision Academy"
+            onerror="this.style.display='none'; this.nextElementSibling.classList.add('site-header__logo-text--visible');"
+          >
+          <span class="site-header__logo-text">Clinical Training &amp; Supervision Academy</span>
+        </a>
+      </div>
+
+      <nav class="site-header__nav" aria-label="Main navigation">
+        <ul class="site-header__nav-list">
+          <li><a href="index.html" class="site-header__nav-link">Home</a></li>
+          <li><a href="courses.html" class="site-header__nav-link">CE Courses</a></li>
+          <li><a href="supervision.html" class="site-header__nav-link">Supervision</a></li>
+          <li><a href="memberships.html" class="site-header__nav-link">Memberships</a></li>
+          <li><a href="faq.html" class="site-header__nav-link">FAQ</a></li>
+          <li><a href="policies.html" class="site-header__nav-link">Policies</a></li>
+        </ul>
+      </nav>
+
+      <div class="site-header__actions">
+        <a href="login.html" class="btn btn-outline btn--sm">Login</a>
+        <a href="courses.html" class="btn btn-primary">Enroll Now</a>
+      </div>
+
+      <button
+        class="mobile-menu-toggle"
+        type="button"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+      >
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+      </button>
+    </div>
+  </header>
+
   <div class="auth-page__layout">
 
     <!-- Left Panel -->
@@ -54,6 +97,8 @@
           aria-labelledby="login-form-title"
         >
           <h2 class="auth-form__title" id="login-form-title">Log In</h2>
+
+          <p class="auth-form__error" id="login-form-error" role="alert" hidden></p>
 
           <div class="form-group">
             <label class="form-label" for="login-email">Email</label>
@@ -107,6 +152,8 @@
           hidden
         >
           <h2 class="auth-form__title" id="register-form-title">Create Account</h2>
+
+          <p class="auth-form__error" id="register-form-error" role="alert" hidden></p>
 
           <div class="form-group">
             <label class="form-label" for="register-full-name">Full Name</label>
@@ -182,52 +229,6 @@
 
   </div>
 
-  <script>
-    (function () {
-      "use strict";
-
-      var loginForm = document.getElementById("login-form");
-      var registerForm = document.getElementById("register-form");
-      var toggleButtons = document.querySelectorAll("[data-auth-toggle]");
-
-      if (!loginForm || !registerForm) return;
-
-      function showLogin() {
-        loginForm.classList.remove("form-hidden");
-        loginForm.removeAttribute("hidden");
-        registerForm.classList.add("form-hidden");
-        registerForm.setAttribute("hidden", "");
-        document.title = "Log In | Clinical Training and Supervision Academy";
-      }
-
-      function showRegister() {
-        registerForm.classList.remove("form-hidden");
-        registerForm.removeAttribute("hidden");
-        loginForm.classList.add("form-hidden");
-        loginForm.setAttribute("hidden", "");
-        document.title = "Create Account | Clinical Training and Supervision Academy";
-      }
-
-      toggleButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-          var target = button.getAttribute("data-auth-toggle");
-          if (target === "register") {
-            showRegister();
-          } else {
-            showLogin();
-          }
-        });
-      });
-
-      loginForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-      });
-
-      registerForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-      });
-    })();
-  </script>
-
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

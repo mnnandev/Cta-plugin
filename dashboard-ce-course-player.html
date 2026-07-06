@@ -17,15 +17,50 @@
 </head>
 <body class="dashboard-page">
 
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="site-header__logo">
+        <a href="index.html">
+          <img
+            src="assets/img/placeholder/logo.png"
+            alt="Clinical Training and Supervision Academy"
+            onerror="this.style.display='none'; this.nextElementSibling.classList.add('site-header__logo-text--visible');"
+          >
+          <span class="site-header__logo-text">Clinical Training &amp; Supervision Academy</span>
+        </a>
+      </div>
+      <nav class="site-header__nav" aria-label="Main navigation">
+        <ul class="site-header__nav-list">
+          <li><a href="index.html" class="site-header__nav-link">Home</a></li>
+          <li><a href="courses.html" class="site-header__nav-link">CE Courses</a></li>
+          <li><a href="supervision.html" class="site-header__nav-link">Supervision</a></li>
+          <li><a href="memberships.html" class="site-header__nav-link">Memberships</a></li>
+          <li><a href="faq.html" class="site-header__nav-link">FAQ</a></li>
+          <li><a href="policies.html" class="site-header__nav-link">Policies</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__actions">
+        <a href="login.html" class="btn btn-outline btn--sm">Login</a>
+        <a href="courses.html" class="btn btn-primary">Enroll Now</a>
+      </div>
+      <button class="mobile-menu-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+      </button>
+    </div>
+  </header>
+
   <div class="dashboard-layout">
 
     <!-- BEGIN: Reusable Dashboard Sidebar (copy to dashboard-supervision.html) -->
     <aside class="dashboard-sidebar" aria-label="Dashboard navigation">
       <div class="dashboard-sidebar__user">
-        <div class="dashboard-sidebar__avatar" aria-hidden="true">JS</div>
+        <div class="dashboard-sidebar__avatar" data-user-avatar aria-hidden="true">--</div>
         <div class="dashboard-sidebar__user-info">
-          <p class="dashboard-sidebar__name">Dr. Jane Smith, LMFT</p>
-          <p class="dashboard-sidebar__license">License #12345</p>
+          <p class="dashboard-sidebar__name" data-user-name>Your Name</p>
+          <p class="dashboard-sidebar__license" data-user-license>Your Account</p>
         </div>
       </div>
 
@@ -36,13 +71,13 @@
           </span>
           My Courses
         </a>
-        <a href="#" class="dashboard-sidebar__link">
+        <a href="dashboard-ce.html#certificates" class="dashboard-sidebar__link">
           <span class="dashboard-sidebar__icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
           </span>
           My Certificates
         </a>
-        <a href="#" class="dashboard-sidebar__link">
+        <a href="dashboard-ce.html#settings" class="dashboard-sidebar__link">
           <span class="dashboard-sidebar__icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
           </span>
@@ -51,7 +86,7 @@
       </nav>
 
       <div class="dashboard-sidebar__footer">
-        <a href="login.html" class="dashboard-sidebar__link">
+        <a href="login.html" class="dashboard-sidebar__link" data-auth-logout>
           <span class="dashboard-sidebar__icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
           </span>
@@ -68,7 +103,7 @@
         <a href="dashboard-ce.html">&larr; Back to My Courses</a>
       </p>
 
-      <div class="course-player-layout">
+      <div class="course-player-layout" data-course-player>
 
         <!-- Left: Video + Lesson Controls -->
         <div class="course-player__content">
@@ -83,9 +118,9 @@
 
           <h1 class="course-player__lesson-title">Module 3: Dual Relationships &amp; Boundaries</h1>
 
-          <div class="course-player__lesson-actions">
-            <button type="button" class="btn btn-primary">Mark as Complete</button>
-            <button type="button" class="btn btn-outline" disabled aria-disabled="true">Take Quiz</button>
+          <div class="course-player__lesson-actions" data-course-player-actions>
+            <button type="button" class="btn btn-primary" data-mark-complete>Mark as Complete</button>
+            <button type="button" class="btn btn-outline" data-take-quiz disabled aria-disabled="true">Take Quiz</button>
           </div>
 
           <!-- Visual reference: quiz button states -->
@@ -192,6 +227,74 @@
         </aside>
 
       </div>
+    </div>
+  </div>
+
+  <!-- Module quiz modal (LearnDash quiz embed placeholder) -->
+  <div class="course-quiz-modal" id="course-quiz-modal" hidden aria-hidden="true">
+    <div class="course-quiz-modal__backdrop" data-quiz-close tabindex="-1"></div>
+    <div class="course-quiz-modal__dialog" role="dialog" aria-labelledby="quiz-modal-title" aria-modal="true">
+      <div class="course-quiz-modal__header">
+        <h2 class="course-quiz-modal__title" id="quiz-modal-title">Module 3 Quiz — Dual Relationships &amp; Boundaries</h2>
+        <button type="button" class="course-quiz-modal__close" data-quiz-close aria-label="Close quiz">&times;</button>
+      </div>
+
+      <form class="course-quiz-form" id="course-quiz-form">
+        <fieldset class="course-quiz-form__question">
+          <legend class="course-quiz-form__legend">1. When is a dual relationship most likely to be unethical?</legend>
+          <label class="course-quiz-form__option">
+            <input type="radio" name="q1" value="a" required>
+            <span>When it could impair clinical judgment or exploit the client</span>
+          </label>
+          <label class="course-quiz-form__option">
+            <input type="radio" name="q1" value="b">
+            <span>Whenever the clinician and client share any social connection</span>
+          </label>
+          <label class="course-quiz-form__option">
+            <input type="radio" name="q1" value="c">
+            <span>Only when the client files a formal complaint</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="course-quiz-form__question">
+          <legend class="course-quiz-form__legend">2. Which action best maintains professional boundaries?</legend>
+          <label class="course-quiz-form__option">
+            <input type="radio" name="q2" value="a" required>
+            <span>Accepting a large gift from a client to show gratitude</span>
+          </label>
+          <label class="course-quiz-form__option">
+            <input type="radio" name="q2" value="b">
+            <span>Discussing session limits and roles clearly at intake</span>
+          </label>
+          <label class="course-quiz-form__option">
+            <input type="radio" name="q2" value="c">
+            <span>Becoming business partners with a long-term client</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="course-quiz-form__question">
+          <legend class="course-quiz-form__legend">3. A former client asks to reconnect on social media. What is the best first step?</legend>
+          <label class="course-quiz-form__option">
+            <input type="radio" name="q3" value="a" required>
+            <span>Accept immediately to stay supportive</span>
+          </label>
+          <label class="course-quiz-form__option">
+            <input type="radio" name="q3" value="b">
+            <span>Review ethics guidelines and consider clinical impact before responding</span>
+          </label>
+          <label class="course-quiz-form__option">
+            <input type="radio" name="q3" value="c">
+            <span>Ignore the request without any response</span>
+          </label>
+        </fieldset>
+
+        <div class="course-quiz-form__actions">
+          <button type="submit" class="btn btn-primary">Submit Quiz</button>
+          <button type="button" class="btn btn-outline" data-quiz-close>Cancel</button>
+        </div>
+      </form>
+
+      <div class="course-quiz-result" id="course-quiz-result" hidden role="status"></div>
     </div>
   </div>
 

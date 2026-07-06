@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Frequently asked questions about California BBS CE courses, clinical supervision, billing, certificates, and technical support at Clinical Training and Supervision Academy.">
+  <title>FAQ | Clinical Training and Supervision Academy</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="site-header__logo">
+        <a href="index.html">
+          <img
+            src="assets/img/placeholder/logo.png"
+            alt="Clinical Training and Supervision Academy"
+            onerror="this.style.display='none'; this.nextElementSibling.classList.add('site-header__logo-text--visible');"
+          >
+          <span class="site-header__logo-text">Clinical Training &amp; Supervision Academy</span>
+        </a>
+      </div>
+
+      <nav class="site-header__nav" aria-label="Main navigation">
+        <ul class="site-header__nav-list">
+          <li><a href="index.html" class="site-header__nav-link">Home</a></li>
+          <li><a href="courses.html" class="site-header__nav-link">CE Courses</a></li>
+          <li><a href="supervision.html" class="site-header__nav-link">Supervision</a></li>
+          <li><a href="memberships.html" class="site-header__nav-link">Memberships</a></li>
+          <li><a href="about.html" class="site-header__nav-link">About</a></li>
+          <li><a href="faq.html" class="site-header__nav-link site-header__nav-link--active">FAQ</a></li>
+          <li><a href="contact.html" class="site-header__nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="site-header__actions">
+        <a href="login.html" class="btn btn-outline btn--sm">Login</a>
+        <a href="#" class="btn btn-primary">Enroll Now</a>
+      </div>
+
+      <button
+        class="mobile-menu-toggle"
+        type="button"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+      >
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- 1. Page Hero -->
+    <section class="page-hero" aria-labelledby="faq-hero-title">
+      <div class="page-hero__inner">
+        <nav class="page-hero__breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="page-hero__breadcrumb-separator" aria-hidden="true">/</span>
+          <span class="page-hero__breadcrumb-current">FAQ</span>
+        </nav>
+        <h1 class="page-hero__title" id="faq-hero-title">Frequently Asked Questions</h1>
+        <p class="page-hero__subtitle">
+          Find answers about CE courses, supervision, billing, and certificates
+        </p>
+        <div class="page-hero__search">
+          <form class="page-hero__search-form" role="search" aria-label="Search FAQs" action="#" onsubmit="return false;">
+            <label class="visually-hidden" for="faq-search">Search FAQs</label>
+            <input
+              type="search"
+              id="faq-search"
+              name="q"
+              class="form-input page-hero__search-input"
+              placeholder="Search questions..."
+              autocomplete="off"
+            >
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Category Tabs + FAQ Accordion Groups -->
+    <section class="section faq-page" aria-labelledby="faq-content-title" data-faq-page>
+      <div class="container faq-page__inner">
+        <h2 class="visually-hidden" id="faq-content-title">FAQ by Category</h2>
+
+        <div class="tabs faq-page__tabs" role="tablist" aria-label="FAQ categories">
+          <div class="tabs__list">
+            <button type="button" class="tabs__tab tabs__tab--active" role="tab" aria-selected="true" data-faq-filter="all">All</button>
+            <button type="button" class="tabs__tab" role="tab" aria-selected="false" data-faq-filter="ce-courses">CE Courses</button>
+            <button type="button" class="tabs__tab" role="tab" aria-selected="false" data-faq-filter="supervision">Supervision</button>
+            <button type="button" class="tabs__tab" role="tab" aria-selected="false" data-faq-filter="billing">Billing</button>
+            <button type="button" class="tabs__tab" role="tab" aria-selected="false" data-faq-filter="certificates">Certificates</button>
+            <button type="button" class="tabs__tab" role="tab" aria-selected="false" data-faq-filter="technical">Technical</button>
+          </div>
+        </div>
+
+        <div class="faq-page__groups">
+
+          <!-- CE Courses -->
+          <div class="faq-page__group" data-category="ce-courses">
+            <h3 class="faq-page__category-title">CE Courses</h3>
+            <div class="accordion faq-page__accordion" data-accordion="single">
+
+              <div class="accordion-item accordion-item--active">
+                <button type="button" class="accordion-item__header" aria-expanded="true">
+                  How do I know which courses I need?
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <div class="accordion-item__content-inner">
+                      Your required CE topics depend on your California BBS license type (LMFT, LCSW, LPCC, or LEP) and renewal cycle. Check the BBS continuing education requirements for your license, then use our course catalog filters to find courses tagged with the categories you still need — such as law and ethics, cultural diversity, or suicide risk assessment. If you're unsure, contact us with your license number and renewal date and we'll recommend a compliant plan.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button type="button" class="accordion-item__header" aria-expanded="false">
+                  How long do I have to complete a course?
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <div class="accordion-item__content-inner">
+                      Most individual CE courses remain available in your dashboard for 12 months from the date of purchase, giving you plenty of time to work at your own pace around your caseload. Annual All-Access members can complete included courses anytime during their active subscription year. Progress is saved automatically, so you can pause mid-module and return later without losing your place.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button type="button" class="accordion-item__header" aria-expanded="false">
+                  What happens if I fail the final test?
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <div class="accordion-item__content-inner">
+                      You must score at least 70% on the final exam to earn CE credit, per BBS guidelines. If you don't pass on your first attempt, you can review the course material and retake the exam — most courses allow up to three attempts at no additional charge. After exhausting retakes, contact support and we'll help you determine whether a course reset or alternative option is appropriate.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button type="button" class="accordion-item__header" aria-expanded="false">
+                  Are these courses BBS-approved?
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <div class="accordion-item__content-inner">
+                      Yes. Clinical Training and Supervision Academy is an approved continuing education provider recognized by the California Board of Behavioral Sciences. Each course listing shows the provider number, CE hours awarded, and applicable license categories. Certificates generated upon passing include all information required for BBS license renewal documentation.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Supervision -->
+          <div class="faq-page__group" data-category="supervision">
+            <h3 class="faq-page__category-title">Supervision</h3>
+            <div class="accordion faq-page__accordion" data-accordion="single">
+
+              <div class="accordion-item accordion-item--active">
+                <button type="button" class="accordion-item__header" aria-expanded="true">
+                  What's the difference between group and individual supervision?
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <div class="accordion-item__content-inner">
+                      Individual supervision is a one-on-one session focused entirely on your cases, documentation, and professional development. Group supervision brings together a small cohort of associates under one supervisor, allowing you to learn from peers' cases while meeting BBS group supervision requirements. Both formats count toward your weekly supervision hours when documented correctly; the best fit depends on your learning style, schedule, and where you are in your associate registration.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button type="button" class="accordion-item__header" aria-expanded="false">
+                  How many associates are in a group session?
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <div class="accordion-item__content-inner">
+                      Our group supervision sessions are capped at six associates per supervisor, in line with California BBS limits for group supervision. This keeps discussions focused and ensures every participant has time to present cases and receive feedback. Session rosters are managed through Amelia scheduling so you always know who will be in your group before you book.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button type="button" class="accordion-item__header" aria-expanded="false">
+                  Can I switch between group and individual?
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <div class="accordion-item__content-inner">
+                      Yes. Many associates combine group and individual supervision to balance cost efficiency with personalized guidance — for example, weekly group sessions plus monthly individual check-ins. You can book either format through your dashboard at any time, subject to supervisor availability. We recommend discussing your ratio with your supervisor so your documented hours align with BBS requirements for your registration category.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button type="button" class="accordion-item__header" aria-expanded="false">
+                  What documents do I need to upload?
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <div class="accordion-item__content-inner">
+                      Before your first supervision session, upload a signed Supervision Agreement, proof of current associate registration with the BBS, and liability insurance verification if required by your site. You'll also submit a brief case summary or treatment plan for any client you plan to discuss. All documents are stored securely in your supervision dashboard and can be updated as your caseload or employment changes.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Billing -->
+          <div class="faq-page__group" data-category="billing">
+            <h3 class="faq-page__category-title">Billing</h3>
+            <div class="accordion faq-page__accordion" data-accordion="single">
+
+              <div class="accordion-item accordion-item--active">
+                <button type="button" class="accordion-item__header" aria-expanded="true">
+                  How does the subscription billing work?
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <div class="accordion-item__content-inner">
+                      One-time course and bundle purchases are charged in full at checkout through Stripe. Subscription plans — such as the Annual All-Access Pass or Supervision + CE Hybrid — renew automatically on your billing date each month or year. You'll receive an email receipt for every charge, and invoices are available for download from your account billing history at any time.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button type="button" class="accordion-item__header" aria-expanded="false">
+                  Can I cancel anytime?
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <div class="accordion-item__content-inner">
+                      Yes. Monthly subscriptions can be canceled from your dashboard under Account Settings — cancellation takes effect at the end of the current billing period, and you'll retain access until that date. Annual plans can also be canceled before renewal; we don't auto-renew without notice. One-time course purchases are not subscriptions and do not require cancellation.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button type="button" class="accordion-item__header" aria-expanded="false">
+                  What happens if my payment fails?
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <div class="accordion-item__content-inner">
+                      If a renewal payment fails, Stripe will retry the charge over the next several days and we'll email you to update your card on file. Your access remains active during a short grace period so you're not locked out mid-course. If payment isn't resolved after the grace period, subscription benefits pause until the balance is cleared — previously completed certificates remain in your dashboard.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Certificates -->
+          <div class="faq-page__group" data-category="certificates">
+            <h3 class="faq-page__category-title">Certificates</h3>
+            <div class="accordion faq-page__accordion" data-accordion="single">
+
+              <div class="accordion-item accordion-item--active">
+                <button type="button" class="accordion-item__header" aria-expanded="true">
+                  When do I receive my certificate?
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <div class="accordion-item__content-inner">
+                      Your CE certificate is generated automatically within a few minutes of passing the final course exam with a score of 70% or higher. You'll see a download link on the completion screen and in your dashboard under Completed Courses. An email confirmation with a PDF attachment is also sent to the address on your account for your records.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button type="button" class="accordion-item__header" aria-expanded="false">
+                  What information is on the certificate?
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <div class="accordion-item__content-inner">
+                      Each certificate includes your full legal name, course title, number of CE hours, completion date, applicable BBS license categories, and our approved provider number. It also lists the instructor name and a brief course description as required for audit purposes. Verify your name spelling in Account Settings before completing exams — certificates use the name on file at the time of completion.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button type="button" class="accordion-item__header" aria-expanded="false">
+                  Can I download past certificates anytime?
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <div class="accordion-item__content-inner">
+                      Yes. All certificates for courses you've completed remain available in your dashboard indefinitely under the Certificates or Completed Courses section. You can re-download PDF copies whenever you need them for BBS renewal, employer verification, or personal records. If you update your legal name after completion, contact support to request a reissued certificate with corrected information.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Technical -->
+          <div class="faq-page__group" data-category="technical">
+            <h3 class="faq-page__category-title">Technical</h3>
+            <div class="accordion faq-page__accordion" data-accordion="single">
+
+              <div class="accordion-item accordion-item--active">
+                <button type="button" class="accordion-item__header" aria-expanded="true">
+                  Which browsers are supported for the course player?
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <div class="accordion-item__content-inner">
+                      Our course player works best on the latest versions of Chrome, Firefox, Safari, and Microsoft Edge on desktop, tablet, and mobile. Enable JavaScript and allow cookies for ctacademy.org so progress tracking and quiz submissions work correctly. If you experience playback issues, try clearing your browser cache or switching to a supported browser before contacting support.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button type="button" class="accordion-item__header" aria-expanded="false">
+                  I forgot my password — how do I reset it?
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <div class="accordion-item__content-inner">
+                      Click "Forgot Password" on the login page and enter the email address associated with your account. You'll receive a secure reset link within a few minutes — check your spam folder if it doesn't arrive. Links expire after 24 hours for security; request a new one if needed. Still locked out? Contact us from the email on your account and we'll verify your identity manually.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button type="button" class="accordion-item__header" aria-expanded="false">
+                  Why can't I access a course I purchased?
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <div class="accordion-item__content-inner">
+                      Make sure you're logged into the same email address used at checkout — purchases are tied to your account, not a device. If you recently upgraded a membership, allow a few minutes for access to sync or try logging out and back in. For failed payments or expired subscriptions, update your billing info under Account Settings; contact support with your order confirmation if access still doesn't appear.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Still Have Questions -->
+    <section class="section section--bg faq-page__cta" aria-labelledby="faq-cta-title">
+      <div class="container faq-page__cta-inner">
+        <h3 class="text-h3" id="faq-cta-title">Still Have Questions?</h3>
+        <p class="text-body">Our team responds to most inquiries within one business day.</p>
+        <a href="contact.html" class="btn btn-primary">Contact Us</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="site-footer__grid">
+
+      <div class="site-footer__column">
+        <span class="site-footer__logo-text">Clinical Training &amp; Supervision Academy</span>
+        <p class="site-footer__about-text">
+          California's trusted platform for BBS-compliant continuing education
+          and clinical supervision — built for working mental health professionals.
+        </p>
+      </div>
+
+      <div class="site-footer__column">
+        <h3 class="site-footer__column-title">Quick Links</h3>
+        <ul class="site-footer__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="supervision.html">Supervision</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__column">
+        <h3 class="site-footer__column-title">Legal</h3>
+        <ul class="site-footer__links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Refund Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Grievance Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__column">
+        <h3 class="site-footer__column-title">Contact</h3>
+        <div class="site-footer__contact-item">
+          <span aria-hidden="true">&#9993;</span>
+          <span>info@ctacademy.org</span>
+        </div>
+        <div class="site-footer__contact-item">
+          <span aria-hidden="true">&#9742;</span>
+          <span>(555) 123-4567</span>
+        </div>
+        <div class="site-footer__contact-item">
+          <span aria-hidden="true">&#128205;</span>
+          <span>California, USA</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="site-footer__bottom">
+      <div class="site-footer__bottom-inner">
+        <p>&copy; 2026 Clinical Training and Supervision Academy. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

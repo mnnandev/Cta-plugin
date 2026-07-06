@@ -44,7 +44,7 @@
       </nav>
 
       <div class="site-header__actions">
-        <a href="#" class="btn btn-outline btn--sm">Login</a>
+        <a href="login.html" class="btn btn-outline btn--sm">Login</a>
         <a href="#" class="btn btn-primary">Enroll Now</a>
       </div>
 
@@ -65,25 +65,46 @@
 
     <!-- 1. Course Hero -->
     <section class="course-hero" aria-labelledby="course-hero-title">
-      <div class="container">
-        <nav class="course-hero__breadcrumb" aria-label="Breadcrumb">
-          <a href="index.html">Home</a>
-          <span class="course-hero__breadcrumb-separator" aria-hidden="true">/</span>
-          <a href="courses.html">CE Courses</a>
-          <span class="course-hero__breadcrumb-separator" aria-hidden="true">/</span>
-          <span class="course-hero__breadcrumb-current">California Law &amp; Ethics</span>
-        </nav>
-        <h1 class="course-hero__title" id="course-hero-title">
-          California Law &amp; Ethics for Mental Health Professionals
-        </h1>
-        <div class="course-hero__badges">
-          <span class="badge badge--success">6.0 CE Hours</span>
-          <span class="badge badge--primary">BBS Approved</span>
+      <div class="course-hero__bg" aria-hidden="true"></div>
+      <div class="container course-hero__layout">
+        <div class="course-hero__content">
+          <nav class="course-hero__breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="course-hero__breadcrumb-separator" aria-hidden="true">/</span>
+            <a href="courses.html">CE Courses</a>
+            <span class="course-hero__breadcrumb-separator" aria-hidden="true">/</span>
+            <span class="course-hero__breadcrumb-current">California Law &amp; Ethics</span>
+          </nav>
+          <div class="course-hero__badges">
+            <span class="badge badge--success">6.0 CE Hours</span>
+            <span class="badge badge--primary">BBS Approved</span>
+          </div>
+          <h1 class="course-hero__title" id="course-hero-title">
+            California Law &amp; Ethics for Mental Health Professionals
+          </h1>
+          <p class="course-hero__summary">
+            Fulfill your California law and ethics CE requirement with a practical,
+            case-based course designed for busy clinicians serving diverse communities statewide.
+          </p>
+          <div class="course-hero__meta">
+            <div class="course-hero__instructor">
+              <div class="course-hero__instructor-avatar" aria-hidden="true">CF</div>
+              <span class="course-hero__instructor-name">Candice Fuimaono, MS, LMFT</span>
+            </div>
+            <div class="course-hero__rating">
+              <span class="course-hero__stars" aria-label="Rated 4.9 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="course-hero__reviews">47 reviews</span>
+            </div>
+          </div>
         </div>
-        <p class="course-hero__summary">
-          Fulfill your California law and ethics CE requirement with a practical,
-          case-based course designed for busy clinicians serving diverse communities statewide.
-        </p>
+        <div class="course-hero__media">
+          <div class="course-hero__video" role="button" tabindex="0" aria-label="Preview course video">
+            <div class="course-hero__video-thumb" aria-hidden="true"></div>
+            <span class="course-hero__play-btn" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -93,366 +114,364 @@
 
         <!-- Left Column -->
         <div class="course-detail__main">
-          <div class="tabs">
 
-            <div class="tabs__list" role="tablist" aria-label="Course information">
-              <button
-                type="button"
-                class="tabs__tab tabs__tab--active"
-                role="tab"
-                data-tab="overview"
-                aria-selected="true"
-                aria-controls="tab-overview"
-              >Overview</button>
-              <button
-                type="button"
-                class="tabs__tab"
-                role="tab"
-                data-tab="curriculum"
-                aria-selected="false"
-                aria-controls="tab-curriculum"
-              >Curriculum</button>
-              <button
-                type="button"
-                class="tabs__tab"
-                role="tab"
-                data-tab="instructor"
-                aria-selected="false"
-                aria-controls="tab-instructor"
-              >Instructor</button>
-              <button
-                type="button"
-                class="tabs__tab"
-                role="tab"
-                data-tab="reviews"
-                aria-selected="false"
-                aria-controls="tab-reviews"
-              >Reviews</button>
-            </div>
+          <section class="course-section" aria-labelledby="course-overview-title">
+            <h2 class="course-section__title" id="course-overview-title">Course Overview</h2>
+            <p class="course-content-block__text">
+              This BBS-approved continuing education course provides California mental health
+              professionals with a comprehensive review of the laws, regulations, and ethical
+              standards governing clinical practice. Through real-world vignettes and BBS-relevant
+              case examples, you'll strengthen your ability to make sound ethical decisions in
+              everyday practice settings.
+            </p>
+            <p class="course-content-block__text">
+              Content covers scope of practice, mandated reporting, confidentiality, professional
+              boundaries, and recent regulatory updates affecting LMFTs, LCSWs, LPCCs, and LEPs.
+              Upon successful completion of the course exam, your CE certificate is generated
+              automatically — ready to document for licensure renewal.
+            </p>
+          </section>
 
-            <!-- Overview Tab -->
-            <div
-              class="tabs__panel tabs__panel--active"
-              id="tab-overview"
-              role="tabpanel"
-              data-tab-panel="overview"
-            >
-              <div class="course-content-block">
-                <h2 class="course-content-block__title">What You'll Learn</h2>
-                <ul class="checklist">
-                  <li class="checklist__item">
-                    <span class="checklist__icon" aria-hidden="true">
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+          <section class="course-section" aria-labelledby="course-learn-title">
+            <h2 class="course-section__title" id="course-learn-title">What You'll Learn In This Course:</h2>
+            <ul class="checklist">
+              <li class="checklist__item">
+                <span class="checklist__icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                </span>
+                Identify California BBS scope-of-practice requirements for LMFTs, LCSWs, LPCCs, and LEPs.
+              </li>
+              <li class="checklist__item">
+                <span class="checklist__icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                </span>
+                Apply mandated reporting laws and ethical decision-making frameworks in complex clinical cases.
+              </li>
+              <li class="checklist__item">
+                <span class="checklist__icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                </span>
+                Navigate dual relationships, confidentiality limits, and Tarasoff duty-to-warn obligations.
+              </li>
+              <li class="checklist__item">
+                <span class="checklist__icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                </span>
+                Evaluate advertising, telehealth, and documentation standards under current California law.
+              </li>
+              <li class="checklist__item">
+                <span class="checklist__icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
+                </span>
+                Develop a personal ethics compliance plan aligned with BBS regulations and professional standards.
+              </li>
+            </ul>
+          </section>
+
+          <section class="course-section" aria-labelledby="course-content-title">
+            <h2 class="course-section__title" id="course-content-title">Course Content</h2>
+            <!-- WordPress / LearnDash: curriculum modules populate here -->
+            <div class="accordion accordion--course-curriculum" data-accordion="single">
+
+              <div class="accordion-item accordion-item--active">
+                <button type="button" class="accordion-item__header accordion-item__header--module" aria-expanded="true">
+                  <span class="accordion-item__header-inner">
+                    <span class="accordion-item__module-title">1. Module 1: Scope of Practice in California</span>
+                    <span class="accordion-item__meta">
+                      <span>4 lessons</span>
+                      <span>45 min</span>
                     </span>
-                    Identify California BBS scope-of-practice requirements for LMFTs, LCSWs, LPCCs, and LEPs.
-                  </li>
-                  <li class="checklist__item">
-                    <span class="checklist__icon" aria-hidden="true">
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
-                    </span>
-                    Apply mandated reporting laws and ethical decision-making frameworks in complex clinical cases.
-                  </li>
-                  <li class="checklist__item">
-                    <span class="checklist__icon" aria-hidden="true">
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
-                    </span>
-                    Navigate dual relationships, confidentiality limits, and Tarasoff duty-to-warn obligations.
-                  </li>
-                  <li class="checklist__item">
-                    <span class="checklist__icon" aria-hidden="true">
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
-                    </span>
-                    Evaluate advertising, telehealth, and documentation standards under current California law.
-                  </li>
-                  <li class="checklist__item">
-                    <span class="checklist__icon" aria-hidden="true">
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"></polyline></svg>
-                    </span>
-                    Develop a personal ethics compliance plan aligned with BBS regulations and professional standards.
-                  </li>
-                </ul>
+                  </span>
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <ul class="course-lesson-list">
+                      <li class="course-lesson-list__item">
+                        <span class="course-lesson-list__label">1.1 Licensing Categories in California</span>
+                        <span class="course-lesson-list__duration">12 min</span>
+                        <span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span>
+                      </li>
+                      <li class="course-lesson-list__item">
+                        <span class="course-lesson-list__label">1.2 Authorized Clinical Activities</span>
+                        <span class="course-lesson-list__duration">11 min</span>
+                        <span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span>
+                      </li>
+                      <li class="course-lesson-list__item">
+                        <span class="course-lesson-list__label">1.3 Referral Obligations</span>
+                        <span class="course-lesson-list__duration">11 min</span>
+                        <span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span>
+                      </li>
+                      <li class="course-lesson-list__item">
+                        <span class="course-lesson-list__label">1.4 Scope Documentation Standards</span>
+                        <span class="course-lesson-list__duration">11 min</span>
+                        <span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
 
-              <div class="course-content-block">
-                <h2 class="course-content-block__title">Course Description</h2>
-                <p class="course-content-block__text">
-                  This BBS-approved continuing education course provides California mental health
-                  professionals with a comprehensive review of the laws, regulations, and ethical
-                  standards governing clinical practice. Through real-world vignettes and BBS-relevant
-                  case examples, you'll strengthen your ability to make sound ethical decisions in
-                  everyday practice settings.
+              <div class="accordion-item">
+                <button type="button" class="accordion-item__header accordion-item__header--module">
+                  <span class="accordion-item__header-inner">
+                    <span class="accordion-item__module-title">2. Module 2: Mandated Reporting &amp; Child Abuse</span>
+                    <span class="accordion-item__meta">
+                      <span>5 lessons</span>
+                      <span>50 min</span>
+                    </span>
+                  </span>
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <ul class="course-lesson-list">
+                      <li class="course-lesson-list__item"><span class="course-lesson-list__label">2.1 Mandated Reporter Requirements</span><span class="course-lesson-list__duration">10 min</span><span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span></li>
+                      <li class="course-lesson-list__item"><span class="course-lesson-list__label">2.2 Child Abuse Identification</span><span class="course-lesson-list__duration">10 min</span><span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span></li>
+                      <li class="course-lesson-list__item"><span class="course-lesson-list__label">2.3 Documentation Standards</span><span class="course-lesson-list__duration">10 min</span><span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span></li>
+                      <li class="course-lesson-list__item"><span class="course-lesson-list__label">2.4 Vulnerable Adult Reporting</span><span class="course-lesson-list__duration">10 min</span><span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span></li>
+                      <li class="course-lesson-list__item"><span class="course-lesson-list__label">2.5 Ethical Considerations</span><span class="course-lesson-list__duration">10 min</span><span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button type="button" class="accordion-item__header accordion-item__header--module">
+                  <span class="accordion-item__header-inner">
+                    <span class="accordion-item__module-title">3. Module 3: Dual Relationships &amp; Boundaries</span>
+                    <span class="accordion-item__meta">
+                      <span>4 lessons</span>
+                      <span>40 min</span>
+                    </span>
+                  </span>
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <ul class="course-lesson-list">
+                      <li class="course-lesson-list__item"><span class="course-lesson-list__label">3.1 Dual Relationship Definitions</span><span class="course-lesson-list__duration">10 min</span><span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span></li>
+                      <li class="course-lesson-list__item"><span class="course-lesson-list__label">3.2 Boundary Crossings vs. Violations</span><span class="course-lesson-list__duration">10 min</span><span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span></li>
+                      <li class="course-lesson-list__item"><span class="course-lesson-list__label">3.3 Small Community Practice</span><span class="course-lesson-list__duration">10 min</span><span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span></li>
+                      <li class="course-lesson-list__item"><span class="course-lesson-list__label">3.4 Professional Integrity</span><span class="course-lesson-list__duration">10 min</span><span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button type="button" class="accordion-item__header accordion-item__header--module">
+                  <span class="accordion-item__header-inner">
+                    <span class="accordion-item__module-title">4. Module 4: Confidentiality &amp; Tarasoff Duties</span>
+                    <span class="accordion-item__meta">
+                      <span>5 lessons</span>
+                      <span>55 min</span>
+                    </span>
+                  </span>
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <ul class="course-lesson-list">
+                      <li class="course-lesson-list__item"><span class="course-lesson-list__label">4.1 Limits of Confidentiality</span><span class="course-lesson-list__duration">11 min</span><span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span></li>
+                      <li class="course-lesson-list__item"><span class="course-lesson-list__label">4.2 Duty to Warn and Protect</span><span class="course-lesson-list__duration">11 min</span><span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span></li>
+                      <li class="course-lesson-list__item"><span class="course-lesson-list__label">4.3 Tarasoff Case Application</span><span class="course-lesson-list__duration">11 min</span><span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span></li>
+                      <li class="course-lesson-list__item"><span class="course-lesson-list__label">4.4 Legal vs. Ethical Obligations</span><span class="course-lesson-list__duration">11 min</span><span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span></li>
+                      <li class="course-lesson-list__item"><span class="course-lesson-list__label">4.5 Client Safety Planning</span><span class="course-lesson-list__duration">11 min</span><span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button type="button" class="accordion-item__header accordion-item__header--module">
+                  <span class="accordion-item__header-inner">
+                    <span class="accordion-item__module-title">5. Module 5: Advertising &amp; Professional Conduct</span>
+                    <span class="accordion-item__meta">
+                      <span>3 lessons</span>
+                      <span>35 min</span>
+                    </span>
+                  </span>
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <ul class="course-lesson-list">
+                      <li class="course-lesson-list__item"><span class="course-lesson-list__label">5.1 BBS Advertising Rules</span><span class="course-lesson-list__duration">12 min</span><span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span></li>
+                      <li class="course-lesson-list__item"><span class="course-lesson-list__label">5.2 Social Media &amp; Telehealth</span><span class="course-lesson-list__duration">12 min</span><span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span></li>
+                      <li class="course-lesson-list__item"><span class="course-lesson-list__label">5.3 Clinical Record Keeping</span><span class="course-lesson-list__duration">11 min</span><span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button type="button" class="accordion-item__header accordion-item__header--module">
+                  <span class="accordion-item__header-inner">
+                    <span class="accordion-item__module-title">6. Module 6: Course Exam &amp; CE Certificate</span>
+                    <span class="accordion-item__meta">
+                      <span>2 lessons</span>
+                      <span>30 min</span>
+                    </span>
+                  </span>
+                  <span class="accordion-item__icon" aria-hidden="true"></span>
+                </button>
+                <div class="accordion-item__body">
+                  <div class="accordion-item__content">
+                    <ul class="course-lesson-list">
+                      <li class="course-lesson-list__item"><span class="course-lesson-list__label">6.1 Final Competency Exam</span><span class="course-lesson-list__duration">20 min</span><span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span></li>
+                      <li class="course-lesson-list__item"><span class="course-lesson-list__label">6.2 CE Certificate Download</span><span class="course-lesson-list__duration">10 min</span><span class="course-lesson-list__play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <section class="course-section course-section--instructor" aria-labelledby="course-instructor-title">
+            <h2 class="course-section__title" id="course-instructor-title">Instructor</h2>
+            <div class="instructor-profile instructor-profile--boxed">
+              <div class="instructor-profile__media">
+                <img
+                  src="assets/img/placeholder/instructor.jpg"
+                  alt="Candice Fuimaono, MS, LMFT"
+                  class="instructor-profile__photo"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                >
+                <div class="instructor-profile__photo-placeholder" aria-hidden="true">CF</div>
+              </div>
+              <div class="instructor-profile__info">
+                <h3 class="instructor-profile__name">Candice Fuimaono</h3>
+                <p class="instructor-profile__credentials">MS, LMFT</p>
+                <p class="instructor-profile__bio">
+                  Candice Fuimaono is a licensed Marriage and Family Therapist with over 15 years
+                  of clinical experience serving diverse communities across California. As founder
+                  of Clinical Training and Supervision Academy, she develops CE curriculum and
+                  provides clinical supervision to AMFT, ASW, and APCC associates. Candice is
+                  passionate about making ethics education practical, accessible, and directly
+                  applicable to the realities of everyday clinical work.
                 </p>
-                <p class="course-content-block__text">
-                  Content covers scope of practice, mandated reporting, confidentiality, professional
-                  boundaries, and recent regulatory updates affecting LMFTs, LCSWs, LPCCs, and LEPs.
-                  Upon successful completion of the course exam, your CE certificate is generated
-                  automatically — ready to document for licensure renewal.
-                </p>
               </div>
             </div>
+          </section>
 
-            <!-- Curriculum Tab -->
-            <div
-              class="tabs__panel"
-              id="tab-curriculum"
-              role="tabpanel"
-              data-tab-panel="curriculum"
-              hidden
-            >
-              <!-- WordPress / LearnDash: curriculum modules populate here -->
-              <div class="accordion" data-accordion="single">
-
-                <div class="accordion-item">
-                  <button type="button" class="accordion-item__header accordion-item__header--module">
-                    <span class="accordion-item__header-inner">
-                      <span class="accordion-item__module-title">Module 1: Scope of Practice in California</span>
-                      <span class="accordion-item__meta">
-                        <span>45 min</span>
-                        <span>4 lessons</span>
-                      </span>
-                    </span>
-                    <span class="accordion-item__header-actions">
-                      <span class="accordion-item__lock" aria-label="Locked until enrolled">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                      </span>
-                      <span class="accordion-item__icon" aria-hidden="true"></span>
-                    </span>
-                  </button>
-                  <div class="accordion-item__body">
-                    <div class="accordion-item__content">
-                      <div class="accordion-item__content-inner">
-                        Overview of BBS licensing categories, authorized clinical activities, and referral obligations for California practitioners.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <button type="button" class="accordion-item__header accordion-item__header--module">
-                    <span class="accordion-item__header-inner">
-                      <span class="accordion-item__module-title">Module 2: Mandated Reporting &amp; Child Abuse</span>
-                      <span class="accordion-item__meta">
-                        <span>50 min</span>
-                        <span>5 lessons</span>
-                      </span>
-                    </span>
-                    <span class="accordion-item__header-actions">
-                      <span class="accordion-item__lock" aria-label="Locked until enrolled">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                      </span>
-                      <span class="accordion-item__icon" aria-hidden="true"></span>
-                    </span>
-                  </button>
-                  <div class="accordion-item__body">
-                    <div class="accordion-item__content">
-                      <div class="accordion-item__content-inner">
-                        California mandated reporting requirements, documentation standards, and ethical considerations when working with minors and vulnerable adults.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <button type="button" class="accordion-item__header accordion-item__header--module">
-                    <span class="accordion-item__header-inner">
-                      <span class="accordion-item__module-title">Module 3: Dual Relationships &amp; Boundaries</span>
-                      <span class="accordion-item__meta">
-                        <span>40 min</span>
-                        <span>4 lessons</span>
-                      </span>
-                    </span>
-                    <span class="accordion-item__header-actions">
-                      <span class="accordion-item__lock" aria-label="Locked until enrolled">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                      </span>
-                      <span class="accordion-item__icon" aria-hidden="true"></span>
-                    </span>
-                  </button>
-                  <div class="accordion-item__body">
-                    <div class="accordion-item__content">
-                      <div class="accordion-item__content-inner">
-                        Identifying boundary crossings vs. violations, managing dual relationships in small communities, and maintaining professional integrity.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <button type="button" class="accordion-item__header accordion-item__header--module">
-                    <span class="accordion-item__header-inner">
-                      <span class="accordion-item__module-title">Module 4: Confidentiality &amp; Tarasoff Duties</span>
-                      <span class="accordion-item__meta">
-                        <span>55 min</span>
-                        <span>5 lessons</span>
-                      </span>
-                    </span>
-                    <span class="accordion-item__header-actions">
-                      <span class="accordion-item__lock" aria-label="Locked until enrolled">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                      </span>
-                      <span class="accordion-item__icon" aria-hidden="true"></span>
-                    </span>
-                  </button>
-                  <div class="accordion-item__body">
-                    <div class="accordion-item__content">
-                      <div class="accordion-item__content-inner">
-                        Limits of confidentiality, duty to warn and protect, and legal vs. ethical obligations when client safety is at risk.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <button type="button" class="accordion-item__header accordion-item__header--module">
-                    <span class="accordion-item__header-inner">
-                      <span class="accordion-item__module-title">Module 5: Advertising &amp; Professional Conduct</span>
-                      <span class="accordion-item__meta">
-                        <span>35 min</span>
-                        <span>3 lessons</span>
-                      </span>
-                    </span>
-                    <span class="accordion-item__header-actions">
-                      <span class="accordion-item__lock" aria-label="Locked until enrolled">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                      </span>
-                      <span class="accordion-item__icon" aria-hidden="true"></span>
-                    </span>
-                  </button>
-                  <div class="accordion-item__body">
-                    <div class="accordion-item__content">
-                      <div class="accordion-item__content-inner">
-                        BBS rules on advertising, social media presence, telehealth compliance, and maintaining accurate clinical records.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <button type="button" class="accordion-item__header accordion-item__header--module">
-                    <span class="accordion-item__header-inner">
-                      <span class="accordion-item__module-title">Module 6: Course Exam &amp; CE Certificate</span>
-                      <span class="accordion-item__meta">
-                        <span>30 min</span>
-                        <span>2 lessons</span>
-                      </span>
-                    </span>
-                    <span class="accordion-item__header-actions">
-                      <span class="accordion-item__lock" aria-label="Locked until enrolled">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                      </span>
-                      <span class="accordion-item__icon" aria-hidden="true"></span>
-                    </span>
-                  </button>
-                  <div class="accordion-item__body">
-                    <div class="accordion-item__content">
-                      <div class="accordion-item__content-inner">
-                        Final competency exam and automated CE certificate download upon passing score.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
+          <section class="course-section" aria-labelledby="course-reviews-title">
+            <h2 class="course-section__title" id="course-reviews-title">Reviews</h2>
+            <div class="reviews-summary">
+              <span class="reviews-summary__score">4.9</span>
+              <div>
+                <p class="reviews-summary__count"><strong>47 reviews</strong></p>
+                <p class="reviews-summary__count">Highly rated by California clinicians</p>
               </div>
             </div>
-
-            <!-- Instructor Tab -->
-            <div
-              class="tabs__panel"
-              id="tab-instructor"
-              role="tabpanel"
-              data-tab-panel="instructor"
-              hidden
-            >
-              <div class="instructor-profile">
-                <div class="instructor-profile__media">
-                  <img
-                    src="assets/img/placeholder/instructor.jpg"
-                    alt="Candice Fuimaono, MS, LMFT"
-                    class="instructor-profile__photo"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                  >
-                  <div class="instructor-profile__photo-placeholder" aria-hidden="true">
-                    Photo
-                  </div>
+            <article class="review-item review-item--layout">
+              <div class="review-item__avatar" aria-hidden="true">SM</div>
+              <div class="review-item__content">
+                <div class="review-item__top">
+                  <p class="review-item__author">Sarah M., LMFT — Los Angeles</p>
+                  <span class="review-item__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                 </div>
-                <div class="instructor-profile__info">
-                  <h2 class="instructor-profile__name">Candice Fuimaono</h2>
-                  <p class="instructor-profile__credentials">MS, LMFT</p>
-                  <p class="instructor-profile__bio">
-                    Candice Fuimaono is a licensed Marriage and Family Therapist with over 15 years
-                    of clinical experience serving diverse communities across California. As founder
-                    of Clinical Training and Supervision Academy, she develops CE curriculum and
-                    provides clinical supervision to AMFT, ASW, and APCC associates. Candice is
-                    passionate about making ethics education practical, accessible, and directly
-                    applicable to the realities of everyday clinical work.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Reviews Tab -->
-            <div
-              class="tabs__panel"
-              id="tab-reviews"
-              role="tabpanel"
-              data-tab-panel="reviews"
-              hidden
-            >
-              <div class="reviews-summary">
-                <span class="reviews-summary__score">4.9</span>
-                <div>
-                  <p class="reviews-summary__count"><strong>47 reviews</strong></p>
-                  <p class="reviews-summary__count">Highly rated by California clinicians</p>
-                </div>
-              </div>
-              <article class="review-item">
-                <p class="review-item__author">Sarah M., LMFT — Los Angeles</p>
                 <p class="review-item__text">
                   "Finally an ethics course that goes beyond reading the law verbatim. The case
                   vignettes were directly relevant to my private practice, and I finished feeling
                   much more confident about my compliance obligations."
                 </p>
-              </article>
-            </div>
+              </div>
+            </article>
 
-          </div>
+            <form class="course-review-form" id="course-review-form" action="#" method="post">
+              <h3 class="course-review-form__title">Leave a Comment</h3>
+              <div class="course-review-form__row">
+                <div class="form-group">
+                  <label class="form-label visually-hidden" for="review-title">Review title</label>
+                  <input type="text" id="review-title" name="review_title" class="form-input" placeholder="Review title" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label visually-hidden" for="review-name">Your name</label>
+                  <input type="text" id="review-name" name="review_name" class="form-input" placeholder="Your name" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label visually-hidden" for="review-email">Your email</label>
+                <input type="email" id="review-email" name="review_email" class="form-input" placeholder="Your email" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label visually-hidden" for="review-summary">Review summary</label>
+                <textarea id="review-summary" name="review_summary" class="form-textarea" placeholder="Review summary" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary course-review-form__submit">Submit Review</button>
+            </form>
+          </section>
+
         </div>
 
         <!-- Right Sidebar -->
         <aside class="course-detail__sidebar course-sidebar" aria-label="Course enrollment">
           <div class="course-sidebar__card">
+            <div class="course-sidebar__offer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              30-day access guarantee
+            </div>
+
             <p class="course-sidebar__price">$79</p>
 
-            <ul class="course-sidebar__features">
-              <li class="course-sidebar__feature">
-                <span class="course-sidebar__feature-icon" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                </span>
-                <span><strong>6.0 CE Hours</strong></span>
+            <ul class="course-sidebar__meta">
+              <li class="course-sidebar__meta-item">
+                <span class="course-sidebar__meta-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></span>
+                <span><strong>Course level:</strong> Professional</span>
               </li>
-              <li class="course-sidebar__feature">
-                <span class="course-sidebar__feature-icon" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-                </span>
-                <span>Self-paced, online</span>
+              <li class="course-sidebar__meta-item">
+                <span class="course-sidebar__meta-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>
+                <span><strong>Duration:</strong> 4.25 hours</span>
               </li>
-              <li class="course-sidebar__feature">
-                <span class="course-sidebar__feature-icon" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-                </span>
-                <span>Certificate provided on completion</span>
+              <li class="course-sidebar__meta-item">
+                <span class="course-sidebar__meta-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></span>
+                <span><strong>Format:</strong> Self-paced, online</span>
+              </li>
+              <li class="course-sidebar__meta-item">
+                <span class="course-sidebar__meta-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></span>
+                <span><strong>Lessons:</strong> 23</span>
+              </li>
+              <li class="course-sidebar__meta-item">
+                <span class="course-sidebar__meta-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg></span>
+                <span><strong>CE Hours:</strong> 6.0</span>
+              </li>
+              <li class="course-sidebar__meta-item">
+                <span class="course-sidebar__meta-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></span>
+                <span><strong>Certificate:</strong> Provided on completion</span>
+              </li>
+              <li class="course-sidebar__meta-item">
+                <span class="course-sidebar__meta-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span>
+                <span><strong>Language:</strong> English</span>
               </li>
             </ul>
 
-            <a href="#" class="btn btn-primary btn--lg course-sidebar__enroll" id="enroll-btn">Enroll Now</a>
-            <small class="course-sidebar__guarantee">30-day access guarantee</small>
-
+            <p class="course-sidebar__label">Secure Payment:</p>
             <div class="course-sidebar__payments" aria-label="Accepted payment methods">
               <span class="course-sidebar__payment-icon">Visa</span>
               <span class="course-sidebar__payment-icon">MC</span>
               <span class="course-sidebar__payment-icon">Amex</span>
               <span class="course-sidebar__payment-icon">Discover</span>
             </div>
+
+            <p class="course-sidebar__label">Share This Course:</p>
+            <div class="course-sidebar__share" aria-label="Share links">
+              <a href="#" class="course-sidebar__share-link" aria-label="Share on Facebook">f</a>
+              <a href="#" class="course-sidebar__share-link" aria-label="Share on Twitter">t</a>
+              <a href="#" class="course-sidebar__share-link" aria-label="Share on LinkedIn">in</a>
+            </div>
+
+            <a href="#" class="btn btn-primary btn--lg course-sidebar__enroll" id="enroll-btn">Enroll Now</a>
+          </div>
+
+          <div class="course-sidebar__categories">
+            <h3 class="course-sidebar__categories-title">Course Categories</h3>
+            <ul class="course-sidebar__categories-list">
+              <li class="course-sidebar__categories-item"><a href="courses.html">Law &amp; Ethics</a><span>2</span></li>
+              <li class="course-sidebar__categories-item"><a href="courses.html">Clinical Skills</a><span>5</span></li>
+              <li class="course-sidebar__categories-item"><a href="courses.html">Specialized Topics</a><span>5</span></li>
+            </ul>
           </div>
         </aside>
 

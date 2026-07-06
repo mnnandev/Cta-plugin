@@ -44,7 +44,7 @@
       </nav>
 
       <div class="site-header__actions">
-        <a href="#" class="btn btn-outline btn--sm">Login</a>
+        <a href="login.html" class="btn btn-outline btn--sm">Login</a>
         <a href="#" class="btn btn-primary">Enroll Now</a>
       </div>
 
@@ -63,48 +63,65 @@
 
   <main>
 
-    <!-- 1. Page Hero -->
-    <section class="page-hero" aria-labelledby="page-hero-title">
-      <div class="page-hero__inner">
-        <nav class="page-hero__breadcrumb" aria-label="Breadcrumb">
-          <a href="index.html">Home</a>
-          <span class="page-hero__breadcrumb-separator" aria-hidden="true">/</span>
-          <span class="page-hero__breadcrumb-current">CE Courses</span>
-        </nav>
-        <h1 class="page-hero__title" id="page-hero-title">Continuing Education Courses</h1>
-        <p class="page-hero__subtitle">
-          BBS-approved CE courses for LMFTs, LCSWs, LPCCs, and LEPs
-        </p>
-        <div class="page-hero__search">
-          <form class="page-hero__search-form" role="search" aria-label="Search courses">
-            <input
-              type="search"
-              class="form-input page-hero__search-input"
-              placeholder="Search courses by title or topic..."
-              aria-label="Search courses"
-            >
-            <button type="submit" class="btn btn-primary">Search</button>
-          </form>
+    <!-- Course Page Banner -->
+    <section class="course-banner" aria-labelledby="course-banner-title">
+      <div class="course-banner__hero">
+        <div class="course-banner__hero-bg" aria-hidden="true"></div>
+        <div class="course-banner__hero-inner">
+          <nav class="course-banner__breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="course-banner__breadcrumb-separator" aria-hidden="true">/</span>
+            <span class="course-banner__breadcrumb-current">CE Courses</span>
+          </nav>
+          <h1 class="course-banner__title" id="course-banner-title">Continuing Education Courses</h1>
+          <p class="course-banner__subtitle">
+            BBS-approved CE courses for LMFTs, LCSWs, LPCCs, and LEPs
+          </p>
+          <div class="course-banner__search">
+            <form class="course-banner__search-form" role="search" aria-label="Search courses">
+              <input
+                type="search"
+                class="form-input course-banner__search-input"
+                placeholder="Search courses by title or topic..."
+                aria-label="Search courses"
+              >
+              <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+          </div>
         </div>
       </div>
-    </section>
 
-    <!-- 2. Filter Bar -->
-    <section class="catalog-filter" aria-label="Course filters">
-      <div class="container catalog-filter__inner">
-        <div class="catalog-filter__pills" role="group" aria-label="Filter by category">
-          <button type="button" class="catalog-filter__pill catalog-filter__pill--active">All Courses</button>
-          <button type="button" class="catalog-filter__pill">Law &amp; Ethics</button>
-          <button type="button" class="catalog-filter__pill">Clinical Skills</button>
-          <button type="button" class="catalog-filter__pill">Specialized Topics</button>
-        </div>
-        <div class="catalog-filter__sort">
-          <label for="course-sort" class="visually-hidden">Sort courses</label>
-          <select id="course-sort" class="form-select" aria-label="Sort courses">
-            <option value="popular">Sort by: Popular</option>
-            <option value="price-asc">Sort by: Price Low-High</option>
-            <option value="ce-hours">Sort by: CE Hours</option>
-          </select>
+      <div class="course-banner__filter-bar" aria-label="Course filters">
+        <div class="container course-banner__filter-inner">
+          <div class="course-banner__filter-label">
+            <span class="course-banner__filter-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="4" y1="6" x2="20" y2="6"></line>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+                <line x1="10" y1="18" x2="14" y2="18"></line>
+                <circle cx="6" cy="6" r="2" fill="currentColor" stroke="none"></circle>
+                <circle cx="18" cy="12" r="2" fill="currentColor" stroke="none"></circle>
+                <circle cx="12" cy="18" r="2" fill="currentColor" stroke="none"></circle>
+              </svg>
+            </span>
+            Filters
+          </div>
+          <div class="course-banner__filter-actions">
+            <div class="catalog-filter__pills" role="group" aria-label="Filter by category" data-catalog-filter>
+              <button type="button" class="catalog-filter__pill catalog-filter__pill--active" data-filter="all">All Courses</button>
+              <button type="button" class="catalog-filter__pill" data-filter="law-ethics">Law &amp; Ethics</button>
+              <button type="button" class="catalog-filter__pill" data-filter="clinical-skills">Clinical Skills</button>
+              <button type="button" class="catalog-filter__pill" data-filter="specialized">Specialized Topics</button>
+            </div>
+            <div class="catalog-filter__sort">
+              <label for="course-sort" class="visually-hidden">Sort courses</label>
+              <select id="course-sort" class="form-select course-banner__select" aria-label="Sort courses">
+                <option value="popular">Sort by: Popular</option>
+                <option value="price-asc">Sort by: Price Low-High</option>
+                <option value="ce-hours">Sort by: CE Hours</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -115,191 +132,387 @@
       <div class="container">
         <h2 class="visually-hidden" id="course-catalog-title">Course Catalog</h2>
 
-        <div class="grid-3 course-catalog">
+        <div class="grid-3 course-catalog" data-course-catalog>
 
           <!-- Course Card Template Block -->
           <article class="card course-card course-card--catalog" data-category="law-ethics">
             <div class="course-card__media">
-              <span class="badge badge--success course-card__badge">6.0 CE</span>
               <div class="course-card__thumb" aria-hidden="true"></div>
+              <span class="course-card__price">$79</span>
             </div>
             <div class="card__body">
+              <div class="course-card__meta-row">
+                <span class="course-card__tag">
+                  <span class="course-card__tag-dot" aria-hidden="true"></span>
+                  Law &amp; Ethics
+                </span>
+                <span class="badge badge--success course-card__badge">6.0 CE</span>
+              </div>
               <h3 class="card__title course-card__title">
                 <a href="single-course.html">California Law &amp; Ethics for Mental Health Professionals</a>
               </h3>
-              <p class="card__text">Meet California's mandatory law and ethics requirement with real-world case scenarios.</p>
+              <div class="course-card__details">
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"></rect><path d="M10 8l6 4-6 4V8z"></path></svg>
+                  6.0 CE
+                </span>
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                  Law &amp; Ethics
+                </span>
+              </div>
+              <p class="card__text course-card__text">Meet California's mandatory law and ethics requirement with real-world case scenarios.</p>
               <div class="course-card__footer">
-                <span class="course-card__price">$79</span>
-                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+                <span class="course-card__footer-label">Law &amp; Ethics</span>
+                <a href="single-course.html" class="course-card__link">
+                  View Course
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
               </div>
             </div>
           </article>
 
           <article class="card course-card course-card--catalog" data-category="clinical-skills">
             <div class="course-card__media">
-              <span class="badge badge--success course-card__badge">3.0 CE</span>
               <div class="course-card__thumb" aria-hidden="true"></div>
+              <span class="course-card__price">$45</span>
             </div>
             <div class="card__body">
+              <div class="course-card__meta-row">
+                <span class="course-card__tag">
+                  <span class="course-card__tag-dot" aria-hidden="true"></span>
+                  Clinical Skills
+                </span>
+                <span class="badge badge--success course-card__badge">3.0 CE</span>
+              </div>
               <h3 class="card__title course-card__title">
                 <a href="single-course.html">Clinical Excellence in Telehealth</a>
               </h3>
-              <p class="card__text">Deliver compliant, effective therapy across telehealth platforms and hybrid care models.</p>
+              <div class="course-card__details">
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"></rect><path d="M10 8l6 4-6 4V8z"></path></svg>
+                  3.0 CE
+                </span>
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                  Clinical Skills
+                </span>
+              </div>
+              <p class="card__text course-card__text">Deliver compliant, effective therapy across telehealth platforms and hybrid care models.</p>
               <div class="course-card__footer">
-                <span class="course-card__price">$45</span>
-                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+                <span class="course-card__footer-label">Clinical Skills</span>
+                <a href="single-course.html" class="course-card__link">
+                  View Course
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
               </div>
             </div>
           </article>
 
           <article class="card course-card course-card--catalog" data-category="clinical-skills">
             <div class="course-card__media">
-              <span class="badge badge--success course-card__badge">6.0 CE</span>
               <div class="course-card__thumb" aria-hidden="true"></div>
+              <span class="course-card__price">$79</span>
             </div>
             <div class="card__body">
+              <div class="course-card__meta-row">
+                <span class="course-card__tag">
+                  <span class="course-card__tag-dot" aria-hidden="true"></span>
+                  Clinical Skills
+                </span>
+                <span class="badge badge--success course-card__badge">6.0 CE</span>
+              </div>
               <h3 class="card__title course-card__title">
                 <a href="single-course.html">Advanced Suicide Risk Assessment</a>
               </h3>
-              <p class="card__text">Strengthen clinical judgment with evidence-based suicide risk screening and safety planning.</p>
+              <div class="course-card__details">
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"></rect><path d="M10 8l6 4-6 4V8z"></path></svg>
+                  6.0 CE
+                </span>
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                  Clinical Skills
+                </span>
+              </div>
+              <p class="card__text course-card__text">Strengthen clinical judgment with evidence-based suicide risk screening and safety planning.</p>
               <div class="course-card__footer">
-                <span class="course-card__price">$79</span>
-                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+                <span class="course-card__footer-label">Clinical Skills</span>
+                <a href="single-course.html" class="course-card__link">
+                  View Course
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
               </div>
             </div>
           </article>
 
           <article class="card course-card course-card--catalog" data-category="specialized">
             <div class="course-card__media">
-              <span class="badge badge--success course-card__badge">15.0 CE</span>
               <div class="course-card__thumb" aria-hidden="true"></div>
+              <span class="course-card__price">$149</span>
             </div>
             <div class="card__body">
+              <div class="course-card__meta-row">
+                <span class="course-card__tag">
+                  <span class="course-card__tag-dot" aria-hidden="true"></span>
+                  Specialized Topics
+                </span>
+                <span class="badge badge--success course-card__badge">15.0 CE</span>
+              </div>
               <h3 class="card__title course-card__title">
                 <a href="single-course.html">Substance Dependency &amp; Psychopharmacology</a>
               </h3>
-              <p class="card__text">Explore addiction treatment fundamentals and psychopharmacology essentials for clinicians.</p>
+              <div class="course-card__details">
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"></rect><path d="M10 8l6 4-6 4V8z"></path></svg>
+                  15.0 CE
+                </span>
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                  Specialized Topics
+                </span>
+              </div>
+              <p class="card__text course-card__text">Explore addiction treatment fundamentals and psychopharmacology essentials for clinicians.</p>
               <div class="course-card__footer">
-                <span class="course-card__price">$149</span>
-                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+                <span class="course-card__footer-label">Specialized Topics</span>
+                <a href="single-course.html" class="course-card__link">
+                  View Course
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
               </div>
             </div>
           </article>
 
           <article class="card course-card course-card--catalog" data-category="clinical-skills">
             <div class="course-card__media">
-              <span class="badge badge--success course-card__badge">7.0 CE</span>
               <div class="course-card__thumb" aria-hidden="true"></div>
+              <span class="course-card__price">$89</span>
             </div>
             <div class="card__body">
+              <div class="course-card__meta-row">
+                <span class="course-card__tag">
+                  <span class="course-card__tag-dot" aria-hidden="true"></span>
+                  Clinical Skills
+                </span>
+                <span class="badge badge--success course-card__badge">7.0 CE</span>
+              </div>
               <h3 class="card__title course-card__title">
                 <a href="single-course.html">Child Abuse Assessment &amp; Reporting</a>
               </h3>
-              <p class="card__text">Learn mandated reporting standards and assessment protocols for suspected child abuse.</p>
+              <div class="course-card__details">
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"></rect><path d="M10 8l6 4-6 4V8z"></path></svg>
+                  7.0 CE
+                </span>
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                  Clinical Skills
+                </span>
+              </div>
+              <p class="card__text course-card__text">Learn mandated reporting standards and assessment protocols for suspected child abuse.</p>
               <div class="course-card__footer">
-                <span class="course-card__price">$89</span>
-                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+                <span class="course-card__footer-label">Clinical Skills</span>
+                <a href="single-course.html" class="course-card__link">
+                  View Course
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
               </div>
             </div>
           </article>
 
           <article class="card course-card course-card--catalog" data-category="specialized">
             <div class="course-card__media">
-              <span class="badge badge--success course-card__badge">7.0 CE</span>
               <div class="course-card__thumb" aria-hidden="true"></div>
+              <span class="course-card__price">$89</span>
             </div>
             <div class="card__body">
+              <div class="course-card__meta-row">
+                <span class="course-card__tag">
+                  <span class="course-card__tag-dot" aria-hidden="true"></span>
+                  Specialized Topics
+                </span>
+                <span class="badge badge--success course-card__badge">7.0 CE</span>
+              </div>
               <h3 class="card__title course-card__title">
                 <a href="single-course.html">HIV/AIDS and Mental Health</a>
               </h3>
-              <p class="card__text">Understand the clinical, legal, and psychosocial dimensions of HIV/AIDS in mental health care.</p>
+              <div class="course-card__details">
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"></rect><path d="M10 8l6 4-6 4V8z"></path></svg>
+                  7.0 CE
+                </span>
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                  Specialized Topics
+                </span>
+              </div>
+              <p class="card__text course-card__text">Understand the clinical, legal, and psychosocial dimensions of HIV/AIDS in mental health care.</p>
               <div class="course-card__footer">
-                <span class="course-card__price">$89</span>
-                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+                <span class="course-card__footer-label">Specialized Topics</span>
+                <a href="single-course.html" class="course-card__link">
+                  View Course
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
               </div>
             </div>
           </article>
 
           <article class="card course-card course-card--catalog" data-category="specialized">
             <div class="course-card__media">
-              <span class="badge badge--success course-card__badge">10.0 CE</span>
               <div class="course-card__thumb" aria-hidden="true"></div>
+              <span class="course-card__price">$99</span>
             </div>
             <div class="card__body">
+              <div class="course-card__meta-row">
+                <span class="course-card__tag">
+                  <span class="course-card__tag-dot" aria-hidden="true"></span>
+                  Specialized Topics
+                </span>
+                <span class="badge badge--success course-card__badge">10.0 CE</span>
+              </div>
               <h3 class="card__title course-card__title">
                 <a href="single-course.html">Human Sexuality &amp; Clinical Practice</a>
               </h3>
-              <p class="card__text">Build competency in addressing sexuality issues ethically and effectively in therapy.</p>
+              <div class="course-card__details">
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"></rect><path d="M10 8l6 4-6 4V8z"></path></svg>
+                  10.0 CE
+                </span>
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                  Specialized Topics
+                </span>
+              </div>
+              <p class="card__text course-card__text">Build competency in addressing sexuality issues ethically and effectively in therapy.</p>
               <div class="course-card__footer">
-                <span class="course-card__price">$99</span>
-                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+                <span class="course-card__footer-label">Specialized Topics</span>
+                <a href="single-course.html" class="course-card__link">
+                  View Course
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
               </div>
             </div>
           </article>
 
           <article class="card course-card course-card--catalog" data-category="specialized">
             <div class="course-card__media">
-              <span class="badge badge--success course-card__badge">6.0 CE</span>
               <div class="course-card__thumb" aria-hidden="true"></div>
+              <span class="course-card__price">$129</span>
             </div>
             <div class="card__body">
+              <div class="course-card__meta-row">
+                <span class="course-card__tag">
+                  <span class="course-card__tag-dot" aria-hidden="true"></span>
+                  Specialized Topics
+                </span>
+                <span class="badge badge--success course-card__badge">6.0 CE</span>
+              </div>
               <h3 class="card__title course-card__title">
                 <a href="single-course.html">Fundamentals of Clinical Supervision</a>
               </h3>
-              <p class="card__text">Core supervision principles aligned with California BBS requirements for supervisors.</p>
+              <div class="course-card__details">
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"></rect><path d="M10 8l6 4-6 4V8z"></path></svg>
+                  6.0 CE
+                </span>
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                  Specialized Topics
+                </span>
+              </div>
+              <p class="card__text course-card__text">Core supervision principles aligned with California BBS requirements for supervisors.</p>
               <div class="course-card__footer">
-                <span class="course-card__price">$129</span>
-                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+                <span class="course-card__footer-label">Specialized Topics</span>
+                <a href="single-course.html" class="course-card__link">
+                  View Course
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
               </div>
             </div>
           </article>
 
           <article class="card course-card course-card--catalog" data-category="law-ethics">
             <div class="course-card__media">
-              <span class="badge badge--success course-card__badge">6.0 CE</span>
               <div class="course-card__thumb" aria-hidden="true"></div>
+              <span class="course-card__price">$75</span>
             </div>
             <div class="card__body">
+              <div class="course-card__meta-row">
+                <span class="course-card__tag">
+                  <span class="course-card__tag-dot" aria-hidden="true"></span>
+                  Law &amp; Ethics
+                </span>
+                <span class="badge badge--success course-card__badge">6.0 CE</span>
+              </div>
               <h3 class="card__title course-card__title">
                 <a href="single-course.html">Behind Closed Doors: BBS Disciplinary Cases</a>
               </h3>
-              <p class="card__text">Learn from real BBS enforcement cases to protect your license and clinical practice.</p>
+              <div class="course-card__details">
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"></rect><path d="M10 8l6 4-6 4V8z"></path></svg>
+                  6.0 CE
+                </span>
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                  Law &amp; Ethics
+                </span>
+              </div>
+              <p class="card__text course-card__text">Learn from real BBS enforcement cases to protect your license and clinical practice.</p>
               <div class="course-card__footer">
-                <span class="course-card__price">$75</span>
-                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+                <span class="course-card__footer-label">Law &amp; Ethics</span>
+                <a href="single-course.html" class="course-card__link">
+                  View Course
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
               </div>
             </div>
           </article>
 
           <article class="card course-card course-card--catalog" data-category="clinical-skills">
             <div class="course-card__media">
-              <span class="badge badge--success course-card__badge">6.0 CE</span>
               <div class="course-card__thumb" aria-hidden="true"></div>
+              <span class="course-card__price">$72</span>
             </div>
             <div class="card__body">
+              <div class="course-card__meta-row">
+                <span class="course-card__tag">
+                  <span class="course-card__tag-dot" aria-hidden="true"></span>
+                  Clinical Skills
+                </span>
+                <span class="badge badge--success course-card__badge">6.0 CE</span>
+              </div>
               <h3 class="card__title course-card__title">
                 <a href="single-course.html">Clinical Assessment &amp; Life Stressors</a>
               </h3>
-              <p class="card__text">Integrate biopsychosocial assessment approaches for clients facing major life stressors.</p>
+              <div class="course-card__details">
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"></rect><path d="M10 8l6 4-6 4V8z"></path></svg>
+                  6.0 CE
+                </span>
+                <span class="course-card__detail">
+                  <svg class="course-card__detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                  Clinical Skills
+                </span>
+              </div>
+              <p class="card__text course-card__text">Integrate biopsychosocial assessment approaches for clients facing major life stressors.</p>
               <div class="course-card__footer">
-                <span class="course-card__price">$72</span>
-                <a href="single-course.html" class="btn btn-primary btn--sm">View Course</a>
+                <span class="course-card__footer-label">Clinical Skills</span>
+                <a href="single-course.html" class="course-card__link">
+                  View Course
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
               </div>
             </div>
           </article>
 
         </div>
 
+        <p class="course-catalog__empty" data-course-catalog-empty hidden role="status">
+          No courses match your filters. Try a different category or search term.
+        </p>
+
         <!-- 4. Pagination -->
-        <nav class="pagination" aria-label="Course catalog pagination">
-          <span class="pagination__item pagination__item--disabled" aria-hidden="true">&laquo;</span>
-          <a href="#" class="pagination__item pagination__item--active" aria-current="page">1</a>
-          <a href="#" class="pagination__item">2</a>
-          <a href="#" class="pagination__item">3</a>
-          <span class="pagination__item pagination__item--disabled" aria-hidden="true">&hellip;</span>
-          <a href="#" class="pagination__item">5</a>
-          <a href="#" class="pagination__item" aria-label="Next page">&raquo;</a>
-        </nav>
+        <nav class="pagination" data-course-pagination aria-label="Course catalog pagination"></nav>
 
       </div>
     </section>

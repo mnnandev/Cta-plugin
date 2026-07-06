@@ -17,38 +17,73 @@
 </head>
 <body class="dashboard-page">
 
-  <div class="dashboard-layout">
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="site-header__logo">
+        <a href="index.html">
+          <img
+            src="assets/img/placeholder/logo.png"
+            alt="Clinical Training and Supervision Academy"
+            onerror="this.style.display='none'; this.nextElementSibling.classList.add('site-header__logo-text--visible');"
+          >
+          <span class="site-header__logo-text">Clinical Training &amp; Supervision Academy</span>
+        </a>
+      </div>
+      <nav class="site-header__nav" aria-label="Main navigation">
+        <ul class="site-header__nav-list">
+          <li><a href="index.html" class="site-header__nav-link">Home</a></li>
+          <li><a href="courses.html" class="site-header__nav-link">CE Courses</a></li>
+          <li><a href="supervision.html" class="site-header__nav-link">Supervision</a></li>
+          <li><a href="memberships.html" class="site-header__nav-link">Memberships</a></li>
+          <li><a href="faq.html" class="site-header__nav-link">FAQ</a></li>
+          <li><a href="policies.html" class="site-header__nav-link">Policies</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__actions">
+        <a href="login.html" class="btn btn-outline btn--sm">Login</a>
+        <a href="courses.html" class="btn btn-primary">Enroll Now</a>
+      </div>
+      <button class="mobile-menu-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+        <span class="mobile-menu-toggle__bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="dashboard-layout" data-dashboard>
 
     <!-- BEGIN: Reusable Dashboard Sidebar (supervision context) -->
     <aside class="dashboard-sidebar" aria-label="Dashboard navigation">
       <div class="dashboard-sidebar__user">
-        <div class="dashboard-sidebar__avatar" aria-hidden="true">AR</div>
+        <div class="dashboard-sidebar__avatar" data-user-avatar aria-hidden="true">--</div>
         <div class="dashboard-sidebar__user-info">
-          <p class="dashboard-sidebar__name">Alex Rivera, AMFT</p>
-          <p class="dashboard-sidebar__license">Associate #12345</p>
+          <p class="dashboard-sidebar__name" data-user-name>Your Name</p>
+          <p class="dashboard-sidebar__license" data-user-license>Your Account</p>
         </div>
       </div>
 
       <nav class="dashboard-sidebar__nav">
-        <a href="dashboard-supervision.html" class="dashboard-sidebar__link dashboard-sidebar__link--active">
+        <a href="#" class="dashboard-sidebar__link dashboard-sidebar__link--active" data-dashboard-nav="sessions" aria-current="page">
           <span class="dashboard-sidebar__icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
           </span>
           My Sessions
         </a>
-        <a href="#documents" class="dashboard-sidebar__link">
+        <a href="#documents" class="dashboard-sidebar__link" data-dashboard-nav="documents">
           <span class="dashboard-sidebar__icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
           </span>
           Documents &amp; Logs
         </a>
-        <a href="#subscription" class="dashboard-sidebar__link">
+        <a href="#subscription" class="dashboard-sidebar__link" data-dashboard-nav="subscription">
           <span class="dashboard-sidebar__icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
           </span>
           Subscription
         </a>
-        <a href="#" class="dashboard-sidebar__link">
+        <a href="#settings" class="dashboard-sidebar__link" data-dashboard-nav="settings">
           <span class="dashboard-sidebar__icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
           </span>
@@ -57,7 +92,7 @@
       </nav>
 
       <div class="dashboard-sidebar__footer">
-        <a href="login.html" class="dashboard-sidebar__link">
+        <a href="login.html" class="dashboard-sidebar__link" data-auth-logout>
           <span class="dashboard-sidebar__icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
           </span>
@@ -70,10 +105,12 @@
     <!-- Main Content -->
     <div class="dashboard-main">
 
-      <!-- 1. Welcome Bar -->
+      <!-- Panel: My Sessions -->
+      <div class="dashboard-panel dashboard-panel--active" data-dashboard-panel="sessions">
+
       <header class="dashboard-welcome">
         <div>
-          <h1 class="dashboard-welcome__greeting">Welcome back, Alex</h1>
+          <h1 class="dashboard-welcome__greeting" data-user-greeting>Welcome back</h1>
           <p class="dashboard-welcome__subtitle">AMFT Associate #12345</p>
         </div>
         <div class="dashboard-stats" aria-label="Supervision summary">
@@ -83,21 +120,6 @@
         </div>
       </header>
 
-      <!-- 2. Subscription Status -->
-      <!-- WordPress / MemberPress: subscription data renders here -->
-      <article class="card subscription-card" id="subscription">
-        <div class="subscription-card__details">
-          <p class="subscription-card__plan">Group Supervision — $260/month</p>
-          <p class="subscription-card__billing">Next billing date: August 1, 2026</p>
-        </div>
-        <div class="subscription-card__actions">
-          <span class="badge badge--success">Active</span>
-          <a href="#" class="btn btn-outline">Manage Subscription</a>
-        </div>
-      </article>
-
-      <!-- 3. Upcoming Sessions -->
-      <!-- WordPress / Amelia: upcoming bookings render here -->
       <section class="dashboard-section" aria-labelledby="upcoming-sessions-title">
         <h2 class="dashboard-section__title" id="upcoming-sessions-title">Upcoming Sessions</h2>
         <div class="session-list">
@@ -130,8 +152,61 @@
         <a href="supervision.html#booking" class="btn btn-outline">Book New Session</a>
       </section>
 
-      <!-- 4. Documents & BBS Logs -->
-      <section class="dashboard-section" id="documents" aria-labelledby="documents-title">
+      <section class="dashboard-section" aria-labelledby="session-history-title">
+        <h2 class="dashboard-section__title" id="session-history-title">Session History</h2>
+        <div class="session-table-wrap">
+          <table class="session-table">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Type</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Supervisor Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Jun 26, 2026</td>
+                <td>Group</td>
+                <td>2 hrs</td>
+                <td><a href="#" class="session-table__link">View Notes</a></td>
+              </tr>
+              <tr>
+                <td>Jun 19, 2026</td>
+                <td>Group</td>
+                <td>2 hrs</td>
+                <td><a href="#" class="session-table__link">View Notes</a></td>
+              </tr>
+              <tr>
+                <td>Jun 12, 2026</td>
+                <td>Individual</td>
+                <td>1 hr</td>
+                <td><a href="#" class="session-table__link">View Notes</a></td>
+              </tr>
+              <tr>
+                <td>Jun 5, 2026</td>
+                <td>Group</td>
+                <td>2 hrs</td>
+                <td><a href="#" class="session-table__link">View Notes</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      </div>
+
+      <!-- Panel: Documents & Logs -->
+      <div class="dashboard-panel" data-dashboard-panel="documents" hidden>
+
+      <header class="dashboard-welcome">
+        <div>
+          <h1 class="dashboard-welcome__greeting">Documents &amp; BBS Logs</h1>
+          <p class="dashboard-welcome__subtitle">Upload agreements, hour logs, and verification forms</p>
+        </div>
+      </header>
+
+      <section class="dashboard-section" aria-labelledby="documents-title">
         <h2 class="dashboard-section__title" id="documents-title">Documents &amp; BBS Logs</h2>
 
         <!-- WordPress: document upload handler connects to #bbs-upload-zone -->
@@ -187,51 +262,73 @@
         </div>
       </section>
 
-      <!-- 5. Session History -->
-      <section class="dashboard-section" aria-labelledby="session-history-title">
-        <h2 class="dashboard-section__title" id="session-history-title">Session History</h2>
-        <div class="session-table-wrap">
-          <table class="session-table">
-            <thead>
-              <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Type</th>
-                <th scope="col">Duration</th>
-                <th scope="col">Supervisor Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Jun 26, 2026</td>
-                <td>Group</td>
-                <td>2 hrs</td>
-                <td><a href="#" class="session-table__link">View Notes</a></td>
-              </tr>
-              <tr>
-                <td>Jun 19, 2026</td>
-                <td>Group</td>
-                <td>2 hrs</td>
-                <td><a href="#" class="session-table__link">View Notes</a></td>
-              </tr>
-              <tr>
-                <td>Jun 12, 2026</td>
-                <td>Individual</td>
-                <td>1 hr</td>
-                <td><a href="#" class="session-table__link">View Notes</a></td>
-              </tr>
-              <tr>
-                <td>Jun 5, 2026</td>
-                <td>Group</td>
-                <td>2 hrs</td>
-                <td><a href="#" class="session-table__link">View Notes</a></td>
-              </tr>
-            </tbody>
-          </table>
+      </div>
+
+      <!-- Panel: Subscription -->
+      <div class="dashboard-panel" data-dashboard-panel="subscription" hidden>
+
+      <header class="dashboard-welcome">
+        <div>
+          <h1 class="dashboard-welcome__greeting">Subscription</h1>
+          <p class="dashboard-welcome__subtitle">Manage your group supervision plan</p>
         </div>
+      </header>
+
+      <article class="card subscription-card">
+        <div class="subscription-card__details">
+          <p class="subscription-card__plan">Group Supervision — $260/month</p>
+          <p class="subscription-card__billing">Next billing date: August 1, 2026</p>
+        </div>
+        <div class="subscription-card__actions">
+          <span class="badge badge--success">Active</span>
+          <a href="#" class="btn btn-outline">Manage Subscription</a>
+        </div>
+      </article>
+
+      </div>
+
+      <!-- Panel: Account Settings -->
+      <div class="dashboard-panel" data-dashboard-panel="settings" hidden>
+
+      <header class="dashboard-welcome">
+        <div>
+          <h1 class="dashboard-welcome__greeting">Account Settings</h1>
+          <p class="dashboard-welcome__subtitle">Update your associate profile</p>
+        </div>
+      </header>
+
+      <section class="dashboard-settings card" aria-labelledby="supervision-settings-title">
+        <h2 class="dashboard-section__title" id="supervision-settings-title">Profile</h2>
+        <form class="dashboard-settings-form" action="#" method="post" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="sup-name">Full Name</label>
+            <input type="text" id="sup-name" name="full_name" class="form-input" value="Alex Rivera" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="sup-email">Email</label>
+            <input type="email" id="sup-email" name="email" class="form-input" value="alex.rivera@example.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="sup-associate">Associate Number</label>
+            <input type="text" id="sup-associate" name="associate_number" class="form-input" value="AMFT #12345" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="sup-type">Registration Type</label>
+            <select id="sup-type" name="registration_type" class="form-select" required>
+              <option value="amft" selected>AMFT</option>
+              <option value="asw">ASW</option>
+              <option value="apcc">APCC</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary" data-save-settings>Save Changes</button>
+        </form>
       </section>
+
+      </div>
 
     </div>
   </div>
 
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -6,7 +6,11 @@
 (function () {
   "use strict";
 
-  var USERS_KEY = "cta_users";
+  var CTA_ICON_CHECK_CIRCLE =
+    '<svg class="cta-icon cta-icon--inline" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 11 15 16 9"></polyline></svg>';
+
+  var CTA_ICON_CHECK =
+    '<svg class="cta-icon cta-icon--inline" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>';
   var SESSION_KEY = "cta_session";
 
   function loadUsers() {
@@ -197,9 +201,24 @@
   function initDashboardUser() {
     if (!document.body.classList.contains("dashboard-page")) return;
 
+    var wpDashboard = document.querySelector(".cta-student-dashboard, .cta-course-player, .cta-supervision-dashboard");
+
+    if (wpDashboard && typeof ctaAjax !== "undefined" && ctaAjax.isLoggedIn === "yes") {
+      var userDataEl = document.querySelector("[data-dashboard-user]");
+      if (userDataEl && userDataEl.getAttribute("data-dashboard-user")) {
+        try {
+          var userData = JSON.parse(userDataEl.getAttribute("data-dashboard-user"));
+          applyWpDashboardUser(userData);
+        } catch (err) {
+          /* ignore invalid JSON */
+        }
+      }
+      return;
+    }
+
     var user = getCurrentUser();
     if (!user) {
-      window.location.href = "login.html";
+      window.location.href = typeof ctaAjax !== "undefined" && ctaAjax.loginUrl ? ctaAjax.loginUrl : "login.html";
       return;
     }
 
@@ -210,8 +229,293 @@
       link.addEventListener("click", function (e) {
         e.preventDefault();
         clearSession();
-        window.location.href = "login.html";
+        window.location.href = typeof ctaAjax !== "undefined" && ctaAjax.loginUrl ? ctaAjax.loginUrl : "login.html";
       });
+    });
+  }
+
+  function applyWpDashboardUser(userData) {
+    if (!userData) return;
+
+    var initials = userData.initials || "--";
+    var name = userData.displayName || "";
+    var license = userData.licenseNumber || userData.associateNumber || "";
+
+    document.querySelectorAll("[data-user-avatar]").forEach(function (el) {
+      el.textContent = initials;
+    });
+    document.querySelectorAll("[data-user-name]").forEach(function (el) {
+      el.textContent = name;
+    });
+    document.querySelectorAll("[data-user-license]").forEach(function (el) {
+      el.textContent = license;
+    });
+  }
+
+  /**
+   * Supervision associate dashboard — uploads, deletes, portal, cancel booking.
+   */
+  function initCtaSupervisionDashboard() {
+    var root = document.querySelector(".cta-supervision-dashboard");
+
+    if (!root || typeof jQuery === "undefined" || typeof ctaAjax === "undefined") {
+      return;
+    }
+
+    var $ = jQuery;
+    var uploadZone = document.getElementById("cta-upload-zone");
+    var uploadInput = document.getElementById("cta-upload-input");
+    var uploadProgress = document.getElementById("cta-upload-progress");
+    var uploadError = document.getElementById("cta-upload-error");
+    var categorySelect = document.getElementById("cta-doc-category");
+    var allowedExt = ["pdf", "doc", "docx"];
+    var maxBytes = 10 * 1024 * 1024;
+
+    function showUploadError(message) {
+      if (!uploadError) return;
+      uploadError.textContent = message;
+      uploadError.hidden = false;
+    }
+
+    function clearUploadError() {
+      if (!uploadError) return;
+      uploadError.textContent = "";
+      uploadError.hidden = true;
+    }
+
+    function validateFile(file) {
+      if (!file) {
+        return "No file selected.";
+      }
+
+      if (file.size > maxBytes) {
+        return "File exceeds the 10MB limit.";
+      }
+
+      var parts = file.name.split(".");
+      var ext = parts.length > 1 ? parts.pop().toLowerCase() : "";
+
+      if (allowedExt.indexOf(ext) === -1) {
+        return "Only PDF, DOC, and DOCX files are allowed.";
+      }
+
+      return "";
+    }
+
+    function uploadFile(file) {
+      var validationError = validateFile(file);
+
+      if (validationError) {
+        showUploadError(validationError);
+        return;
+      }
+
+      clearUploadError();
+
+      if (uploadProgress) {
+        uploadProgress.hidden = false;
+      }
+
+      var formData = new FormData();
+      formData.append("action", "cta_upload_document");
+      formData.append("nonce", ctaAjax.nonce);
+      formData.append("document_file", file);
+      formData.append("doc_category", categorySelect ? categorySelect.value : "other");
+
+      $.ajax({
+        url: ctaAjax.ajaxUrl,
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          if (uploadProgress) {
+            uploadProgress.hidden = true;
+          }
+
+          if (!response.success || !response.data || !response.data.html) {
+            showUploadError(
+              response.data && response.data.message
+                ? response.data.message
+                : "Upload failed."
+            );
+            return;
+          }
+
+          var list = document.getElementById("cta-document-list");
+          var empty = document.getElementById("cta-document-empty");
+
+          if (empty) {
+            empty.remove();
+          }
+
+          if (list) {
+            list.insertAdjacentHTML("afterbegin", response.data.html);
+          }
+        },
+        error: function () {
+          if (uploadProgress) {
+            uploadProgress.hidden = true;
+          }
+          showUploadError("Something went wrong. Please try again.");
+        }
+      });
+    }
+
+    if (uploadZone && uploadInput) {
+      uploadZone.addEventListener("click", function () {
+        uploadInput.click();
+      });
+
+      uploadZone.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          uploadInput.click();
+        }
+      });
+
+      uploadInput.addEventListener("change", function () {
+        if (uploadInput.files && uploadInput.files[0]) {
+          uploadFile(uploadInput.files[0]);
+          uploadInput.value = "";
+        }
+      });
+
+      uploadZone.addEventListener("dragover", function (e) {
+        e.preventDefault();
+        uploadZone.classList.add("upload-zone--highlight");
+      });
+
+      uploadZone.addEventListener("dragleave", function () {
+        uploadZone.classList.remove("upload-zone--highlight");
+      });
+
+      uploadZone.addEventListener("drop", function (e) {
+        e.preventDefault();
+        uploadZone.classList.remove("upload-zone--highlight");
+
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+          uploadFile(e.dataTransfer.files[0]);
+        }
+      });
+    }
+
+    $(document).on("click", ".cta-delete-doc", function () {
+      var btn = $(this);
+      var documentId = btn.data("document-id");
+      var row = btn.closest(".cta-document-row");
+
+      if (!documentId || !window.confirm("Are you sure? This cannot be undone.")) {
+        return;
+      }
+
+      btn.prop("disabled", true);
+
+      $.post(ctaAjax.ajaxUrl, {
+        action: "cta_delete_document",
+        nonce: ctaAjax.nonce,
+        document_id: documentId
+      })
+        .done(function (response) {
+          if (response.success && row.length) {
+            row.fadeOut(300, function () {
+              row.remove();
+            });
+            return;
+          }
+
+          window.alert(
+            response.data && response.data.message
+              ? response.data.message
+              : "Unable to delete document."
+          );
+          btn.prop("disabled", false);
+        })
+        .fail(function () {
+          window.alert("Something went wrong. Please try again.");
+          btn.prop("disabled", false);
+        });
+    });
+
+    $(document).on("click", ".cta-cancel-booking", function () {
+      var btn = $(this);
+      var bookingId = btn.data("booking-id");
+      var sessionDatetime = btn.data("session-datetime") || btn.data("session-date");
+      var sessionStart = sessionDatetime ? new Date(String(sessionDatetime).replace(" ", "T")).getTime() : 0;
+      var cutoff = Date.now() + 24 * 60 * 60 * 1000;
+
+      if (sessionStart && sessionStart <= cutoff) {
+        window.alert("Cannot cancel within 24 hours of the session.");
+        return;
+      }
+
+      if (!window.confirm("Cancel this session booking?")) {
+        return;
+      }
+
+      btn.prop("disabled", true).text("Cancelling...");
+
+      $.post(ctaAjax.ajaxUrl, {
+        action: "cta_cancel_booking",
+        nonce: ctaAjax.nonce,
+        booking_id: bookingId
+      })
+        .done(function (response) {
+          if (!response.success) {
+            window.alert(
+              response.data && response.data.message
+                ? response.data.message
+                : "Unable to cancel booking."
+            );
+            btn.prop("disabled", false).text("Cancel Booking");
+            return;
+          }
+
+          var card = btn.closest(".cta-session-upcoming-card");
+          card.find(".session-card__actions").html(
+            '<span class="badge badge--outline">Cancelled</span>'
+          );
+          card.find(".badge--success").remove();
+        })
+        .fail(function () {
+          window.alert("Something went wrong. Please try again.");
+          btn.prop("disabled", false).text("Cancel Booking");
+        });
+    });
+
+    $(document).on("click", ".cta-manage-subscription", function () {
+      var btn = $(this);
+      var originalText = btn.text();
+
+      btn.prop("disabled", true).text("Redirecting...");
+
+      $.post(ctaAjax.ajaxUrl, {
+        action: "cta_get_portal_url",
+        nonce: ctaAjax.nonce
+      })
+        .done(function (response) {
+          btn.prop("disabled", false).text(originalText);
+
+          if (response.success && response.data && response.data.demo_mode) {
+            showDemoSubscriptionModal(response.data);
+            return;
+          }
+
+          if (response.success && response.data && response.data.portal_url) {
+            window.location.href = response.data.portal_url;
+            return;
+          }
+
+          window.alert(
+            response.data && response.data.message
+              ? response.data.message
+              : "Unable to open billing portal."
+          );
+        })
+        .fail(function () {
+          window.alert("Something went wrong. Please try again.");
+          btn.prop("disabled", false).text(originalText);
+        });
     });
   }
 
@@ -621,6 +925,10 @@
    * Course catalog — category filters, sort, search
    */
   function initCatalogFilters() {
+    if (document.getElementById("cta-courses-grid")) {
+      return;
+    }
+
     var catalog = document.querySelector("[data-course-catalog]");
     if (!catalog) return;
 
@@ -1214,9 +1522,1504 @@
   }
 
   /**
+   * Demo payment modal when Stripe is not configured.
+   */
+  function showDemoPaymentModal(triggerBtn, paymentAction, paymentData) {
+    if (typeof jQuery === "undefined") {
+      return;
+    }
+
+    var $ = jQuery;
+
+    $("#cta-demo-modal").remove();
+
+    var productName =
+      triggerBtn.data("course-title") ||
+      triggerBtn.closest(".cta-pricing-card").find(".cta-pricing-card__name").last().text().trim() ||
+      "Selected Plan";
+
+    var price =
+      triggerBtn.data("price") ||
+      triggerBtn.closest(".cta-pricing-card").find(".price-amount").text().trim() ||
+      "";
+
+    var modalHtml =
+      '<div id="cta-demo-modal" style="' +
+      "position:fixed; top:0; left:0; width:100%; height:100%;" +
+      "background:rgba(0,0,0,0.6); z-index:99999;" +
+      "display:flex; align-items:center; justify-content:center;" +
+      "font-family:'Outfit',sans-serif;" +
+      '">' +
+      '<div id="cta-demo-inner" style="' +
+      "background:#fff; width:100%; max-width:460px;" +
+      "margin:20px; padding:40px; position:relative;" +
+      '">' +
+      '<button id="cta-demo-close" type="button" style="' +
+      "position:absolute; top:16px; right:20px;" +
+      "background:none; border:none; font-size:22px;" +
+      "cursor:pointer; color:#6B7280;" +
+      '">&times;</button>' +
+      '<div id="cta-demo-step1">' +
+      '<div style="text-align:center; margin-bottom:24px;">' +
+      '<div style="font-size:13px; color:#6B7280; margin-bottom:4px;">SECURE CHECKOUT</div>' +
+      "<h3 style=\"color:#122B51; font-size:20px; margin:0 0 4px;\">" +
+      productName +
+      "</h3>" +
+      '<div style="font-size:28px; font-weight:700; color:#3266A9;">' +
+      price +
+      "</div>" +
+      "</div>" +
+      '<div style="margin-bottom:16px;">' +
+      '<label style="display:block; font-size:13px; color:#374151; margin-bottom:6px; font-weight:600;">Card Number</label>' +
+      '<input type="text" value="4242 4242 4242 4242" readonly style="width:100%; padding:12px; border:1px solid #D1D5DB; font-size:15px; font-family:\'Outfit\',sans-serif; color:#6B7280; background:#F9FAFB;">' +
+      "</div>" +
+      '<div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">' +
+      "<div><label style=\"display:block; font-size:13px; color:#374151; margin-bottom:6px; font-weight:600;\">Expiry</label>" +
+      '<input type="text" value="12/28" readonly style="width:100%; padding:12px; border:1px solid #D1D5DB; font-size:15px; font-family:\'Outfit\',sans-serif; color:#6B7280; background:#F9FAFB;"></div>' +
+      "<div><label style=\"display:block; font-size:13px; color:#374151; margin-bottom:6px; font-weight:600;\">CVC</label>" +
+      '<input type="text" value="•••" readonly style="width:100%; padding:12px; border:1px solid #D1D5DB; font-size:15px; font-family:\'Outfit\',sans-serif; color:#6B7280; background:#F9FAFB;"></div>' +
+      "</div>" +
+      '<button id="cta-demo-pay" type="button" style="' +
+      "width:100%; padding:14px; background:#3266A9; color:#fff;" +
+      "border:none; font-size:16px; font-weight:600; cursor:pointer;" +
+      "font-family:'Outfit',sans-serif; margin-top:8px;" +
+      '">Pay ' +
+      price +
+      "</button>" +
+      '<p style="text-align:center; font-size:12px; color:#9CA3AF; margin-top:12px;">' +
+      "Demo mode — no real payment processed" +
+      "</p>" +
+      "</div>" +
+      '<div id="cta-demo-step2" style="display:none; text-align:center; padding:20px 0;">' +
+      '<div class="cta-demo-spinner" style="width:48px; height:48px; border:4px solid #E5E7EB; border-top-color:#3266A9; border-radius:50%; animation:cta-spin 0.8s linear infinite; margin:0 auto 20px;"></div>' +
+      '<p style="color:#122B51; font-size:16px; font-weight:600;">Processing payment...</p>' +
+      '<p style="color:#6B7280; font-size:14px;">Please wait</p>' +
+      "</div>" +
+      '<div id="cta-demo-step3" style="display:none; text-align:center; padding:20px 0;">' +
+      '<svg viewBox="0 0 80 80" style="width:80px; height:80px; margin:0 auto 20px; display:block;">' +
+      '<circle cx="40" cy="40" r="36" fill="none" stroke="#16A34A" stroke-width="4" stroke-dasharray="226" stroke-dashoffset="226" id="cta-check-circle" style="transition:stroke-dashoffset 0.6s ease; transform:rotate(-90deg); transform-origin:center;"></circle>' +
+      '<polyline points="24,42 35,53 56,30" fill="none" stroke="#16A34A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="50" stroke-dashoffset="50" id="cta-check-mark" style="transition:stroke-dashoffset 0.4s ease 0.5s;"></polyline>' +
+      "</svg>" +
+      '<h3 style="color:#16A34A; font-size:22px; margin:0 0 8px;">Payment Successful!</h3>' +
+      '<p style="color:#122B51; font-size:15px; margin:0 0 4px; font-weight:600;">' +
+      productName +
+      "</p>" +
+      '<p style="color:#6B7280; font-size:14px; margin:0 0 24px;">You now have access to your content.</p>' +
+      '<p style="color:#9CA3AF; font-size:12px;">Redirecting to your dashboard...</p>' +
+      "</div>" +
+      "</div></div>" +
+      "<style>@keyframes cta-spin { to { transform: rotate(360deg); } }</style>";
+
+    $("body").append(modalHtml);
+
+    $("#cta-demo-close").on("click", function () {
+      $("#cta-demo-modal").fadeOut(200, function () {
+        $(this).remove();
+      });
+    });
+
+    $("#cta-demo-modal").on("click", function (e) {
+      if ($(e.target).is("#cta-demo-modal")) {
+        $(this).fadeOut(200, function () {
+          $(this).remove();
+        });
+      }
+    });
+
+    $("#cta-demo-pay").on("click", function () {
+      $("#cta-demo-step1").hide();
+      $("#cta-demo-step2").show();
+
+      $.ajax({
+        url: ctaAjax.ajaxUrl,
+        type: "POST",
+        data: $.extend(
+          {
+            action: paymentAction,
+            nonce: ctaAjax.nonce,
+            demo_confirm: 1
+          },
+          paymentData || {}
+        ),
+        success: function (response) {
+          if (!response.success) {
+            $("#cta-demo-modal").remove();
+            window.alert(
+              response.data && response.data.message
+                ? response.data.message
+                : "Something went wrong."
+            );
+            return;
+          }
+
+          setTimeout(function () {
+            $("#cta-demo-step2").hide();
+            $("#cta-demo-step3").show();
+
+            setTimeout(function () {
+              var circle = document.getElementById("cta-check-circle");
+              if (circle) {
+                circle.style.strokeDashoffset = "0";
+              }
+            }, 50);
+
+            setTimeout(function () {
+              var mark = document.getElementById("cta-check-mark");
+              if (mark) {
+                mark.style.strokeDashoffset = "0";
+              }
+            }, 550);
+
+            setTimeout(function () {
+              var redirectUrl =
+                (response.data && response.data.redirect_url) ||
+                (ctaAjax.isLoggedIn === "yes" ? ctaAjax.dashboardUrl : ctaAjax.loginUrl) ||
+                window.location.href;
+              window.location.href = redirectUrl;
+            }, 2500);
+          }, 1800);
+        },
+        error: function () {
+          $("#cta-demo-modal").remove();
+          window.alert("Connection error. Please try again.");
+        }
+      });
+    });
+  }
+
+  /**
+   * Demo subscription management modal (when Stripe portal is unavailable).
+   */
+  function showDemoSubscriptionModal(data) {
+    if (typeof jQuery === "undefined") {
+      return;
+    }
+
+    var $ = jQuery;
+    var planName = (data && data.plan_name) || "Group Supervision";
+    var status = (data && data.status) || "none";
+    var price = (data && data.price) || "";
+    var nextBilling = (data && data.next_billing) || "";
+    var showRenew = !!(data && data.show_renew);
+    var renewUrl = (data && data.renew_url) || "";
+    var supportEmail = (data && data.support_email) || "";
+    var isActive = status === "active";
+
+    $("#cta-demo-modal").remove();
+
+    var statusLabel = status === "none" ? "No subscription" : status.charAt(0).toUpperCase() + status.slice(1);
+    var statusBg = isActive ? "#DCFCE7" : "#FEE2E2";
+    var statusColor = isActive ? "#16A34A" : "#DC2626";
+    var stripeConfigured = !!(data && data.stripe_configured);
+    var footerText = stripeConfigured
+      ? "Renew your subscription to restore billing access."
+      : "Demo mode — Stripe billing portal not configured yet";
+    var supportBlock = supportEmail
+      ? '<a href="mailto:' + supportEmail + '" style="color:#3266A9;text-decoration:none;">' + supportEmail + "</a>"
+      : "support";
+
+    var actionBlock = "";
+
+    if (showRenew && renewUrl) {
+      actionBlock =
+        '<a href="' +
+        renewUrl +
+        '" class="cta-renew-btn" style="display:block;width:100%;padding:14px;background:#16A34A;color:#fff;text-align:center;font-weight:600;font-size:15px;font-family:\'Outfit\',sans-serif;text-decoration:none;margin-bottom:10px;border:none;cursor:pointer;border-radius:10px;">\uD83D\uDD04 Renew Subscription</a>';
+    } else if (supportEmail) {
+      actionBlock =
+        '<a href="mailto:' +
+        supportEmail +
+        '" style="display:block;text-align:center;font-size:13px;color:#6B7280;margin-top:8px;margin-bottom:10px;text-decoration:underline;">Cancel subscription — contact support</a>';
+    }
+
+    var modalHtml =
+      '<div id="cta-demo-modal" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:99999;display:flex;align-items:center;justify-content:center;font-family:\'Outfit\',sans-serif;">' +
+      '<div style="background:#fff;width:100%;max-width:480px;margin:20px;padding:36px;position:relative;border-radius:10px;">' +
+      '<button type="button" id="cta-demo-close" style="position:absolute;top:16px;right:20px;background:none;border:none;font-size:22px;cursor:pointer;color:#6B7280;">&times;</button>' +
+      '<div style="text-align:center;margin-bottom:24px;">' +
+      '<div style="font-size:13px;color:#6B7280;margin-bottom:4px;">SUBSCRIPTION MANAGEMENT</div>' +
+      '<h3 style="color:#122B51;font-size:20px;margin:0 0 8px;">' + planName + "</h3>" +
+      '<span style="display:inline-block;padding:4px 12px;background:' +
+      statusBg +
+      ";color:" +
+      statusColor +
+      ';font-size:13px;font-weight:600;border-radius:10px;">' +
+      statusLabel +
+      "</span>" +
+      "</div>" +
+      '<div style="background:#F9FAFB;border:1px solid #E5E7EB;padding:20px;margin-bottom:20px;border-radius:10px;">' +
+      (price ? '<p style="margin:0 0 12px;color:#374151;"><strong>Plan:</strong> ' + price + "</p>" : "") +
+      (nextBilling && isActive ? '<p style="margin:0;color:#374151;"><strong>Next billing:</strong> ' + nextBilling + "</p>" : "") +
+      "</div>" +
+      '<p style="font-size:14px;color:#6B7280;line-height:1.6;margin:0 0 20px;">In demo mode, online billing changes are simulated. Contact ' +
+      supportBlock +
+      " to update payment details or cancel your plan.</p>" +
+      actionBlock +
+      '<button type="button" id="cta-demo-sub-close" style="width:100%;padding:14px;background:#3266A9;color:#fff;border:none;font-size:16px;font-weight:600;cursor:pointer;font-family:\'Outfit\',sans-serif;border-radius:10px;">Close</button>' +
+      '<p style="text-align:center;font-size:12px;color:#9CA3AF;margin-top:12px;">' + footerText + "</p>" +
+      "</div></div>";
+
+    $("body").append(modalHtml);
+
+    $("#cta-demo-close, #cta-demo-sub-close").on("click", function () {
+      $("#cta-demo-modal").fadeOut(200, function () {
+        $(this).remove();
+      });
+    });
+
+    $("#cta-demo-modal").on("click", function (e) {
+      if ($(e.target).is("#cta-demo-modal")) {
+        $(this).fadeOut(200, function () {
+          $(this).remove();
+        });
+      }
+    });
+  }
+
+  /**
+   * Stripe checkout — course purchase, subscriptions, and bundles.
+   */
+  function initCtaStripePayments() {
+    if (typeof jQuery === "undefined" || typeof ctaAjax === "undefined") {
+      return;
+    }
+
+    var $ = jQuery;
+
+    function getPaymentAction(btn) {
+      if (btn.is("#enroll-btn") || btn.is("[data-cta-course-checkout]")) {
+        return "cta_create_checkout";
+      }
+
+      if (btn.hasClass("cta-subscribe-btn") || btn.is("[data-cta-supervision-subscribe]")) {
+        return "cta_create_subscription";
+      }
+
+      return "cta_purchase_bundle";
+    }
+
+    function handlePaymentClick(e) {
+      e.preventDefault();
+
+      var btn = $(this);
+      var origText = btn.text();
+
+      if (ctaAjax.isLoggedIn !== "yes") {
+        if (ctaAjax.loginUrl) {
+          window.location.href = ctaAjax.loginUrl;
+          return;
+        }
+
+        window.alert(ctaAjax.loginRequiredMessage || "Please log in to continue.");
+        return;
+      }
+
+      btn.text("Processing...").prop("disabled", true);
+
+      var action = getPaymentAction(btn);
+      var paymentData = {
+        course_id: btn.data("course-id") || "",
+        bundle_id: btn.data("bundle-id") || "",
+        plan_type: btn.data("plan") || btn.data("plan-type") || "",
+        billing: btn.data("billing") || ""
+      };
+
+      $.ajax({
+        url: ctaAjax.ajaxUrl,
+        type: "POST",
+        data: $.extend(
+          {
+            action: action,
+            nonce: ctaAjax.nonce
+          },
+          paymentData
+        ),
+        success: function (response) {
+          btn.text(origText).prop("disabled", false);
+
+          if (response.success && response.data && response.data.demo_mode) {
+            showDemoPaymentModal(btn, action, paymentData);
+            return;
+          }
+
+          if (response.success && response.data && response.data.enrolled && response.data.redirect_url) {
+            window.location.href = response.data.redirect_url;
+            return;
+          }
+
+          if (response.success && response.data && response.data.checkout_url) {
+            window.location.href = response.data.checkout_url;
+            return;
+          }
+
+          if (!response.success) {
+            window.alert(
+              response.data && response.data.message
+                ? response.data.message
+                : "Something went wrong."
+            );
+          }
+        },
+        error: function () {
+          btn.text(origText).prop("disabled", false);
+          window.alert("Connection error. Please try again.");
+        }
+      });
+    }
+
+    $(document).on(
+      "click",
+      "#enroll-btn, [data-cta-course-checkout], .cta-bundle-btn, .cta-subscribe-btn, [data-cta-supervision-subscribe]",
+      handlePaymentClick
+    );
+  }
+
+  /**
+   * Supervision session booking ([cta_supervision_booking] shortcode)
+   */
+  function initCtaSupervisionBooking() {
+    if (typeof jQuery === "undefined" || typeof ctaAjax === "undefined") {
+      return;
+    }
+
+    var $ = jQuery;
+    var $root = $(".cta-supervision-booking");
+
+    if (!$root.length) {
+      return;
+    }
+
+    function filterSessionsByDate(date) {
+      var visibleCount = 0;
+
+      $root.find(".cta-session-card").each(function () {
+        var $card = $(this);
+        var match = $card.data("session-date") === date;
+
+        $card.toggle(match);
+        if (match) {
+          visibleCount += 1;
+        }
+      });
+
+      $root.find(".cta-session-list-empty").remove();
+
+      if (visibleCount === 0) {
+        $root.find("#cta-supervision-sessions").append(
+          '<p class="cta-session-list-empty cta-empty-state">' +
+            "No sessions on this date." +
+            "</p>"
+        );
+      }
+    }
+
+    $root.on("click", ".cta-calendar-day:not(:disabled)", function () {
+      var date = $(this).data("date");
+
+      $root.find(".cta-calendar-day").removeClass("booking-calendar__day--selected");
+      $(this).addClass("booking-calendar__day--selected");
+      $root.find(".cta-booking-calendar").attr("data-selected-date", date);
+      filterSessionsByDate(date);
+    });
+
+    var initialDate =
+      $root.find(".cta-booking-calendar").attr("data-selected-date") ||
+      $root.find(".cta-calendar-day.booking-calendar__day--selected").data("date");
+
+    if (initialDate) {
+      filterSessionsByDate(initialDate);
+    }
+
+    $root.on("click", ".cta-book-btn:not(:disabled)", function () {
+      var $btn = $(this);
+      var $card = $btn.closest(".cta-session-card");
+      var sessionId = $btn.data("session-id") || $card.data("session-id");
+      var originalText = $btn.text();
+
+      if (!sessionId) {
+        return;
+      }
+
+      $btn.prop("disabled", true).text("Booking...");
+
+      $.post(ctaAjax.ajaxUrl, {
+        action: "cta_book_session",
+        nonce: ctaAjax.nonce,
+        session_id: sessionId
+      })
+        .done(function (response) {
+          if (!response.success) {
+            window.alert(
+              response.data && response.data.message
+                ? response.data.message
+                : "Unable to book session."
+            );
+            $btn.prop("disabled", false).text(originalText);
+            return;
+          }
+
+          var dashboardUrl =
+            (response.data && response.data.dashboard_url) ||
+            (typeof ctaAjax !== "undefined" && ctaAjax.supervisionDashboardUrl) ||
+            (typeof ctaAjax !== "undefined" && ctaAjax.dashboardUrl) ||
+            "";
+
+          if (dashboardUrl) {
+            $btn.text("Booked! Redirecting...");
+            window.setTimeout(function () {
+              window.location.href = dashboardUrl;
+            }, 500);
+            return;
+          }
+
+          var seatsRemaining =
+            typeof response.data.seats_remaining === "number"
+              ? response.data.seats_remaining
+              : null;
+
+          $card.find(".session-card__actions").html(
+            '<span class="badge badge--success cta-session-booked-label">' +
+              CTA_ICON_CHECK_CIRCLE +
+              "Booked</span>" +
+              '<button type="button" class="btn btn-outline btn--sm cta-cancel-btn" data-booking-id="' +
+              response.data.booking_id +
+              '" data-session-id="' +
+              sessionId +
+              '">Cancel</button>'
+          );
+
+          if (seatsRemaining !== null) {
+            var $seats = $card.find(".cta-session-seats");
+
+            if (seatsRemaining <= 0) {
+              $seats.html('<span class="badge badge--outline">Full</span>');
+            } else {
+              $seats.text(seatsRemaining + " seats remaining");
+            }
+          }
+
+          $card.attr("data-booking-id", response.data.booking_id);
+        })
+        .fail(function () {
+          window.alert("Something went wrong. Please try again.");
+          $btn.prop("disabled", false).text(originalText);
+        });
+    });
+
+    $root.on("click", ".cta-cancel-btn", function () {
+      var $btn = $(this);
+      var $card = $btn.closest(".cta-session-card");
+      var bookingId = $btn.data("booking-id") || $card.data("booking-id");
+      var sessionId = $btn.data("session-id") || $card.data("session-id");
+
+      if (!bookingId) {
+        return;
+      }
+
+      if (!window.confirm("Cancel this session booking?")) {
+        return;
+      }
+
+      $btn.prop("disabled", true).text("Cancelling...");
+
+      $.post(ctaAjax.ajaxUrl, {
+        action: "cta_cancel_booking",
+        nonce: ctaAjax.nonce,
+        booking_id: bookingId
+      })
+        .done(function (response) {
+          if (!response.success) {
+            window.alert(
+              response.data && response.data.message
+                ? response.data.message
+                : "Unable to cancel booking."
+            );
+            $btn.prop("disabled", false).text("Cancel");
+            return;
+          }
+
+          var $seats = $card.find(".cta-session-seats");
+          var seatsText = $seats.text();
+          var match = seatsText.match(/(\d+)/);
+
+          if (match) {
+            $seats.text(parseInt(match[1], 10) + 1 + " seats remaining");
+          } else if ($seats.find(".badge--outline").length && $seats.text().indexOf("Full") !== -1) {
+            $seats.text("1 seats remaining");
+          }
+
+          $card.find(".session-card__actions").html(
+            '<button type="button" class="btn btn-primary cta-book-btn" data-session-id="' +
+              sessionId +
+              '" data-session-type="' +
+              ($card.data("session-type") || "group") +
+              '">Book Session</button>'
+          );
+          $card.removeAttr("data-booking-id");
+        })
+        .fail(function () {
+          window.alert("Something went wrong. Please try again.");
+          $btn.prop("disabled", false).text("Cancel");
+        });
+    });
+  }
+
+  /**
+   * WordPress CE course player — mark module complete.
+   */
+  function initCtaWpCoursePlayer() {
+    var markBtn = document.getElementById("cta-mark-complete");
+
+    if (!markBtn || markBtn.disabled || !markBtn.getAttribute("data-module-id")) {
+      return;
+    }
+
+    if (typeof jQuery === "undefined" || typeof ctaAjax === "undefined") {
+      return;
+    }
+
+    var $ = jQuery;
+    var playerRoot = document.querySelector(".cta-course-player");
+
+    markBtn.addEventListener("click", function () {
+      var courseId = markBtn.getAttribute("data-course-id");
+      var moduleId = markBtn.getAttribute("data-module-id");
+      var originalText = markBtn.textContent;
+
+      markBtn.disabled = true;
+      markBtn.textContent = "Saving...";
+
+      $.post(ctaAjax.ajaxUrl, {
+        action: "cta_complete_module",
+        nonce: ctaAjax.nonce,
+        course_id: courseId,
+        module_id: moduleId
+      })
+        .done(function (response) {
+          if (!response.success) {
+            window.alert(
+              response.data && response.data.message
+                ? response.data.message
+                : "Unable to mark module complete."
+            );
+            markBtn.disabled = false;
+            markBtn.textContent = originalText;
+            return;
+          }
+
+          markBtn.innerHTML = CTA_ICON_CHECK_CIRCLE + " Completed";
+
+          var moduleItem = playerRoot
+            ? playerRoot.querySelector('.cta-module-list__item[data-module-id="' + moduleId + '"]')
+            : null;
+
+          if (moduleItem) {
+            moduleItem.classList.add("cta-module-list__item--complete");
+            moduleItem.classList.remove("cta-module-list__item--current");
+            var icon = moduleItem.querySelector(".cta-module-list__icon");
+            if (icon) {
+              icon.innerHTML = CTA_ICON_CHECK_CIRCLE;
+            }
+          }
+
+          if (response.data.quiz_unlocked) {
+            var lockedMsg = document.querySelector(".cta-quiz-locked-message");
+            var unlockedMsg = document.querySelector(".cta-quiz-unlocked-message");
+
+            if (lockedMsg) {
+              lockedMsg.hidden = true;
+            }
+            if (unlockedMsg) {
+              unlockedMsg.hidden = false;
+            }
+
+            var notice = document.createElement("p");
+            notice.className = "course-player__notice course-player__notice--success";
+            notice.setAttribute("role", "status");
+            notice.textContent = "Course Complete! Take the quiz to earn your certificate.";
+            var actions = document.querySelector("[data-course-player-actions]");
+            if (actions && !document.querySelector(".course-player__notice--success")) {
+              actions.insertAdjacentElement("afterend", notice);
+            }
+            return;
+          }
+
+          if (response.data.next_module_url) {
+            setTimeout(function () {
+              window.location.href = response.data.next_module_url;
+            }, 1000);
+          }
+        })
+        .fail(function () {
+          window.alert("Something went wrong. Please try again.");
+          markBtn.disabled = false;
+          markBtn.textContent = originalText;
+        });
+    });
+  }
+
+  /**
+   * WordPress CE quiz page ([cta_quiz] shortcode).
+   */
+  function initCtaQuiz() {
+    var app = document.getElementById("cta-quiz-app");
+
+    if (!app || typeof jQuery === "undefined" || typeof ctaAjax === "undefined") {
+      return;
+    }
+
+    var $ = jQuery;
+    var courseId = app.getAttribute("data-course-id");
+    var quizId = app.getAttribute("data-quiz-id");
+    var attemptId = parseInt(app.getAttribute("data-attempt-id"), 10) || 0;
+    var timeLimitMins = parseInt(app.getAttribute("data-time-limit"), 10) || 0;
+    var passingScore = parseInt(app.getAttribute("data-passing-score"), 10) || 70;
+    var questionCount = parseInt(app.getAttribute("data-question-count"), 10) || 0;
+    var timerEl = document.getElementById("cta-quiz-timer");
+    var timerInterval = null;
+    var secondsRemaining = timeLimitMins > 0 ? timeLimitMins * 60 : 0;
+
+    var panels = {
+      start: app.querySelector('[data-quiz-panel="start"]'),
+      questions: app.querySelector('[data-quiz-panel="questions"]'),
+      result: app.querySelector('[data-quiz-panel="result"]'),
+      evaluation: app.querySelector('[data-quiz-panel="evaluation"]'),
+      certificate: app.querySelector('[data-quiz-panel="certificate"]')
+    };
+
+    function showPanel(name) {
+      Object.keys(panels).forEach(function (key) {
+        var panel = panels[key];
+        if (!panel) {
+          return;
+        }
+        var active = key === name;
+        panel.hidden = !active;
+        panel.classList.toggle("cta-quiz-panel--active", active);
+      });
+    }
+
+    function formatTime(seconds) {
+      var mins = Math.floor(seconds / 60);
+      var secs = seconds % 60;
+      return String(mins).padStart(2, "0") + ":" + String(secs).padStart(2, "0");
+    }
+
+    function stopTimer() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+    }
+
+    function startTimer() {
+      if (timeLimitMins <= 0 || !timerEl) {
+        return;
+      }
+
+      timerEl.hidden = false;
+      timerEl.classList.remove("cta-quiz-timer--warning");
+
+      timerInterval = setInterval(function () {
+        secondsRemaining -= 1;
+        timerEl.textContent = formatTime(Math.max(secondsRemaining, 0));
+
+        if (secondsRemaining <= 300 && secondsRemaining > 0) {
+          timerEl.classList.add("cta-quiz-timer--warning");
+        }
+
+        if (secondsRemaining <= 0) {
+          stopTimer();
+          submitQuiz(true);
+        }
+      }, 1000);
+
+      timerEl.textContent = formatTime(secondsRemaining);
+    }
+
+    function countAnswered() {
+      var total = app.querySelectorAll(".cta-quiz-question").length;
+      var answered = 0;
+
+      app.querySelectorAll(".cta-quiz-question").forEach(function (questionEl) {
+        if (questionEl.querySelector('input[type="radio"]:checked')) {
+          answered += 1;
+        }
+      });
+
+      return { answered: answered, total: total };
+    }
+
+    function updateAnswerCounter() {
+      var counts = countAnswered();
+      var progressEl = document.getElementById("cta-quiz-progress");
+      var submitBtn = document.getElementById("cta-submit-quiz");
+
+      if (progressEl) {
+        progressEl.textContent =
+          "Questions answered: " + counts.answered + " of " + counts.total;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = counts.answered < counts.total || counts.total === 0;
+      }
+    }
+
+    function collectAnswers() {
+      var answers = {};
+
+      app.querySelectorAll(".cta-quiz-question").forEach(function (questionEl) {
+        var qid = questionEl.getAttribute("data-question-id");
+        var checked = questionEl.querySelector('input[type="radio"]:checked');
+        if (qid && checked) {
+          answers[qid] = checked.value;
+        }
+      });
+
+      return answers;
+    }
+
+    function revealResults(results) {
+      if (!Array.isArray(results)) {
+        return;
+      }
+
+      results.forEach(function (item) {
+        var questionEl = app.querySelector(
+          '.cta-quiz-question[data-question-id="' + item.question_id + '"]'
+        );
+
+        if (!questionEl) {
+          return;
+        }
+
+        var feedback = questionEl.querySelector(".cta-quiz-question__feedback");
+        var options = questionEl.querySelectorAll(".cta-quiz-option");
+
+        options.forEach(function (optionEl) {
+          var input = optionEl.querySelector('input[type="radio"]');
+          optionEl.classList.remove("cta-quiz-option--correct", "cta-quiz-option--wrong");
+
+          if (input && input.value === item.correct_option) {
+            optionEl.classList.add("cta-quiz-option--correct");
+          } else if (input && input.checked && input.value !== item.correct_option) {
+            optionEl.classList.add("cta-quiz-option--wrong");
+          }
+        });
+
+        questionEl.querySelectorAll('input[type="radio"]').forEach(function (input) {
+          input.disabled = true;
+        });
+
+        if (feedback) {
+          var html = item.is_correct
+            ? "<p class=\"cta-quiz-feedback cta-quiz-feedback--correct\">Correct.</p>"
+            : "<p class=\"cta-quiz-feedback cta-quiz-feedback--wrong\">Incorrect. Correct answer: " +
+              String(item.correct_option).toUpperCase() +
+              ".</p>";
+
+          if (item.explanation) {
+            html += "<p class=\"cta-quiz-feedback__explanation\">" + item.explanation + "</p>";
+          }
+
+          feedback.innerHTML = html;
+          feedback.hidden = false;
+        }
+      });
+    }
+
+    function renderResult(data) {
+      var resultEl = document.getElementById("cta-quiz-result");
+      if (!resultEl) {
+        return;
+      }
+
+      var passed = !!data.passed;
+      var html = "";
+
+      if (passed) {
+        html +=
+          '<div class="cta-quiz-result__icon cta-quiz-result__icon--pass" aria-hidden="true">✓</div>' +
+          "<h2>Congratulations! You passed!</h2>" +
+          "<p>Score: " + data.score + "%</p>" +
+          '<button type="button" class="btn btn-primary" id="cta-continue-evaluation">Continue to Course Evaluation</button>';
+      } else {
+        html +=
+          '<div class="cta-quiz-result__icon cta-quiz-result__icon--fail" aria-hidden="true">✕</div>' +
+          "<h2>You did not pass this time</h2>" +
+          "<p>Score: " +
+          data.score +
+          "% (Passing: " +
+          (data.passing_score || passingScore) +
+          "%)</p>";
+
+        if (data.can_retry) {
+          html +=
+            '<button type="button" class="btn btn-primary" id="cta-retry-quiz">Retry Quiz</button>';
+        } else {
+          html +=
+            '<p class="cta-quiz-result__support">Maximum attempts reached. Contact support for assistance.</p>' +
+            '<a href="mailto:info@ctacademy.org" class="btn btn-outline">Contact Support</a>';
+        }
+      }
+
+      resultEl.innerHTML = html;
+      showPanel("result");
+
+      if (passed) {
+        var continueBtn = document.getElementById("cta-continue-evaluation");
+        if (continueBtn) {
+          continueBtn.addEventListener("click", function () {
+            showPanel("evaluation");
+          });
+        } else {
+          setTimeout(function () {
+            showPanel("evaluation");
+          }, 1500);
+        }
+      }
+
+      var retryBtn = document.getElementById("cta-retry-quiz");
+      if (retryBtn) {
+        retryBtn.addEventListener("click", function () {
+          window.location.reload();
+        });
+      }
+    }
+
+    function submitQuiz(autoSubmit) {
+      if (!attemptId) {
+        return;
+      }
+
+      var submitBtn = document.getElementById("cta-submit-quiz");
+      var counts = countAnswered();
+
+      if (!autoSubmit) {
+        if (counts.answered < counts.total) {
+          window.alert("Please answer all questions before submitting.");
+          return;
+        }
+
+        if (
+          !window.confirm(
+            "Are you sure? You cannot change answers after submitting."
+          )
+        ) {
+          return;
+        }
+      }
+
+      stopTimer();
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = autoSubmit ? "Time expired — submitting..." : "Submitting...";
+      }
+
+      $.post(ctaAjax.ajaxUrl, {
+        action: "cta_submit_quiz",
+        nonce: ctaAjax.nonce,
+        attempt_id: attemptId,
+        answers: collectAnswers()
+      })
+        .done(function (response) {
+          if (!response.success || !response.data) {
+            window.alert(
+              response.data && response.data.message
+                ? response.data.message
+                : "Unable to submit quiz."
+            );
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = "Submit Quiz";
+            }
+            return;
+          }
+
+          revealResults(response.data.results);
+          renderResult(response.data);
+        })
+        .fail(function () {
+          window.alert("Something went wrong. Please try again.");
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Submit Quiz";
+          }
+        });
+    }
+
+    $(app).on("change", '.cta-quiz-question input[type="radio"]', updateAnswerCounter);
+
+    var startBtn = document.getElementById("cta-start-quiz");
+    if (startBtn) {
+      startBtn.addEventListener("click", function () {
+        startBtn.disabled = true;
+        startBtn.textContent = "Loading...";
+
+        $.post(ctaAjax.ajaxUrl, {
+          action: "cta_start_quiz",
+          nonce: ctaAjax.nonce,
+          course_id: courseId
+        })
+          .done(function (response) {
+            if (!response.success || !response.data) {
+              window.alert(
+                response.data && response.data.message
+                  ? response.data.message
+                  : "Unable to start quiz."
+              );
+              startBtn.disabled = false;
+              startBtn.textContent = "Start Quiz";
+              return;
+            }
+
+            attemptId = response.data.attempt_id;
+            app.setAttribute("data-attempt-id", String(attemptId));
+
+            if (response.data.time_limit_mins) {
+              timeLimitMins = parseInt(response.data.time_limit_mins, 10) || 0;
+              secondsRemaining = timeLimitMins * 60;
+            }
+
+            if (response.data.question_count) {
+              questionCount = parseInt(response.data.question_count, 10) || questionCount;
+            }
+
+            var questionsWrap = document.getElementById("cta-quiz-questions");
+            if (questionsWrap && response.data.html) {
+              questionsWrap.innerHTML = response.data.html;
+            }
+
+            showPanel("questions");
+            updateAnswerCounter();
+            startTimer();
+          })
+          .fail(function () {
+            window.alert("Something went wrong. Please try again.");
+            startBtn.disabled = false;
+            startBtn.textContent = "Start Quiz";
+          });
+      });
+    }
+
+    var submitQuizBtn = document.getElementById("cta-submit-quiz");
+    if (submitQuizBtn) {
+      submitQuizBtn.addEventListener("click", function () {
+        submitQuiz(false);
+      });
+    }
+
+    var evalBtn = document.getElementById("cta-submit-evaluation");
+    if (evalBtn) {
+      evalBtn.addEventListener("click", function () {
+        var form = document.getElementById("cta-evaluation-form");
+        if (!form) {
+          return;
+        }
+
+        var rating = form.querySelector('input[name="rating"]:checked');
+        var contentQuality = form.querySelector('input[name="content_quality"]:checked');
+        var instructorRating = form.querySelector('input[name="instructor_rating"]:checked');
+        var wouldRecommend = form.querySelector('input[name="would_recommend"]:checked');
+        var comments = form.querySelector("#evaluation-comments");
+
+        if (!rating || !contentQuality || !instructorRating || !wouldRecommend) {
+          window.alert("Please complete all required fields.");
+          return;
+        }
+
+        evalBtn.disabled = true;
+        evalBtn.textContent = "Submitting...";
+
+        $.post(ctaAjax.ajaxUrl, {
+          action: "cta_submit_evaluation",
+          nonce: ctaAjax.nonce,
+          course_id: courseId,
+          rating: rating.value,
+          content_quality: contentQuality.value,
+          instructor_rating: instructorRating.value,
+          would_recommend: wouldRecommend.value,
+          comments: comments ? comments.value : ""
+        })
+          .done(function (response) {
+            if (!response.success || !response.data) {
+              window.alert(
+                response.data && response.data.message
+                  ? response.data.message
+                  : "Unable to submit evaluation."
+              );
+              evalBtn.disabled = false;
+              evalBtn.textContent = "Submit Evaluation & Get Certificate";
+              return;
+            }
+
+            showPanel("certificate");
+
+            var certPanel = panels.certificate;
+            if (certPanel) {
+              var numberEl = certPanel.querySelector("strong");
+              if (numberEl && response.data.certificate_number) {
+                numberEl.textContent = response.data.certificate_number;
+              }
+
+              var downloadBtn = certPanel.querySelector(".cta-download-cert-btn");
+              if (downloadBtn && response.data.download_url) {
+                downloadBtn.href = response.data.download_url;
+              }
+
+              certPanel.classList.add("cta-quiz-certificate-ready--animate");
+            }
+          })
+          .fail(function () {
+            window.alert("Something went wrong. Please try again.");
+            evalBtn.disabled = false;
+            evalBtn.textContent = "Submit Evaluation & Get Certificate";
+          });
+      });
+    }
+
+    if (panels.questions && !panels.questions.hidden) {
+      updateAnswerCounter();
+      startTimer();
+    }
+  }
+
+  /**
+   * WordPress CE dashboard profile settings save.
+   */
+  function initCtaDashboardSettings() {
+    if (typeof jQuery === "undefined" || typeof ctaAjax === "undefined") {
+      return;
+    }
+
+    var $ = jQuery;
+
+    $(document).on("submit", ".cta-dashboard-settings-form", function (e) {
+      e.preventDefault();
+
+      var form = this;
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      var btn = form.querySelector('[type="submit"]');
+      var originalText = btn ? btn.textContent : "";
+
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = "Saving...";
+      }
+
+      $.post(ctaAjax.ajaxUrl, {
+        action: "cta_save_profile",
+        nonce: ctaAjax.nonce,
+        full_name: $("#settings-name").val() || "",
+        license_number: $("#settings-license").val() || "",
+        license_type: $("#settings-license-type").val() || ""
+      })
+        .done(function (response) {
+          var existing = form.querySelector(".dashboard-settings__notice");
+          if (existing) {
+            existing.remove();
+          }
+
+          var notice = document.createElement("p");
+          notice.className = "dashboard-settings__notice dashboard-settings__notice--success";
+          notice.setAttribute("role", "status");
+          notice.textContent =
+            response.success && response.data && response.data.message
+              ? response.data.message
+              : "Your changes have been saved successfully.";
+          form.insertBefore(notice, form.firstChild);
+
+          if (response.success && response.data && response.data.displayName) {
+            $(".dashboard-user__name, .dashboard-welcome__greeting").each(function () {
+              var el = $(this);
+              if (el.hasClass("dashboard-welcome__greeting")) {
+                el.text("Welcome back, " + response.data.displayName);
+              } else {
+                el.text(response.data.displayName);
+              }
+            });
+          }
+        })
+        .fail(function () {
+          window.alert("Something went wrong. Please try again.");
+        })
+        .always(function () {
+          if (btn) {
+            btn.disabled = false;
+            btn.textContent = originalText;
+          }
+        });
+    });
+  }
+
+  /**
+   * WordPress certificate download buttons.
+   */
+  function initCtaCertificateDownload() {
+    if (typeof jQuery === "undefined" || typeof ctaAjax === "undefined") {
+      return;
+    }
+
+    var $ = jQuery;
+
+    $(document).on("click", ".cta-download-cert-btn", function (e) {
+      e.preventDefault();
+
+      var btn = $(this);
+      var certId = btn.data("certificate-id");
+      var originalHtml = btn.html();
+
+      btn.prop("disabled", true).text("Downloading...");
+
+      $.post(ctaAjax.ajaxUrl, {
+        action: "cta_download_cert",
+        nonce: ctaAjax.nonce,
+        certificate_id: certId
+      })
+        .done(function (response) {
+          if (response.success && response.data && response.data.download_url) {
+            window.open(response.data.download_url, "_blank");
+            btn.prop("disabled", false).html(originalHtml);
+            return;
+          }
+
+          window.alert(
+            response.data && response.data.message
+              ? response.data.message
+              : "Unable to download certificate."
+          );
+          btn.prop("disabled", false).html(originalHtml);
+        })
+        .fail(function () {
+          window.alert("Something went wrong. Please try again.");
+          btn.prop("disabled", false).html(originalHtml);
+        });
+    });
+  }
+
+  /**
+   * WordPress course catalog ([cta_course_catalog] shortcode)
+   */
+  function initCtaCourseCatalog() {
+    if (typeof jQuery === "undefined" || typeof ctaAjax === "undefined") {
+      return;
+    }
+
+    var $ = jQuery;
+
+    if (!$("#cta-courses-grid").length) {
+      return;
+    }
+
+    var filterTimer;
+    var $catalog = $(".cta-course-catalog");
+    var limit = parseInt($catalog.data("limit"), 10);
+
+    if (isNaN(limit)) {
+      limit = -1;
+    }
+
+    $("#cta-course-search").on("input", function () {
+      clearTimeout(filterTimer);
+      filterTimer = setTimeout(function () {
+        fetchCourses();
+      }, 400);
+    });
+
+    $(document).on("click", ".cta-course-catalog .cta-pill", function () {
+      $(".cta-course-catalog .cta-pill").removeClass("cta-pill--active");
+      $(this).addClass("cta-pill--active");
+      fetchCourses();
+    });
+
+    $("#cta-course-sort").on("change", function () {
+      fetchCourses();
+    });
+
+    function fetchCourses() {
+      var category = $(".cta-course-catalog .cta-pill--active").attr("data-category") || "";
+      var search = $("#cta-course-search").val() || "";
+      var sort = $("#cta-course-sort").val() || "default";
+
+      $("#cta-courses-loader").show();
+      $("#cta-courses-grid").css("opacity", "0.3");
+
+      $.ajax({
+        url: ctaAjax.ajaxUrl,
+        type: "POST",
+        data: {
+          action: "cta_filter_courses",
+          nonce: ctaAjax.nonce,
+          category: category,
+          search: search,
+          sort: sort,
+          limit: limit
+        },
+        success: function (response) {
+          if (response.success) {
+            $("#cta-courses-grid").html(response.data.html);
+            $(".cta-filter-bar__count").text(
+              "Showing " + response.data.count + " courses"
+            );
+          }
+        },
+        complete: function () {
+          $("#cta-courses-loader").hide();
+          $("#cta-courses-grid").css("opacity", "1");
+        }
+      });
+    }
+  }
+
+  /**
+   * Bundle / membership plan purchase buttons (handled by initCtaStripePayments).
+   */
+  function initCtaBundlePurchase() {
+    /* Unified in initCtaStripePayments */
+  }
+
+  /**
+   * WordPress login/register forms ([cta_login_form] shortcode)
+   */
+  function initCtaAuthForms() {
+    var loginForm = document.getElementById("cta-login-form");
+    var registerForm = document.getElementById("cta-register-form");
+
+    if (!loginForm && !registerForm) {
+      return;
+    }
+
+    if (typeof jQuery === "undefined" || typeof ctaAjax === "undefined") {
+      return;
+    }
+
+    var $ = jQuery;
+    var loginBtn = document.getElementById("cta-login-btn");
+    var registerBtn = document.getElementById("cta-register-btn");
+    var loginError = document.getElementById("cta-login-error");
+    var registerError = document.getElementById("cta-register-error");
+    var registerSuccess = document.getElementById("cta-register-success");
+    var formContainer = document.querySelector(".auth-page__form-container");
+    var loginBtnText = loginBtn ? loginBtn.textContent : "Log In";
+    var registerBtnText = registerBtn ? registerBtn.textContent : "Create Account";
+
+    function hideMessage(el) {
+      if (!el) return;
+      el.style.display = "none";
+      el.textContent = "";
+    }
+
+    function showMessage(el, message, isSuccess) {
+      if (!el) return;
+      el.textContent = message;
+      el.style.display = "block";
+      if (isSuccess) {
+        el.classList.add("cta-form-success");
+        el.classList.remove("cta-form-error");
+      } else {
+        el.classList.add("cta-form-error");
+        el.classList.remove("cta-form-success");
+      }
+    }
+
+    function clearAuthMessages() {
+      hideMessage(loginError);
+      hideMessage(registerError);
+      hideMessage(registerSuccess);
+    }
+
+    function toggleAuthForm(formToShow) {
+      if (!loginForm || !registerForm) return;
+
+      clearAuthMessages();
+
+      if (formToShow === "register") {
+        loginForm.classList.add("form-hidden");
+        loginForm.setAttribute("hidden", "");
+        registerForm.classList.remove("form-hidden");
+        registerForm.removeAttribute("hidden");
+      } else {
+        registerForm.classList.add("form-hidden");
+        registerForm.setAttribute("hidden", "");
+        loginForm.classList.remove("form-hidden");
+        loginForm.removeAttribute("hidden");
+      }
+
+      if (formContainer && formContainer.scrollIntoView) {
+        formContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    document.querySelectorAll("[data-cta-auth-toggle]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        var target = button.getAttribute("data-cta-auth-toggle");
+        toggleAuthForm(target === "register" ? "register" : "login");
+      });
+    });
+
+    if (loginBtn && loginForm) {
+      loginBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        hideMessage(loginError);
+
+        if (!loginForm.checkValidity()) {
+          loginForm.reportValidity();
+          return;
+        }
+
+        var email = loginForm.querySelector('[name="cta_email"]').value.trim();
+        var password = loginForm.querySelector('[name="cta_password"]').value;
+        var nonceField = loginForm.querySelector('[name="cta_login_nonce"]');
+
+        loginBtn.textContent = "Logging in...";
+        loginBtn.disabled = true;
+
+        $.post(
+          ctaAjax.ajaxUrl,
+          {
+            action: "cta_login",
+            nonce: nonceField ? nonceField.value : "",
+            email: email,
+            password: password
+          }
+        )
+          .done(function (response) {
+            if (response.success) {
+              showMessage(
+                loginError,
+                response.data && response.data.message
+                  ? response.data.message
+                  : "Login successful! Redirecting...",
+                true
+              );
+
+              setTimeout(function () {
+                window.location.href =
+                  response.data && response.data.redirect_url
+                    ? response.data.redirect_url
+                    : ctaAjax.pluginUrl;
+              }, 800);
+              return;
+            }
+
+            showMessage(
+              loginError,
+              response.data && response.data.message
+                ? response.data.message
+                : "Login failed. Please try again.",
+              false
+            );
+            loginBtn.textContent = loginBtnText;
+            loginBtn.disabled = false;
+          })
+          .fail(function () {
+            showMessage(loginError, "Something went wrong. Please try again.", false);
+            loginBtn.textContent = loginBtnText;
+            loginBtn.disabled = false;
+          });
+      });
+    }
+
+    if (registerBtn && registerForm) {
+      registerBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        hideMessage(registerError);
+        hideMessage(registerSuccess);
+
+        if (!registerForm.checkValidity()) {
+          registerForm.reportValidity();
+          return;
+        }
+
+        var fullname = registerForm.querySelector('[name="cta_fullname"]').value.trim();
+        var email = registerForm.querySelector('[name="cta_reg_email"]').value.trim();
+        var password = registerForm.querySelector('[name="cta_reg_password"]').value;
+        var confirmPassword = registerForm.querySelector('[name="cta_reg_confirm_password"]').value;
+        var userType = registerForm.querySelector('[name="cta_user_type"]').value;
+        var nonceField = registerForm.querySelector('[name="cta_register_nonce"]');
+
+        if (password !== confirmPassword) {
+          showMessage(registerError, "Passwords do not match.", false);
+          return;
+        }
+
+        if (password.length < 8) {
+          showMessage(registerError, "Password must be at least 8 characters.", false);
+          return;
+        }
+
+        if (!userType) {
+          showMessage(registerError, "Please select a valid account type.", false);
+          return;
+        }
+
+        registerBtn.textContent = "Creating account...";
+        registerBtn.disabled = true;
+
+        $.post(
+          ctaAjax.ajaxUrl,
+          {
+            action: "cta_register",
+            nonce: nonceField ? nonceField.value : "",
+            fullname: fullname,
+            email: email,
+            password: password,
+            confirm_password: confirmPassword,
+            user_type: userType
+          }
+        )
+          .done(function (response) {
+            if (response.success) {
+              showMessage(
+                registerSuccess,
+                response.data && response.data.message
+                  ? response.data.message
+                  : "Account created successfully! Redirecting...",
+                true
+              );
+
+              setTimeout(function () {
+                window.location.href =
+                  response.data && response.data.redirect_url
+                    ? response.data.redirect_url
+                    : ctaAjax.pluginUrl;
+              }, 1200);
+              return;
+            }
+
+            showMessage(
+              registerError,
+              response.data && response.data.message
+                ? response.data.message
+                : "Registration failed. Please try again.",
+              false
+            );
+            registerBtn.textContent = registerBtnText;
+            registerBtn.disabled = false;
+          })
+          .fail(function () {
+            showMessage(registerError, "Something went wrong. Please try again.", false);
+            registerBtn.textContent = registerBtnText;
+            registerBtn.disabled = false;
+          });
+      });
+    }
+  }
+
+  /**
    * Login / Register page (mock auth for static prototype)
    */
   function initAuthForms() {
+    if (document.getElementById("cta-login-form")) {
+      return;
+    }
+
     var loginForm = document.getElementById("login-form");
     var registerForm = document.getElementById("register-form");
     var toggleButtons = document.querySelectorAll("[data-auth-toggle]");
@@ -1349,6 +3152,16 @@
     initFaqFilters();
     initPoliciesNav();
     initPasswordToggle();
+    initCtaAuthForms();
+    initCtaCourseCatalog();
+    initCtaStripePayments();
+    initCtaSupervisionBooking();
+    initCtaWpCoursePlayer();
+    initCtaQuiz();
+    initCtaDashboardSettings();
+    initCtaCertificateDownload();
+    initCtaSupervisionDashboard();
+    initCtaBundlePurchase();
     initAuthForms();
     initDashboardUser();
     initCertificateDownload();

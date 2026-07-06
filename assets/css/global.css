@@ -1,183 +1,259 @@
 /* ==========================================================================
    CTA Design System — Global Styles
 
-   Recommended load order in HTML:
+   Load order (WordPress enqueues separately):
    1. variables.css
    2. global.css
    3. components.css
    4. layout.css
+   5. theme-compat.css
+
+   Base styles are scoped to .cta-plugin-wrapper / .cta-lms.
    ========================================================================== */
 
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap");
-
-@import "variables.css";
-
 /* --------------------------------------------------------------------------
-   Responsive Breakpoints (reference)
+   Hello Elementor isolation wrapper
    -------------------------------------------------------------------------- */
-/*
-  --breakpoint-sm:  576px   Small devices (landscape phones)
-  --breakpoint-md:  768px   Tablets
-  --breakpoint-lg:  992px   Desktops
-  --breakpoint-xl:  1200px  Large desktops
-  --breakpoint-2xl: 1400px  Extra large screens
-*/
-
-/* --------------------------------------------------------------------------
-   CSS Reset
-   -------------------------------------------------------------------------- */
-*,
-*::before,
-*::after {
+.cta-plugin-wrapper {
+  display: block;
+  width: 100%;
+  font-family: "Outfit", var(--font-family), sans-serif !important;
+  color: #1a1a2e !important;
   box-sizing: border-box;
+}
+
+.cta-plugin-wrapper *,
+.cta-plugin-wrapper *::before,
+.cta-plugin-wrapper *::after {
+  box-sizing: border-box;
+  font-family: "Outfit", var(--font-family), sans-serif;
+}
+
+.cta-plugin-wrapper h1,
+.cta-plugin-wrapper h2,
+.cta-plugin-wrapper h3,
+.cta-plugin-wrapper h4,
+.cta-plugin-wrapper h5,
+.cta-plugin-wrapper h6 {
+  font-family: "Outfit", var(--font-family), sans-serif !important;
+  color: #122b51 !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  margin-bottom: 16px !important;
+}
+
+.cta-plugin-wrapper p {
+  font-family: "Outfit", var(--font-family), sans-serif !important;
+  color: #1a1a2e !important;
+  line-height: 1.6 !important;
+}
+
+/* --------------------------------------------------------------------------
+   Scoped CSS Reset (CTA blocks only)
+   -------------------------------------------------------------------------- */
+.cta-plugin-wrapper,
+.cta-lms,
+.cta-plugin-wrapper *,
+.cta-lms *,
+.cta-plugin-wrapper *::before,
+.cta-lms *::before,
+.cta-plugin-wrapper *::after,
+.cta-lms *::after {
+  box-sizing: border-box;
+}
+
+.cta-plugin-wrapper,
+.cta-lms {
   margin: 0;
   padding: 0;
-}
-
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
   font-family: var(--font-family);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-normal);
   color: var(--color-text-dark);
-  background-color: var(--color-white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-img,
-picture,
-video,
-canvas,
-svg {
+.cta-plugin-wrapper img,
+.cta-lms img,
+.cta-plugin-wrapper picture,
+.cta-lms picture,
+.cta-plugin-wrapper video,
+.cta-lms video,
+.cta-plugin-wrapper canvas,
+.cta-lms canvas,
+.cta-plugin-wrapper svg.cta-icon,
+.cta-lms svg.cta-icon,
+.cta-plugin-wrapper .dashboard-sidebar__icon svg,
+.cta-lms .dashboard-sidebar__icon svg {
+  display: inline-block;
+  max-width: none;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.cta-plugin-wrapper svg:not(.cta-icon),
+.cta-lms svg:not(.cta-icon) {
   display: block;
   max-width: 100%;
   height: auto;
 }
 
-input,
-button,
-textarea,
-select {
+.cta-plugin-wrapper input,
+.cta-lms input,
+.cta-plugin-wrapper button,
+.cta-lms button,
+.cta-plugin-wrapper textarea,
+.cta-lms textarea,
+.cta-plugin-wrapper select,
+.cta-lms select {
   font: inherit;
   color: inherit;
 }
 
-button {
+.cta-plugin-wrapper button:not([class*="btn"]):not(.cta-calendar-day):not(.booking-calendar__day):not(.form-password__toggle),
+.cta-lms button:not([class*="btn"]):not(.cta-calendar-day):not(.booking-calendar__day):not(.form-password__toggle) {
   cursor: pointer;
   border: none;
   background: none;
 }
 
-a {
+.cta-plugin-wrapper a,
+.cta-lms a {
   color: var(--color-primary);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
-a:hover {
+.cta-plugin-wrapper a:hover,
+.cta-lms a:hover {
   color: var(--color-primary-dark);
 }
 
-ul,
-ol {
+.cta-plugin-wrapper ul,
+.cta-lms ul,
+.cta-plugin-wrapper ol,
+.cta-lms ol {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.cta-plugin-wrapper h1,
+.cta-lms h1,
+.cta-plugin-wrapper h2,
+.cta-lms h2,
+.cta-plugin-wrapper h3,
+.cta-lms h3,
+.cta-plugin-wrapper h4,
+.cta-lms h4,
+.cta-plugin-wrapper h5,
+.cta-lms h5,
+.cta-plugin-wrapper h6,
+.cta-lms h6 {
+  margin: 0;
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-tight);
   color: var(--color-text-dark);
 }
 
-p {
+.cta-plugin-wrapper p,
+.cta-lms p {
   margin-bottom: var(--space-md);
 }
 
-p:last-child {
+.cta-plugin-wrapper p:last-child,
+.cta-lms p:last-child {
   margin-bottom: 0;
 }
 
 /* --------------------------------------------------------------------------
    Typography Classes
    -------------------------------------------------------------------------- */
-.text-h1,
-h1 {
+.cta-plugin-wrapper .text-h1,
+.cta-lms .text-h1,
+.cta-plugin-wrapper h1,
+.cta-lms h1 {
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-extrabold);
   letter-spacing: var(--letter-spacing-tight);
 }
 
-.text-h2,
-h2 {
+.cta-plugin-wrapper .text-h2,
+.cta-lms .text-h2,
+.cta-plugin-wrapper h2,
+.cta-lms h2 {
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
 }
 
-.text-h3,
-h3 {
+.cta-plugin-wrapper .text-h3,
+.cta-lms .text-h3,
+.cta-plugin-wrapper h3,
+.cta-lms h3 {
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
 }
 
-.text-h4,
-h4 {
+.cta-plugin-wrapper .text-h4,
+.cta-lms .text-h4,
+.cta-plugin-wrapper h4,
+.cta-lms h4 {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
 }
 
-.text-h5,
-h5 {
+.cta-plugin-wrapper .text-h5,
+.cta-lms .text-h5,
+.cta-plugin-wrapper h5,
+.cta-lms h5 {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
 }
 
-.text-h6,
-h6 {
+.cta-plugin-wrapper .text-h6,
+.cta-lms .text-h6,
+.cta-plugin-wrapper h6,
+.cta-lms h6 {
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-semibold);
 }
 
-.text-body {
+.cta-plugin-wrapper .text-body,
+.cta-lms .text-body {
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-relaxed);
   color: var(--color-text-gray);
 }
 
-.text-body-lg {
+.cta-plugin-wrapper .text-body-lg,
+.cta-lms .text-body-lg {
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-relaxed);
   color: var(--color-text-gray);
 }
 
-.text-small {
+.cta-plugin-wrapper .text-small,
+.cta-lms .text-small {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-normal);
   color: var(--color-text-gray);
 }
 
-.text-xs {
+.cta-plugin-wrapper .text-xs,
+.cta-lms .text-xs {
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-normal);
   color: var(--color-text-muted);
 }
 
-.text-label {
+.cta-plugin-wrapper .text-label,
+.cta-lms .text-label {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   letter-spacing: var(--letter-spacing-wide);
@@ -185,15 +261,18 @@ h6 {
   color: var(--color-primary);
 }
 
-.text-center {
+.cta-plugin-wrapper .text-center,
+.cta-lms .text-center {
   text-align: center;
 }
 
-.text-navy {
+.cta-plugin-wrapper .text-navy,
+.cta-lms .text-navy {
   color: var(--color-navy);
 }
 
-.visually-hidden {
+.cta-plugin-wrapper .visually-hidden,
+.cta-lms .visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -208,47 +287,57 @@ h6 {
 /* --------------------------------------------------------------------------
    Container / Wrapper
    -------------------------------------------------------------------------- */
-.container {
+.cta-plugin-wrapper .cta-container,
+.cta-lms .cta-container {
   width: 100%;
   max-width: var(--container-max);
   margin-inline: auto;
   padding-inline: var(--container-padding);
 }
 
-.container--narrow {
+.cta-plugin-wrapper .cta-container--narrow,
+.cta-lms .cta-container--narrow {
   max-width: 960px;
 }
 
-.container--wide {
+.cta-plugin-wrapper .cta-container--wide,
+.cta-lms .cta-container--wide {
   max-width: 1440px;
 }
 
-.section {
+.cta-plugin-wrapper .section,
+.cta-lms .section {
   padding-block: var(--space-3xl);
 }
 
-.section--sm {
+.cta-plugin-wrapper .section--sm,
+.cta-lms .section--sm {
   padding-block: var(--space-2xl);
 }
 
-.section--bg {
+.cta-plugin-wrapper .section--bg,
+.cta-lms .section--bg {
   background-color: var(--color-bg-light);
 }
 
-.section__header {
+.cta-plugin-wrapper .section__header,
+.cta-lms .section__header {
   margin-bottom: var(--space-2xl);
   text-align: center;
 }
 
-.section__header .text-label {
+.cta-plugin-wrapper .section__header .text-label,
+.cta-lms .section__header .text-label {
   margin-bottom: var(--space-sm);
 }
 
-.section__header .text-h2 {
+.cta-plugin-wrapper .section__header .text-h2,
+.cta-lms .section__header .text-h2 {
   margin-bottom: var(--space-md);
 }
 
-.section__header .text-body {
+.cta-plugin-wrapper .section__header .text-body,
+.cta-lms .section__header .text-body {
   max-width: 640px;
   margin-inline: auto;
 }
@@ -257,33 +346,43 @@ h6 {
    Responsive Typography
    -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
-  .text-h1,
-  h1 {
+  .cta-plugin-wrapper .text-h1,
+  .cta-lms .text-h1,
+  .cta-plugin-wrapper h1,
+  .cta-lms h1 {
     font-size: var(--font-size-3xl);
   }
 
-  .text-h2,
-  h2 {
+  .cta-plugin-wrapper .text-h2,
+  .cta-lms .text-h2,
+  .cta-plugin-wrapper h2,
+  .cta-lms h2 {
     font-size: var(--font-size-2xl);
   }
 
-  .text-h3,
-  h3 {
+  .cta-plugin-wrapper .text-h3,
+  .cta-lms .text-h3,
+  .cta-plugin-wrapper h3,
+  .cta-lms h3 {
     font-size: var(--font-size-xl);
   }
 
-  .section {
+  .cta-plugin-wrapper .section,
+  .cta-lms .section {
     padding-block: var(--space-2xl);
   }
 
-  .container {
+  .cta-plugin-wrapper .cta-container,
+  .cta-lms .cta-container {
     padding-inline: var(--space-md);
   }
 }
 
 @media (max-width: 576px) {
-  .text-h1,
-  h1 {
+  .cta-plugin-wrapper .text-h1,
+  .cta-lms .text-h1,
+  .cta-plugin-wrapper h1,
+  .cta-lms h1 {
     font-size: var(--font-size-2xl);
   }
 }

@@ -412,7 +412,26 @@ class CTA_Admin {
 		$price      = (float) wp_unslash( $_POST['price'] ?? 0 );
 		$description = wp_kses_post( wp_unslash( $_POST['description'] ?? '' ) );
 		$thumbnail  = esc_url_raw( wp_unslash( $_POST['thumbnail_url'] ?? '' ) );
-		$vimeo_id   = sanitize_text_field( wp_unslash( $_POST['vimeo_id'] ?? '' ) );
+		$video_type = sanitize_text_field( wp_unslash( $_POST['course_video_type'] ?? 'vimeo' ) );
+		$video_raw  = sanitize_text_field( wp_unslash( $_POST['course_video_value'] ?? '' ) );
+		$video_url  = esc_url_raw( wp_unslash( $_POST['course_video_url'] ?? '' ) );
+		$vimeo_id   = '';
+		$allowed_video_types = array( 'vimeo', 'youtube', 'wordpress', 'url' );
+
+		if ( ! in_array( $video_type, $allowed_video_types, true ) ) {
+			$video_type = 'vimeo';
+		}
+
+		if ( 'vimeo' === $video_type ) {
+			$vimeo_id = preg_replace( '/\D/', '', $video_raw );
+			$video_url = $vimeo_id ? 'https://vimeo.com/' . $vimeo_id : '';
+		} elseif ( 'youtube' === $video_type ) {
+			$video_url = esc_url_raw( $video_raw );
+			$vimeo_id  = '';
+		} elseif ( 'wordpress' === $video_type || 'url' === $video_type ) {
+			$video_url = $video_url ? $video_url : esc_url_raw( $video_raw );
+			$vimeo_id  = '';
+		}
 		$status     = sanitize_text_field( wp_unslash( $_POST['status'] ?? 'draft' ) );
 		$status     = in_array( $status, array( 'published', 'draft' ), true ) ? $status : 'draft';
 
@@ -446,6 +465,7 @@ class CTA_Admin {
 			'learning_objectives' => wp_json_encode( $objectives ),
 			'thumbnail_url'       => $thumbnail,
 			'vimeo_id'            => $vimeo_id,
+			'video_url'           => $video_url,
 			'status'              => $status,
 		);
 

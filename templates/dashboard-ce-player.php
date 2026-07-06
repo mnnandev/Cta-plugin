@@ -59,7 +59,7 @@ $next_url = $next_module
 			</div>
 		</div>
 
-		<nav class="dashboard-sidebar__nav">
+		<nav class="dashboard-sidebar__nav" id="dashboard-sidebar-nav">
 			<?php if ( $dashboard_url ) : ?>
 				<a href="<?php echo esc_url( $dashboard_url ); ?>" class="dashboard-sidebar__link dashboard-sidebar__link--active">
 					<span class="dashboard-sidebar__icon" aria-hidden="true">
@@ -82,15 +82,10 @@ $next_url = $next_module
 			<?php endif; ?>
 		</nav>
 
-		<div class="dashboard-sidebar__footer">
-			<a href="<?php echo esc_url( $logout_url ); ?>" class="dashboard-sidebar__link" data-auth-logout>
-				<span class="dashboard-sidebar__icon" aria-hidden="true">
-					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-				</span>
-				<?php echo esc_html__( 'Log Out', 'cta-lms' ); ?>
-			</a>
-		</div>
+		<?php include CTA_PLUGIN_DIR . 'templates/partials/dashboard-sidebar-footer.php'; ?>
 	</aside>
+
+	<?php include CTA_PLUGIN_DIR . 'templates/partials/dashboard-mobile-bar.php'; ?>
 
 	<div class="dashboard-main">
 		<?php if ( $dashboard_url ) : ?>

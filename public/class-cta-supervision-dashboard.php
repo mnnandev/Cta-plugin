@@ -147,6 +147,7 @@ class CTA_Supervision_Dashboard {
 		$dashboard_url       = $this->get_dashboard_url();
 		$supervision_url     = $this->get_supervision_page_url();
 		$logout_url          = wp_logout_url( $dashboard_url ? $dashboard_url : home_url( '/' ) );
+		$home_url            = home_url( '/' );
 		$dashboard_user      = $this->get_dashboard_user_data( $user, $associate_number );
 		$document_categories = self::DOC_CATEGORIES;
 		$dashboard           = $this;

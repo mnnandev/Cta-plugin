@@ -11,7 +11,8 @@
  * @var string $dashboard_url  Dashboard page URL.
  * @var string $courses_url    Courses catalog URL.
  * @var string $login_url      Login page URL.
- * @var string $logout_url     Logout URL.
+ * @var string $home_url            Site home URL.
+ * @var string $logout_url          Logout URL.
  * @var array  $dashboard_user User display data.
  */
 
@@ -35,7 +36,7 @@ $completed_count   = count( $completed );
 			</div>
 		</div>
 
-		<nav class="dashboard-sidebar__nav">
+		<nav class="dashboard-sidebar__nav" id="dashboard-sidebar-nav">
 			<a href="#" class="dashboard-sidebar__link dashboard-sidebar__link--active" data-dashboard-nav="courses" aria-current="page">
 				<span class="dashboard-sidebar__icon" aria-hidden="true">
 					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
@@ -56,15 +57,10 @@ $completed_count   = count( $completed );
 			</a>
 		</nav>
 
-		<div class="dashboard-sidebar__footer">
-			<a href="<?php echo esc_url( $logout_url ); ?>" class="dashboard-sidebar__link" data-auth-logout>
-				<span class="dashboard-sidebar__icon" aria-hidden="true">
-					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-				</span>
-				<?php echo esc_html__( 'Log Out', 'cta-lms' ); ?>
-			</a>
-		</div>
+		<?php include CTA_PLUGIN_DIR . 'templates/partials/dashboard-sidebar-footer.php'; ?>
 	</aside>
+
+	<?php include CTA_PLUGIN_DIR . 'templates/partials/dashboard-mobile-bar.php'; ?>
 
 	<div class="dashboard-main">
 

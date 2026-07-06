@@ -40,6 +40,7 @@ class CTA_Database {
   status varchar(20) DEFAULT 'draft',
   thumbnail_url varchar(500) DEFAULT NULL,
   vimeo_id varchar(100) DEFAULT NULL,
+  video_url varchar(500) DEFAULT NULL,
   created_at datetime DEFAULT CURRENT_TIMESTAMP,
   updated_at datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY  (id),

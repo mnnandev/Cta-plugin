@@ -635,6 +635,54 @@
     });
   }
 
+  function initDashboardMobileMenu() {
+    document.querySelectorAll(".dashboard-layout").forEach(function (layout) {
+      var toggle = layout.parentElement.querySelector("[data-dashboard-menu-toggle]") ||
+        layout.querySelector("[data-dashboard-menu-toggle]");
+      if (!toggle) return;
+
+      function closeMenu() {
+        layout.classList.remove("dashboard-layout--menu-open");
+        toggle.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      }
+
+      function openMenu() {
+        layout.classList.add("dashboard-layout--menu-open");
+        toggle.setAttribute("aria-expanded", "true");
+        document.body.style.overflow = "hidden";
+      }
+
+      toggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (layout.classList.contains("dashboard-layout--menu-open")) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+
+      document.addEventListener("click", function (e) {
+        if (!layout.classList.contains("dashboard-layout--menu-open")) {
+          return;
+        }
+
+        var sidebar = layout.querySelector(".dashboard-sidebar");
+        if (sidebar && !sidebar.contains(e.target) && !toggle.contains(e.target)) {
+          closeMenu();
+        }
+      });
+
+      layout.querySelectorAll(".dashboard-sidebar__link").forEach(function (link) {
+        link.addEventListener("click", function () {
+          if (window.matchMedia("(max-width: 992px)").matches) {
+            closeMenu();
+          }
+        });
+      });
+    });
+  }
+
   /**
    * Dashboard sidebar panel switcher
    * Container: [data-dashboard]
@@ -3166,6 +3214,7 @@
     initDashboardUser();
     initCertificateDownload();
     initDashboardNav();
+    initDashboardMobileMenu();
     initDashboardSettings();
     initCoursePlayer();
     initCatalogFilters();

@@ -122,6 +122,7 @@ class CTA_Student_Dashboard {
 		$courses_url    = $this->get_courses_url();
 		$login_url      = $this->get_login_url();
 		$logout_url     = wp_logout_url( $dashboard_url ? $dashboard_url : home_url( '/' ) );
+		$home_url       = home_url( '/' );
 		$dashboard_user = $this->get_dashboard_user_data( $user );
 
 		ob_start();
@@ -195,6 +196,7 @@ class CTA_Student_Dashboard {
 		$player_base    = $this->get_player_page_url();
 		$user           = wp_get_current_user();
 		$logout_url     = wp_logout_url( $dashboard_url ? $dashboard_url : home_url( '/' ) );
+		$home_url       = home_url( '/' );
 		$dashboard_user = $this->get_dashboard_user_data( $user );
 		$video_markup   = $this->get_module_video_markup( $module, $course );
 		$module_complete = in_array( (int) $module->id, $completed_ids, true );
@@ -613,6 +615,14 @@ class CTA_Student_Dashboard {
 	 */
 	public function get_module_video_markup( $module, $course ) {
 		$video_url = (string) $module->video_url;
+
+		if ( preg_match( '/^\d+$/', trim( $video_url ) ) ) {
+			$video_url = 'https://vimeo.com/' . trim( $video_url );
+		}
+
+		if ( empty( $video_url ) && ! empty( $course->video_url ) ) {
+			$video_url = (string) $course->video_url;
+		}
 
 		if ( empty( $video_url ) && ! empty( $course->vimeo_id ) ) {
 			$video_url = 'https://vimeo.com/' . preg_replace( '/\D/', '', (string) $course->vimeo_id );

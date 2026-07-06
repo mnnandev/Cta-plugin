@@ -125,7 +125,7 @@
         module_id: $("#cta-module-id").val(),
         title: $("#cta-module-title").val(),
         description: $("#cta-module-description").val(),
-        video_url: $("#cta-module-video").val(),
+        video_url: normalizeModuleVideoUrl(),
         duration_mins: $("#cta-module-duration").val(),
         is_locked: $("#cta-module-locked").is(":checked") ? 1 : 0
       })
@@ -194,11 +194,31 @@
         $input.attr("placeholder", "https://www.youtube.com/watch?v=...");
         $input.prop("readonly", false);
         $select.hide();
+      } else if (type === "vimeo") {
+        $input.attr("placeholder", "Vimeo ID or https://vimeo.com/123456789");
+        $input.prop("readonly", false);
+        $select.hide();
       } else {
         $input.attr("placeholder", "https://example.com/video.mp4");
         $input.prop("readonly", false);
         $select.hide();
       }
+    }
+
+    function normalizeModuleVideoUrl() {
+      var type = $("#cta-module-video-type").val();
+      var value = String($("#cta-module-video").val() || "").trim();
+
+      if (!value) {
+        return "";
+      }
+
+      if (type === "vimeo") {
+        var vimeoId = value.replace(/\D/g, "");
+        return vimeoId ? "https://vimeo.com/" + vimeoId : "";
+      }
+
+      return value;
     }
 
     if ($("#cta-module-video-type").length) {
@@ -244,6 +264,10 @@
       var videoUrl = String($row.data("video-url") || "");
       if (videoUrl.indexOf("youtube.com") !== -1 || videoUrl.indexOf("youtu.be") !== -1) {
         $("#cta-module-video-type").val("youtube");
+      } else if (videoUrl.indexOf("vimeo.com") !== -1) {
+        $("#cta-module-video-type").val("vimeo");
+        var vimeoMatch = videoUrl.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+        $("#cta-module-video").val(vimeoMatch ? vimeoMatch[1] : videoUrl);
       } else if (videoUrl.indexOf("/wp-content/") !== -1) {
         $("#cta-module-video-type").val("wordpress");
       } else {
@@ -637,6 +661,76 @@
     });
   }
 
+  function initCourseVideoSource() {
+    if (!$("#cta-course-video-type").length) {
+      return;
+    }
+
+    function toggleCourseVideoUI() {
+      var type = $("#cta-course-video-type").val();
+      var $input = $("#cta-course-video-value");
+      var $hidden = $("#cta-course-video-url");
+      var $select = $("#cta-course-video-select");
+      var $help = $(".cta-course-video-help");
+
+      $help.hide();
+      $help.filter('[data-help="' + type + '"]').show();
+
+      if (type === "wordpress") {
+        $input.attr("placeholder", "Select a video from Media Library");
+        $input.prop("readonly", true);
+        $select.show();
+      } else if (type === "youtube") {
+        $input.attr("placeholder", "https://www.youtube.com/watch?v=...");
+        $input.prop("readonly", false);
+        $select.hide();
+      } else if (type === "vimeo") {
+        $input.attr("placeholder", "Vimeo ID (numbers only)");
+        $input.prop("readonly", false);
+        $select.hide();
+      } else {
+        $input.attr("placeholder", "https://example.com/video.mp4");
+        $input.prop("readonly", false);
+        $select.hide();
+      }
+
+      if (type === "wordpress" && $hidden.val()) {
+        $input.val($hidden.val());
+      }
+    }
+
+    $("#cta-course-video-type").on("change", function () {
+      $("#cta-course-video-value, #cta-course-video-url").val("");
+      toggleCourseVideoUI();
+    });
+
+    $("#cta-course-video-select").on("click", function (e) {
+      e.preventDefault();
+
+      if (typeof wp === "undefined" || !wp.media) {
+        window.alert("WordPress media library is not available.");
+        return;
+      }
+
+      var frame = wp.media({
+        title: "Select Video",
+        button: { text: "Use this video" },
+        library: { type: "video" },
+        multiple: false
+      });
+
+      frame.on("select", function () {
+        var attachment = frame.state().get("selection").first().toJSON();
+        $("#cta-course-video-value").val(attachment.url || "");
+        $("#cta-course-video-url").val(attachment.url || "");
+      });
+
+      frame.open();
+    });
+
+    toggleCourseVideoUI();
+  }
+
   $(function () {
     if (typeof ctaAdmin === "undefined") {
       return;
@@ -646,6 +740,7 @@
     initDeleteConfirms();
     initSlugGeneration();
     initObjectivesRepeater();
+    initCourseVideoSource();
     initModulesPanel();
     initQuizPanel();
     initStripeTest();

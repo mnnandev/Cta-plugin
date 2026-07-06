@@ -309,8 +309,17 @@
   align-items: center;
 }
 
-.cta-module-video-row .regular-text {
-  flex: 1 1 320px;
+.cta-module-video-row .regular-text,
+.cta-course-video-row .regular-text {
+  flex: 1 1 280px;
+  max-width: 100%;
+}
+
+.cta-course-video-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
 }
 
 @media (max-width: 782px) {

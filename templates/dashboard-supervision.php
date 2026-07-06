@@ -20,7 +20,8 @@
  * @var string $next_session_label
  * @var string $dashboard_url
  * @var string $supervision_url
- * @var string $logout_url
+ * @var string $home_url            Site home URL.
+ * @var string $logout_url          Logout URL.
  * @var array  $dashboard_user
  * @var array  $document_categories
  * @var CTA_Supervision_Dashboard $dashboard
@@ -39,6 +40,9 @@ $document_count     = count( $documents );
 
 	<?php if ( $no_plan ) : ?>
 		<div class="dashboard-main dashboard-main--full">
+			<?php if ( ! empty( $home_url ) ) : ?>
+				<p class="dashboard-home-link"><a href="<?php echo esc_url( $home_url ); ?>">&larr; <?php echo esc_html__( 'Back to Home', 'cta-lms' ); ?></a></p>
+			<?php endif; ?>
 			<div class="cta-empty-state cta-supervision-no-plan">
 				<h1><?php echo esc_html__( 'No active plan', 'cta-lms' ); ?></h1>
 				<p><?php echo esc_html__( 'Subscribe to group supervision to access your associate dashboard, book sessions, and upload BBS documents.', 'cta-lms' ); ?></p>
@@ -75,6 +79,9 @@ $document_count     = count( $documents );
 
 	<?php elseif ( $is_locked ) : ?>
 		<div class="dashboard-main dashboard-main--full">
+			<?php if ( ! empty( $home_url ) ) : ?>
+				<p class="dashboard-home-link"><a href="<?php echo esc_url( $home_url ); ?>">&larr; <?php echo esc_html__( 'Back to Home', 'cta-lms' ); ?></a></p>
+			<?php endif; ?>
 			<div class="cta-supervision-locked">
 				<div class="cta-alert cta-alert--danger" role="alert">
 					<h2><?php echo esc_html__( 'Your supervision access is currently suspended due to a payment issue.', 'cta-lms' ); ?></h2>
@@ -105,7 +112,7 @@ $document_count     = count( $documents );
 				</div>
 			</div>
 
-			<nav class="dashboard-sidebar__nav">
+			<nav class="dashboard-sidebar__nav" id="dashboard-sidebar-nav">
 				<a href="#" class="dashboard-sidebar__link dashboard-sidebar__link--active" data-dashboard-nav="sessions" aria-current="page">
 					<span class="dashboard-sidebar__icon" aria-hidden="true">
 						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -132,15 +139,10 @@ $document_count     = count( $documents );
 				</a>
 			</nav>
 
-			<div class="dashboard-sidebar__footer">
-				<a href="<?php echo esc_url( $logout_url ); ?>" class="dashboard-sidebar__link" data-auth-logout>
-					<span class="dashboard-sidebar__icon" aria-hidden="true">
-						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-					</span>
-					<?php echo esc_html__( 'Log Out', 'cta-lms' ); ?>
-				</a>
-			</div>
+			<?php include CTA_PLUGIN_DIR . 'templates/partials/dashboard-sidebar-footer.php'; ?>
 		</aside>
+
+		<?php include CTA_PLUGIN_DIR . 'templates/partials/dashboard-mobile-bar.php'; ?>
 
 		<div class="dashboard-main">
 

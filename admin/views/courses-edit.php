@@ -11,6 +11,35 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $is_edit = (bool) $course;
 $notice  = sanitize_text_field( wp_unslash( $_GET['cta_notice'] ?? '' ) );
+
+$course_video_type  = 'vimeo';
+$course_video_value = '';
+$course_video_url   = '';
+
+if ( $course ) {
+	$course_video_url = (string) ( $course->video_url ?? '' );
+
+	if ( '' !== $course_video_url ) {
+		if ( false !== strpos( $course_video_url, 'youtube.com' ) || false !== strpos( $course_video_url, 'youtu.be' ) ) {
+			$course_video_type  = 'youtube';
+			$course_video_value = $course_video_url;
+		} elseif ( false !== strpos( $course_video_url, 'vimeo.com' ) ) {
+			$course_video_type = 'vimeo';
+			if ( preg_match( '/vimeo\.com\/(?:video\/)?(\d+)/', $course_video_url, $matches ) ) {
+				$course_video_value = $matches[1];
+			}
+		} elseif ( false !== strpos( $course_video_url, '/wp-content/' ) ) {
+			$course_video_type  = 'wordpress';
+			$course_video_value = $course_video_url;
+		} else {
+			$course_video_type  = 'url';
+			$course_video_value = $course_video_url;
+		}
+	} elseif ( ! empty( $course->vimeo_id ) ) {
+		$course_video_type  = 'vimeo';
+		$course_video_value = preg_replace( '/\D/', '', (string) $course->vimeo_id );
+	}
+}
 ?>
 <div class="wrap cta-admin-wrap">
 	<h1><?php echo $is_edit ? esc_html__( 'Edit Course', 'cta-lms' ) : esc_html__( 'Add New Course', 'cta-lms' ); ?></h1>
@@ -95,8 +124,27 @@ $notice  = sanitize_text_field( wp_unslash( $_GET['cta_notice'] ?? '' ) );
 					</td>
 				</tr>
 				<tr>
-					<th><label for="cta-course-vimeo"><?php esc_html_e( 'Vimeo ID', 'cta-lms' ); ?></label></th>
-					<td><input type="text" class="regular-text" id="cta-course-vimeo" name="vimeo_id" value="<?php echo esc_attr( $course->vimeo_id ?? '' ); ?>"></td>
+					<th><label for="cta-course-video-type"><?php esc_html_e( 'Preview Video', 'cta-lms' ); ?></label></th>
+					<td>
+						<p>
+							<label for="cta-course-video-type"><strong><?php esc_html_e( 'Video Source', 'cta-lms' ); ?></strong></label><br>
+							<select id="cta-course-video-type" name="course_video_type">
+								<option value="vimeo" <?php selected( $course_video_type, 'vimeo' ); ?>><?php esc_html_e( 'Vimeo', 'cta-lms' ); ?></option>
+								<option value="youtube" <?php selected( $course_video_type, 'youtube' ); ?>><?php esc_html_e( 'YouTube URL', 'cta-lms' ); ?></option>
+								<option value="wordpress" <?php selected( $course_video_type, 'wordpress' ); ?>><?php esc_html_e( 'WordPress Media Library', 'cta-lms' ); ?></option>
+								<option value="url" <?php selected( $course_video_type, 'url' ); ?>><?php esc_html_e( 'Direct Video URL (MP4)', 'cta-lms' ); ?></option>
+							</select>
+						</p>
+						<p class="cta-course-video-row">
+							<input type="text" class="regular-text" id="cta-course-video-value" name="course_video_value" value="<?php echo esc_attr( $course_video_value ); ?>" placeholder="<?php esc_attr_e( 'Vimeo ID or video URL', 'cta-lms' ); ?>">
+							<input type="hidden" id="cta-course-video-url" name="course_video_url" value="<?php echo esc_url( $course_video_url ); ?>">
+							<button type="button" class="button" id="cta-course-video-select" style="display:none;"><?php esc_html_e( 'Select Video', 'cta-lms' ); ?></button>
+						</p>
+						<p class="description cta-course-video-help" data-help="vimeo"><?php esc_html_e( 'Enter the Vimeo video ID (numbers only). Used as fallback when a module has no video.', 'cta-lms' ); ?></p>
+						<p class="description cta-course-video-help" data-help="youtube" style="display:none;"><?php esc_html_e( 'Example: https://www.youtube.com/watch?v=VIDEO_ID', 'cta-lms' ); ?></p>
+						<p class="description cta-course-video-help" data-help="wordpress" style="display:none;"><?php esc_html_e( 'Click Select Video to choose an uploaded MP4 from your Media Library.', 'cta-lms' ); ?></p>
+						<p class="description cta-course-video-help" data-help="url" style="display:none;"><?php esc_html_e( 'Paste a direct link to an MP4 or other supported video file.', 'cta-lms' ); ?></p>
+					</td>
 				</tr>
 				<tr>
 					<th><?php esc_html_e( 'Status', 'cta-lms' ); ?></th>
@@ -142,15 +190,17 @@ $notice  = sanitize_text_field( wp_unslash( $_GET['cta_notice'] ?? '' ) );
 				<p>
 					<label for="cta-module-video-type"><strong><?php esc_html_e( 'Video Source', 'cta-lms' ); ?></strong></label><br>
 					<select id="cta-module-video-type">
+						<option value="vimeo"><?php esc_html_e( 'Vimeo', 'cta-lms' ); ?></option>
 						<option value="youtube"><?php esc_html_e( 'YouTube URL', 'cta-lms' ); ?></option>
 						<option value="wordpress"><?php esc_html_e( 'WordPress Media Library', 'cta-lms' ); ?></option>
 						<option value="url"><?php esc_html_e( 'Direct Video URL (MP4)', 'cta-lms' ); ?></option>
 					</select>
 				</p>
 				<p class="cta-module-video-row">
-					<input type="url" id="cta-module-video" class="regular-text" placeholder="<?php esc_attr_e( 'Paste YouTube or video URL', 'cta-lms' ); ?>">
+					<input type="text" id="cta-module-video" class="regular-text" placeholder="<?php esc_attr_e( 'Vimeo ID or video URL', 'cta-lms' ); ?>">
 					<button type="button" class="button" id="cta-module-video-select" style="display:none;"><?php esc_html_e( 'Select Video', 'cta-lms' ); ?></button>
 				</p>
+				<p class="description cta-module-video-help" data-help="vimeo"><?php esc_html_e( 'Enter the Vimeo video ID (numbers only) or full Vimeo URL.', 'cta-lms' ); ?></p>
 				<p class="description cta-module-video-help" data-help="youtube"><?php esc_html_e( 'Example: https://www.youtube.com/watch?v=VIDEO_ID', 'cta-lms' ); ?></p>
 				<p class="description cta-module-video-help" data-help="wordpress" style="display:none;"><?php esc_html_e( 'Click Select Video to choose an uploaded MP4 from your Media Library.', 'cta-lms' ); ?></p>
 				<p class="description cta-module-video-help" data-help="url" style="display:none;"><?php esc_html_e( 'Paste a direct link to an MP4 or other supported video file.', 'cta-lms' ); ?></p>

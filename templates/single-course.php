@@ -17,6 +17,7 @@
  * @var array  $quiz_questions
  * @var string $login_url
  * @var bool   $is_free_course
+ * @var CTA_Student_Dashboard $video_helper
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -107,7 +108,12 @@ $admin_name = get_option( 'cta_admin_name', 'Candice Fuimaono, MS, LMFT' );
 						<?php if ( ! empty( $modules ) ) : ?>
 							<ul class="course-module-list">
 								<?php foreach ( $modules as $index => $module ) : ?>
-									<li class="course-module-list__item">
+									<?php
+									$module_video_markup = $video_helper->get_module_video_markup( $module, $course );
+									$has_module_video    = ! empty( trim( (string) $module->video_url ) );
+									$module_video_id     = 'cta-module-video-' . (int) $module->id;
+									?>
+									<li class="course-module-list__item<?php echo $has_module_video ? ' course-module-list__item--has-video' : ''; ?>">
 										<div class="course-module-list__header">
 											<span class="course-module-list__number"><?php echo esc_html( (string) ( $index + 1 ) ); ?></span>
 											<div class="course-module-list__info">
@@ -115,8 +121,29 @@ $admin_name = get_option( 'cta_admin_name', 'Candice Fuimaono, MS, LMFT' );
 												<?php if ( ! empty( $module->description ) ) : ?>
 													<p class="course-module-list__desc"><?php echo esc_html( $module->description ); ?></p>
 												<?php endif; ?>
+												<?php if ( $has_module_video ) : ?>
+													<span class="course-module-list__video-tag">
+														<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+														<?php esc_html_e( 'Video lesson', 'cta-lms' ); ?>
+													</span>
+												<?php endif; ?>
 											</div>
 											<span class="course-module-list__duration"><?php echo esc_html( (int) $module->duration_mins . ' min' ); ?></span>
+											<?php if ( $has_module_video ) : ?>
+												<button
+													type="button"
+													class="course-module-list__play"
+													data-cta-module-preview
+													data-module-title="<?php echo esc_attr( $module->title ); ?>"
+													data-target="<?php echo esc_attr( $module_video_id ); ?>"
+													aria-label="<?php echo esc_attr( sprintf( __( 'Preview video: %s', 'cta-lms' ), $module->title ) ); ?>"
+												>
+													<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+												</button>
+												<div id="<?php echo esc_attr( $module_video_id ); ?>" class="cta-module-preview-source" hidden>
+													<?php echo $module_video_markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+												</div>
+											<?php endif; ?>
 										</div>
 									</li>
 								<?php endforeach; ?>
@@ -195,5 +222,14 @@ $admin_name = get_option( 'cta_admin_name', 'Candice Fuimaono, MS, LMFT' );
 			</aside>
 		</div>
 	</section>
+
+	<div class="cta-video-modal" id="cta-course-video-modal" hidden>
+		<div class="cta-video-modal__backdrop" data-cta-close-video-modal></div>
+		<div class="cta-video-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="cta-course-video-modal-title">
+			<button type="button" class="cta-video-modal__close" data-cta-close-video-modal aria-label="<?php esc_attr_e( 'Close video', 'cta-lms' ); ?>">&times;</button>
+			<h3 class="cta-video-modal__title" id="cta-course-video-modal-title"></h3>
+			<div class="cta-video-modal__player"></div>
+		</div>
+	</div>
 </div>
 </div>

@@ -3194,6 +3194,55 @@
     }
   }
 
+  /**
+   * Module video preview popup on single course page.
+   */
+  function initCourseModulePreview() {
+    var modal = document.getElementById("cta-course-video-modal");
+    if (!modal) return;
+
+    var player = modal.querySelector(".cta-video-modal__player");
+    var titleEl = modal.querySelector(".cta-video-modal__title");
+
+    function closeModal() {
+      modal.hidden = true;
+      document.body.style.overflow = "";
+      if (player) {
+        player.innerHTML = "";
+      }
+    }
+
+    function openModal(btn) {
+      var targetId = btn.getAttribute("data-target");
+      var source = targetId ? document.getElementById(targetId) : null;
+      if (!source || !player) return;
+
+      if (titleEl) {
+        titleEl.textContent = btn.getAttribute("data-module-title") || "";
+      }
+
+      player.innerHTML = source.innerHTML;
+      modal.hidden = false;
+      document.body.style.overflow = "hidden";
+    }
+
+    document.querySelectorAll("[data-cta-module-preview]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        openModal(btn);
+      });
+    });
+
+    modal.querySelectorAll("[data-cta-close-video-modal]").forEach(function (el) {
+      el.addEventListener("click", closeModal);
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !modal.hidden) {
+        closeModal();
+      }
+    });
+  }
+
   function init() {
     initMobileMenu();
     initAccordion();
@@ -3203,6 +3252,7 @@
     initPasswordToggle();
     initCtaAuthForms();
     initCtaCourseCatalog();
+    initCourseModulePreview();
     initCtaStripePayments();
     initCtaSupervisionBooking();
     initCtaWpCoursePlayer();

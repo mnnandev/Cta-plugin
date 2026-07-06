@@ -131,6 +131,7 @@ class CTA_Courses {
 		$preview_video   = $this->get_course_preview_video_markup( $course );
 		$login_url       = CTA_Emails::get_page_url( 'cta_login_page_id' );
 		$is_free_course  = (float) $course->price <= 0;
+		$video_helper    = new CTA_Student_Dashboard();
 
 		ob_start();
 		include CTA_PLUGIN_DIR . 'templates/single-course.php';
